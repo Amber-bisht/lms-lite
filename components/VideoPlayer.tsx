@@ -170,7 +170,7 @@ export default function VideoPlayer({ course }: VideoPlayerProps) {
               allowFullScreen
             />
           ) : course.videoType === 'wistia' ? (
-            <div className="w-full h-full">
+            <div className="w-full h-full" key={currentVideoIndex}>
               {wistiaLoaded ? (
                 <div 
                   className="wistia_responsive_padding" 
