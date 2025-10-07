@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Hls, { HlsConfig, ErrorData } from 'hls.js';
-import { ICourse } from '../models/Course';
+import { ICourse } from '../lib/dataUtils';
 
 interface VideoPlayerProps {
   course: ICourse;

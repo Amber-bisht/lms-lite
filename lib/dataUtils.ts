@@ -21,7 +21,7 @@ export interface ICourse {
   videoType: 'hls' | 'wistia' | 'youtube' | 'internetarchive' | 'redirect';
   redirecturl?: string;
   videos: IVideo[];
-  rank: 'high' | 'mid' | 'low';
+  rank: 'high' | 'mid' | 'medium' | 'low';
   _id: string;
   __v: number;
 }
@@ -32,7 +32,7 @@ export interface ICategory {
   des: string;
   imageofcategory: string;
   totalcourse: number;
-  rank: 'high' | 'mid' | 'low';
+  rank: 'high' | 'mid' | 'medium' | 'low';
   _id: string;
   __v: number;
 }
@@ -51,7 +51,7 @@ interface JsonCourse {
   videoType: 'hls' | 'wistia' | 'youtube' | 'internetarchive' | 'redirect';
   redirecturl?: string;
   videos: IVideo[];
-  rank?: 'high' | 'mid' | 'low';
+  rank?: 'high' | 'mid' | 'medium' | 'low';
 }
 
 interface JsonCategory {
@@ -59,7 +59,7 @@ interface JsonCategory {
   des: string;
   imageofcategory: string;
   totalcourse?: number;
-  rank?: 'high' | 'mid' | 'low';
+  rank?: 'high' | 'mid' | 'medium' | 'low';
 }
 
 // Helper function to get data directory path
@@ -112,7 +112,7 @@ export function getAllCategories(): ICategory[] {
     
     // Sort categories by rank and name
     categories.sort((a, b) => {
-      const rankOrder: { [key: string]: number } = { high: 0, mid: 1, low: 2 };
+      const rankOrder: { [key: string]: number } = { high: 0, mid: 1, medium: 1, low: 2 };
       const rankDiff = rankOrder[a.rank] - rankOrder[b.rank];
       return rankDiff !== 0 ? rankDiff : a.category.localeCompare(b.category);
     });
@@ -168,7 +168,7 @@ export function getAllCourses(): ICourse[] {
     
     // Sort courses by rank and name
     courses.sort((a, b) => {
-      const rankOrder: { [key: string]: number } = { high: 0, mid: 1, low: 2 };
+      const rankOrder: { [key: string]: number } = { high: 0, mid: 1, medium: 1, low: 2 };
       const rankDiff = rankOrder[a.rank] - rankOrder[b.rank];
       return rankDiff !== 0 ? rankDiff : a.courseName.localeCompare(b.courseName);
     });
@@ -198,7 +198,7 @@ export function getCourseByName(categoryName: string, courseName: string): ICour
 }
 
 // Get categories by rank
-export function getCategoriesByRank(rank: 'high' | 'mid' | 'low'): ICategory[] {
+export function getCategoriesByRank(rank: 'high' | 'mid' | 'medium' | 'low'): ICategory[] {
   const allCategories = getAllCategories();
   return allCategories.filter(category => category.rank === rank);
 }
