@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "ping": "node scripts/ping.js",
-    "ping:continuous": "node -e \"setInterval(() => require('./scripts/ping.js').runPingCycle(), 5 * 60 * 1000)\""
+    "ping:continuous": "node -e \"setInterval(() => require('./scripts/ping.js').runPingCycle(), 5 * 60 * 1000)\"",
+    "sitemap": "node scripts/generate-sitemap.js"
   },
   "dependencies": {
     "hls.js": "^1.4.12",
