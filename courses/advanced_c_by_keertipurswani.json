@@ -1,0 +1,40 @@
+{
+  "courseName": "keertiadvc++",
+  "coursecategory": "programming",
+  "viewtype": "both",
+  "des": "Learn Advanced C++ by keertipurswani with comprehensive video tutorials and hands-on projects.",
+  "imageofinstructur": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300",
+  "instructorname": "keertipurswani",
+  "imageofcourse": "https://appxcontent.kaxa.in/paid_course3/2024-10-22-0.4957051785391853.png",
+  "audio": "english",
+  "cost": 2499,
+  "videoType": "hls",
+  "redirecturl": "",
+  "rank": "high",
+  "videos": [
+    {
+      "title": "Day 1",
+      "url": "https://appx-transcoded-videos-mcdn.akamai.net.in/videos/keertipurswani-data/351774-1707504735/hls-a30b2c/720p/master-4799812.713416776.m3u8"
+    },
+    {
+      "title": "Day 2",
+      "url": "https://appx-transcoded-videos-mcdn.akamai.net.in/videos/keertipurswani-data/352248-1707617288/hls-488fd0/720p/master-2164855.330932116.m3u8"
+    },
+    {
+      "title": "Day 3",
+      "url": "https://appx-transcoded-videos-mcdn.akamai.net.in/videos/keertipurswani-data/352402-1707687906/hls-3e6701/720p/master-3804615.8434674446.m3u8"
+    },
+    {
+      "title": "Day 4",
+      "url": "https://appx-transcoded-videos-mcdn.akamai.net.in/videos/keertipurswani-data/355286-1708113174/hls-062164/720p/master-656583.8856344208.m3u8"
+    },
+    {
+      "title": "Day 5",
+      "url": "https://appx-transcoded-videos-mcdn.akamai.net.in/videos/keertipurswani-data/355945-1708226572/hls-dfc64d/720p/master-9149763.297947776.m3u8"
+    },
+    {
+      "title": "Day 6",
+      "url": "https://appx-transcoded-videos-mcdn.akamai.net.in/videos/keertipurswani-data/356243-1708332595/hls-3a0c31/720p/master-5451439.575556307.m3u8"
+    }
+  ]
+}
