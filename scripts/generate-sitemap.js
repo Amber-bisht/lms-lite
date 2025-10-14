@@ -115,10 +115,23 @@ function generateSitemap() {
 `;
   });
 
-  // Add course pages
+  // Add course pages (with URL encoding and deduplication)
+  const addedUrls = new Set();
   courses.forEach(course => {
+    // URL encode the course name and category to handle special characters and spaces
+    const encodedCategory = encodeURIComponent(course.category);
+    const encodedCourseName = encodeURIComponent(course.courseName);
+    const url = `${DOMAIN}/r/${encodedCategory}/${encodedCourseName}`;
+    
+    // Skip duplicates
+    if (addedUrls.has(url)) {
+      console.warn(`⚠️  Skipping duplicate URL: ${url}`);
+      return;
+    }
+    addedUrls.add(url);
+    
     sitemap += `  <url>
-    <loc>${DOMAIN}/r/${course.category}/${course.courseName}</loc>
+    <loc>${url}</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
