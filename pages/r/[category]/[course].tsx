@@ -7,6 +7,7 @@ import Layout from '../../../components/Layout';
 import VideoPlayer from '../../../components/VideoPlayer';
 import { ICourse } from '../../../lib/dataUtils';
 import { getAllCourses, getCourseByName } from '../../../lib/dataUtils';
+import { trackCourseView } from '../../../lib/gtag';
 
 interface CoursePageProps {
   course: ICourse | null;
@@ -23,6 +24,13 @@ export default function CoursePage({ course, categoryName, courseName }: CourseP
       window.location.href = course.redirecturl;
     }
   }, [course]);
+
+  // Track course view
+  useEffect(() => {
+    if (course && course.courseName) {
+      trackCourseView(course.courseName, categoryName);
+    }
+  }, [course, categoryName]);
 
   if (!course) {
     return (
@@ -94,21 +102,98 @@ export default function CoursePage({ course, categoryName, courseName }: CourseP
 
   const canonicalUrl = `https://unlockedcoding.com/r/${encodeURIComponent(categoryName.toLowerCase())}/${encodeURIComponent(courseName)}`;
   
+  // Generate video structured data for each video in the course
+  const videoStructuredData = course.videos.map((video, index) => {
+    const videoUrl = `https://unlockedcoding.com/r/${encodeURIComponent(categoryName.toLowerCase())}/${encodeURIComponent(courseName)}/${index}`;
+    const videoEmbedUrl = `https://unlockedcoding.com/r/${encodeURIComponent(categoryName.toLowerCase())}/${encodeURIComponent(courseName)}/${index}`;
+    
+    return {
+      "@type": "VideoObject",
+      "name": video.title,
+      "description": `${course.des} - ${video.title}`,
+      "thumbnailUrl": course.imageofcourse,
+      "uploadDate": new Date().toISOString(),
+      "duration": "PT1H", // Default duration, can be enhanced with actual video duration
+      "embedUrl": videoEmbedUrl,
+      "url": videoUrl,
+      "contentUrl": video.url,
+      "publisher": {
+        "@type": "Organization",
+        "name": "Unlocked Coding",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://unlockedcoding.com/images.png"
+          }
+      },
+      "instructor": {
+        "@type": "Person",
+        "name": course.instructorname || "Course Instructor"
+      },
+      "partOfSeries": {
+        "@type": "VideoSeries",
+        "name": course.courseName,
+        "url": canonicalUrl
+      }
+    };
+  });
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Course",
+        "name": course.courseName,
+        "description": course.des,
+        "provider": {
+          "@type": "Organization",
+          "name": "Unlocked Coding",
+          "url": "https://unlockedcoding.com"
+        },
+        "instructor": {
+          "@type": "Person",
+          "name": course.instructorname || "Course Instructor"
+        },
+        "courseMode": "online",
+        "educationalLevel": "beginner",
+        "url": canonicalUrl,
+        "image": course.imageofcourse,
+        "hasPart": videoStructuredData
+      },
+      ...videoStructuredData
+    ]
+  };
+  
   return (
     <>
       <Head>
         <title>{course.courseName} - {course.instructorname || 'Free Course'} | Unlocked Coding</title>
         <meta name="description" content={course.des} />
         <link rel="canonical" href={canonicalUrl} />
+        
+        {/* Open Graph / Facebook */}
         <meta property="og:title" content={course.courseName} />
         <meta property="og:description" content={course.des} />
         <meta property="og:image" content={course.imageofcourse} />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="video.course" />
+        <meta property="og:site_name" content="Unlocked Coding" />
+        
+        {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={course.courseName} />
         <meta name="twitter:description" content={course.des} />
         <meta name="twitter:image" content={course.imageofcourse} />
+        
+        {/* Video-specific meta tags */}
+        <meta property="video:duration" content="3600" />
+        <meta property="video:release_date" content={new Date().toISOString()} />
+        <meta property="video:tag" content={course.coursecategory} />
+        
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
       </Head>
       <Layout>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
@@ -121,7 +206,11 @@ export default function CoursePage({ course, categoryName, courseName }: CourseP
             </Link>
           </div>
 
-          <VideoPlayer course={course} />
+          <VideoPlayer 
+            course={course} 
+            useVideoLinks={true} 
+            baseUrl={`/r/${categoryName.toLowerCase()}/${courseName}`}
+          />
         </div>
       </Layout>
     </>

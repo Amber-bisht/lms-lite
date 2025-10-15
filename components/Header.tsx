@@ -22,6 +22,9 @@ export default function Header() {
               <Link href="/all" className="text-black dark:text-white hover:underline hover:decoration-blue-500 hover:decoration-2 transition-all duration-200">
                 All Courses
               </Link>
+              <Link href="/about" className="text-black dark:text-white hover:underline hover:decoration-blue-500 hover:decoration-2 transition-all duration-200">
+                About
+              </Link>
             </nav>
             <ThemeToggle />
           </div>

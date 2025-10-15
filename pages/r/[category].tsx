@@ -1,9 +1,11 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Link from 'next/link';
 import Head from 'next/head';
+import { useEffect } from 'react';
 import Layout from '../../components/Layout';
 import { ICourse } from '../../lib/dataUtils';
 import { getAllCategories, getCoursesByCategory } from '../../lib/dataUtils';
+import { trackCategoryView } from '../../lib/gtag';
 
 interface CategoryPageProps {
   courses: ICourse[];
@@ -14,6 +16,11 @@ export default function CategoryPage({ courses, categoryName }: CategoryPageProp
   const canonicalUrl = `https://unlockedcoding.com/r/${encodeURIComponent(categoryName.toLowerCase())}`;
   const pageTitle = `${categoryName.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Courses | Unlocked Coding`;
   const pageDescription = `Browse ${courses.length} free ${categoryName} courses. Learn with high-quality video tutorials from top instructors.`;
+
+  // Track category view
+  useEffect(() => {
+    trackCategoryView(categoryName);
+  }, [categoryName]);
 
   return (
     <>

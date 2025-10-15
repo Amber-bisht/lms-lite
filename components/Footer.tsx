@@ -20,6 +20,10 @@ export default function Footer() {
         
         {/* Footer Links */}
         <div className="flex flex-wrap justify-center gap-6 mb-8">
+          <a href="/about" className="text-muted-foreground hover:text-primary transition-colors text-sm sm:text-base">
+            About Us
+          </a>
+          <span className="text-border">•</span>
           <a href="/privacy" className="text-muted-foreground hover:text-primary transition-colors text-sm sm:text-base">
             Privacy Policy
           </a>

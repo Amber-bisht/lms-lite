@@ -53,7 +53,8 @@ function getAllCourses() {
           courses.push({
             courseName: data.courseName,
             category: data.coursecategory,
-            slug: file.replace('.json', '')
+            slug: file.replace('.json', ''),
+            videos: data.videos || []
           });
         } catch (err) {
           console.error(`Error parsing ${file}:`, err.message);
@@ -122,6 +123,24 @@ function generateSitemap() {
   </url>
 `;
 
+  // Add about page
+  sitemap += `  <url>
+    <loc>${DOMAIN}/about</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+`;
+
+  // Add manifest.json
+  sitemap += `  <url>
+    <loc>${DOMAIN}/manifest.json</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+`;
+
   // Add category pages
   categories.forEach(category => {
     // Ensure consistent lowercase URLs
@@ -135,30 +154,49 @@ function generateSitemap() {
 `;
   });
 
-  // Add course pages (with URL encoding and deduplication)
+  // Add course pages and video pages (with URL encoding and deduplication)
   const addedUrls = new Set();
   courses.forEach(course => {
     // URL encode the course name and category to handle special characters and spaces
     // Ensure consistent lowercase for categories
     const encodedCategory = encodeURIComponent(course.category.toLowerCase());
     const encodedCourseName = encodeURIComponent(course.courseName);
-    const url = `${DOMAIN}/r/${encodedCategory}/${encodedCourseName}`;
+    const courseUrl = `${DOMAIN}/r/${encodedCategory}/${encodedCourseName}`;
     
     // Skip duplicates (case-insensitive)
-    const urlLower = url.toLowerCase();
-    if (addedUrls.has(urlLower)) {
-      console.warn(`⚠️  Skipping duplicate URL: ${url}`);
+    const courseUrlLower = courseUrl.toLowerCase();
+    if (addedUrls.has(courseUrlLower)) {
+      console.warn(`⚠️  Skipping duplicate course URL: ${courseUrl}`);
       return;
     }
-    addedUrls.add(urlLower);
+    addedUrls.add(courseUrlLower);
     
+    // Add course page
     sitemap += `  <url>
-    <loc>${url}</loc>
+    <loc>${courseUrl}</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 `;
+
+    // Add individual video pages
+    course.videos.forEach((video, index) => {
+      const videoUrl = `${courseUrl}/${index}`;
+      const videoUrlLower = videoUrl.toLowerCase();
+      
+      if (!addedUrls.has(videoUrlLower)) {
+        addedUrls.add(videoUrlLower);
+        
+        sitemap += `  <url>
+    <loc>${videoUrl}</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+`;
+      }
+    });
   });
 
   sitemap += `</urlset>`;

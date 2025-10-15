@@ -1,13 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import Hls, { HlsConfig, ErrorData } from 'hls.js';
 import { ICourse } from '../lib/dataUtils';
 
 interface VideoPlayerProps {
-  course: ICourse;
+  course: ICourse & { currentVideoIndex?: number };
+  useVideoLinks?: boolean;
+  baseUrl?: string;
 }
 
-export default function VideoPlayer({ course }: VideoPlayerProps) {
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+export default function VideoPlayer({ course, useVideoLinks = false, baseUrl }: VideoPlayerProps) {
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(course.currentVideoIndex || 0);
   const [error, setError] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const hlsRef = useRef<Hls | null>(null);
@@ -276,26 +279,49 @@ export default function VideoPlayer({ course }: VideoPlayerProps) {
                 Course Videos ({course.videos.length})
               </h3>
               <div className="max-h-48 lg:max-h-none overflow-y-auto">
-                {course.videos.map((video, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleVideoSelect(index)}
-                    className={`w-full text-left p-2 sm:p-3 rounded-lg transition-colors ${
-                      index === currentVideoIndex
-                        ? 'bg-primary/10 border-l-4 border-primary'
-                        : 'bg-muted hover:bg-secondary'
-                    }`}
-                  >
+                {course.videos.map((video, index) => {
+                  const isActive = index === currentVideoIndex;
+                  const content = (
                     <div className="flex items-center">
                       <div className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full mr-2 sm:mr-3 flex-shrink-0 ${
-                        index === currentVideoIndex ? 'bg-primary' : 'bg-muted-foreground'
+                        isActive ? 'bg-primary' : 'bg-muted-foreground'
                       }`} />
                       <span className="font-medium text-card-foreground text-xs sm:text-sm leading-tight">
                         {video.title}
                       </span>
                     </div>
-                  </button>
-                ))}
+                  );
+
+                  if (useVideoLinks && baseUrl) {
+                    return (
+                      <Link
+                        key={index}
+                        href={`${baseUrl}/${index}`}
+                        className={`w-full text-left p-2 sm:p-3 rounded-lg transition-colors block ${
+                          isActive
+                            ? 'bg-primary/10 border-l-4 border-primary'
+                            : 'bg-muted hover:bg-secondary'
+                        }`}
+                      >
+                        {content}
+                      </Link>
+                    );
+                  }
+
+                  return (
+                    <button
+                      key={index}
+                      onClick={() => handleVideoSelect(index)}
+                      className={`w-full text-left p-2 sm:p-3 rounded-lg transition-colors ${
+                        isActive
+                          ? 'bg-primary/10 border-l-4 border-primary'
+                          : 'bg-muted hover:bg-secondary'
+                      }`}
+                    >
+                      {content}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>

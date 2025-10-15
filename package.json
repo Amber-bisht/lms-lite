@@ -9,7 +9,8 @@
     "lint": "next lint",
     "ping": "node scripts/ping.js",
     "ping:continuous": "node -e \"setInterval(() => require('./scripts/ping.js').runPingCycle(), 5 * 60 * 1000)\"",
-    "sitemap": "node scripts/generate-sitemap.js"
+    "sitemap": "node scripts/generate-sitemap.js && node scripts/generate-video-sitemap.js",
+    "video-sitemap": "node scripts/generate-video-sitemap.js"
   },
   "dependencies": {
     "hls.js": "^1.4.12",
