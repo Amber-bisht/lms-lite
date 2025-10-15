@@ -32,7 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
         async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9147048330170417"
         crossOrigin="anonymous"
-        strategy="afterInteractive"
+        strategy="beforeInteractive"
       />
       
       {/* Google Analytics */}
