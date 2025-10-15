@@ -160,8 +160,6 @@ export default function CoursePage({ course, categoryName, courseName }: CourseP
 
           <VideoPlayer 
             course={course} 
-            useVideoLinks={true} 
-            baseUrl={`/r/${categoryName.toLowerCase()}/${courseName}`}
           />
         </div>
       </Layout>

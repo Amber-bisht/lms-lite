@@ -154,7 +154,7 @@ function generateSitemap() {
 `;
   });
 
-  // Add course pages and video pages (with URL encoding and deduplication)
+  // Add course pages (with URL encoding and deduplication)
   const addedUrls = new Set();
   courses.forEach(course => {
     // URL encode the course name and category to handle special characters and spaces
@@ -171,7 +171,7 @@ function generateSitemap() {
     }
     addedUrls.add(courseUrlLower);
     
-    // Add course page
+    // Add course page only (no individual video pages)
     sitemap += `  <url>
     <loc>${courseUrl}</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
@@ -179,24 +179,6 @@ function generateSitemap() {
     <priority>0.7</priority>
   </url>
 `;
-
-    // Add individual video pages
-    course.videos.forEach((video, index) => {
-      const videoUrl = `${courseUrl}/${index}`;
-      const videoUrlLower = videoUrl.toLowerCase();
-      
-      if (!addedUrls.has(videoUrlLower)) {
-        addedUrls.add(videoUrlLower);
-        
-        sitemap += `  <url>
-    <loc>${videoUrl}</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-`;
-      }
-    });
   });
 
   sitemap += `</urlset>`;

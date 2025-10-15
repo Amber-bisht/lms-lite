@@ -52,17 +52,15 @@ function generateVideoSitemap() {
     <priority>0.8</priority>
 `;
       
-      // Add video entries for each video in the course
+      // Add video entries for each video in the course (now pointing to course page)
       if (course.videos && Array.isArray(course.videos)) {
         course.videos.forEach((video, index) => {
-        const videoUrl = `${courseUrl}/${index}`;
-        
         sitemap += `    <video:video>
       <video:thumbnail_loc>${course.imageofcourse}</video:thumbnail_loc>
       <video:title><![CDATA[${video.title}]]></video:title>
       <video:description><![CDATA[${course.des} - ${video.title}]]></video:description>
       <video:content_loc>${video.url}</video:content_loc>
-      <video:player_loc allow_embed="yes" autoplay="autostart">${videoUrl}</video:player_loc>
+      <video:player_loc allow_embed="yes" autoplay="autostart">${courseUrl}</video:player_loc>
       <video:duration>3600</video:duration>
       <video:publication_date>${new Date().toISOString()}</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>

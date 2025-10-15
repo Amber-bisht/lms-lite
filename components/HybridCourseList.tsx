@@ -63,7 +63,7 @@ export default function HybridCourseList({
                 {course.coursecategory}
               </span>
               <span className="text-xs sm:text-sm text-green-600 font-semibold">
-                ${course.price || '0'}
+                ${course.cost || '0'}
               </span>
             </div>
             <h3 className="text-sm sm:text-base font-bold text-card-foreground mb-2 line-clamp-2">
@@ -104,7 +104,7 @@ export default function HybridCourseList({
               {course.coursecategory}
             </span>
             <span className="text-xs sm:text-sm text-green-600 font-semibold">
-              ${course.price || '0'}
+              ${course.cost || '0'}
             </span>
           </div>
           <h3 className="text-sm sm:text-base font-bold text-card-foreground mb-2 line-clamp-2">
