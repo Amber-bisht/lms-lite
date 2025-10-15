@@ -2,14 +2,28 @@ import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import Head from 'next/head';
 import Layout from '../components/Layout';
+import CourseSkeleton from '../components/CourseSkeleton';
 import { ICourse } from '../lib/dataUtils';
 import { getAllCourses } from '../lib/dataUtils';
+import { useInfiniteScroll } from '../hooks/useInfiniteScroll';
 
 interface AllCoursesPageProps {
   courses: ICourse[];
 }
 
+const COURSES_PER_PAGE = 12; // Load 12 courses at a time
+
 export default function AllCoursesPage({ courses }: AllCoursesPageProps) {
+  const {
+    displayedItems: displayedCourses,
+    hasMore,
+    isLoading,
+    loadMore
+  } = useInfiniteScroll(courses, {
+    itemsPerPage: COURSES_PER_PAGE,
+    totalItems: courses.length,
+    threshold: 300
+  });
 
   return (
     <>
@@ -29,7 +43,7 @@ export default function AllCoursesPage({ courses }: AllCoursesPageProps) {
           </h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {courses.map((course) => {
+          {displayedCourses.map((course) => {
             // Handle redirect type courses
             if (course.videoType === 'redirect' && course.redirecturl) {
               return (
@@ -125,6 +139,38 @@ export default function AllCoursesPage({ courses }: AllCoursesPageProps) {
         {courses.length === 0 && (
           <div className="text-center py-12">
             <p className="text-muted-foreground text-xl">No courses found.</p>
+          </div>
+        )}
+
+        {/* Loading Skeletons */}
+        {isLoading && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-6">
+            {Array.from({ length: COURSES_PER_PAGE }, (_, i) => (
+              <CourseSkeleton key={`skeleton-${i}`} />
+            ))}
+          </div>
+        )}
+
+        {/* Infinite Scroll Controls */}
+        {hasMore && !isLoading && (
+          <div className="mt-8 flex flex-col items-center space-y-4">
+            <button
+              onClick={loadMore}
+              className="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
+            >
+              Load More Courses
+            </button>
+            <p className="text-sm text-muted-foreground text-center">
+              Showing {displayedCourses.length} of {courses.length} courses
+            </p>
+          </div>
+        )}
+        
+        {!hasMore && displayedCourses.length > 0 && (
+          <div className="mt-8 text-center">
+            <p className="text-muted-foreground">
+              You've reached the end! All {courses.length} courses are loaded.
+            </p>
           </div>
         )}
       </div>

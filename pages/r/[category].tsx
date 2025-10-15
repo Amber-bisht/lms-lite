@@ -1,23 +1,37 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Link from 'next/link';
 import Head from 'next/head';
-import { useEffect } from 'react';
 import Layout from '../../components/Layout';
+import CourseSkeleton from '../../components/CourseSkeleton';
 import { ICourse } from '../../lib/dataUtils';
 import { getAllCategories, getCoursesByCategory } from '../../lib/dataUtils';
 import { trackCategoryView } from '../../lib/gtag';
+import { useInfiniteScroll } from '../../hooks/useInfiniteScroll';
 
 interface CategoryPageProps {
   courses: ICourse[];
   categoryName: string;
 }
 
+const COURSES_PER_PAGE = 9; // Load 9 courses at a time for category pages
+
 export default function CategoryPage({ courses, categoryName }: CategoryPageProps) {
+  const {
+    displayedItems: displayedCourses,
+    hasMore,
+    isLoading,
+    loadMore
+  } = useInfiniteScroll(courses, {
+    itemsPerPage: COURSES_PER_PAGE,
+    totalItems: courses.length,
+    threshold: 300
+  });
+
   const canonicalUrl = `https://unlockedcoding.com/r/${encodeURIComponent(categoryName.toLowerCase())}`;
   const pageTitle = `${categoryName.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Courses | Unlocked Coding`;
   const pageDescription = `Browse ${courses.length} free ${categoryName} courses. Learn with high-quality video tutorials from top instructors.`;
 
-  // Track category view
+  // Track category view on mount
   useEffect(() => {
     trackCategoryView(categoryName);
   }, [categoryName]);
@@ -57,8 +71,9 @@ export default function CategoryPage({ courses, categoryName }: CategoryPageProp
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {courses.map((course) => {
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {displayedCourses.map((course) => {
               // Handle redirect type courses
               if (course.videoType === 'redirect' && course.redirecturl) {
                 return (
@@ -140,8 +155,41 @@ export default function CategoryPage({ courses, categoryName }: CategoryPageProp
                   </div>
                 </Link>
               );
-            })}
-          </div>
+              })}
+            </div>
+
+            {/* Loading Skeletons */}
+            {isLoading && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-6">
+                {Array.from({ length: COURSES_PER_PAGE }, (_, i) => (
+                  <CourseSkeleton key={`skeleton-${i}`} />
+                ))}
+              </div>
+            )}
+
+            {/* Infinite Scroll Controls */}
+            {hasMore && !isLoading && (
+              <div className="mt-8 flex flex-col items-center space-y-4">
+                <button
+                  onClick={loadMore}
+                  className="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
+                >
+                  Load More Courses
+                </button>
+                <p className="text-sm text-muted-foreground text-center">
+                  Showing {displayedCourses.length} of {courses.length} courses
+                </p>
+              </div>
+            )}
+            
+            {!hasMore && displayedCourses.length > 0 && (
+              <div className="mt-8 text-center">
+                <p className="text-muted-foreground">
+                  You've reached the end! All {courses.length} courses are loaded.
+                </p>
+              </div>
+            )}
+          </>
         )}
       </div>
     </Layout>

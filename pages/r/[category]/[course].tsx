@@ -3,11 +3,21 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 import Layout from '../../../components/Layout';
-import VideoPlayer from '../../../components/VideoPlayer';
+
+// Dynamically import VideoPlayer to reduce initial bundle size
+const VideoPlayer = dynamic(() => import('../../../components/VideoPlayer'), {
+  loading: () => (
+    <div className="flex items-center justify-center h-64 bg-muted rounded-lg">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+    </div>
+  ),
+});
 import { ICourse } from '../../../lib/dataUtils';
 import { getAllCourses, getCourseByName } from '../../../lib/dataUtils';
 import { trackCourseView } from '../../../lib/gtag';
+import { generateOptimizedCourseStructuredData } from '../../../lib/structuredData';
 
 interface CoursePageProps {
   course: ICourse | null;
@@ -102,66 +112,8 @@ export default function CoursePage({ course, categoryName, courseName }: CourseP
 
   const canonicalUrl = `https://unlockedcoding.com/r/${encodeURIComponent(categoryName.toLowerCase())}/${encodeURIComponent(courseName)}`;
   
-  // Generate video structured data for each video in the course
-  const videoStructuredData = course.videos.map((video, index) => {
-    const videoUrl = `https://unlockedcoding.com/r/${encodeURIComponent(categoryName.toLowerCase())}/${encodeURIComponent(courseName)}/${index}`;
-    const videoEmbedUrl = `https://unlockedcoding.com/r/${encodeURIComponent(categoryName.toLowerCase())}/${encodeURIComponent(courseName)}/${index}`;
-    
-    return {
-      "@type": "VideoObject",
-      "name": video.title,
-      "description": `${course.des} - ${video.title}`,
-      "thumbnailUrl": course.imageofcourse,
-      "uploadDate": new Date().toISOString(),
-      "duration": "PT1H", // Default duration, can be enhanced with actual video duration
-      "embedUrl": videoEmbedUrl,
-      "url": videoUrl,
-      "contentUrl": video.url,
-      "publisher": {
-        "@type": "Organization",
-        "name": "Unlocked Coding",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://unlockedcoding.com/images.png"
-          }
-      },
-      "instructor": {
-        "@type": "Person",
-        "name": course.instructorname || "Course Instructor"
-      },
-      "partOfSeries": {
-        "@type": "VideoSeries",
-        "name": course.courseName,
-        "url": canonicalUrl
-      }
-    };
-  });
-
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Course",
-        "name": course.courseName,
-        "description": course.des,
-        "provider": {
-          "@type": "Organization",
-          "name": "Unlocked Coding",
-          "url": "https://unlockedcoding.com"
-        },
-        "instructor": {
-          "@type": "Person",
-          "name": course.instructorname || "Course Instructor"
-        },
-        "courseMode": "online",
-        "educationalLevel": "beginner",
-        "url": canonicalUrl,
-        "image": course.imageofcourse,
-        "hasPart": videoStructuredData
-      },
-      ...videoStructuredData
-    ]
-  };
+  // Use optimized structured data to reduce page size
+  const structuredData = generateOptimizedCourseStructuredData(course, categoryName, courseName);
   
   return (
     <>
