@@ -34,6 +34,15 @@ export default function App({ Component, pageProps }: AppProps) {
         crossOrigin="anonymous"
         strategy="beforeInteractive"
       />
+      <Script
+        id="adsense-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          `,
+        }}
+      />
       
       {/* Google Analytics */}
       <Script
