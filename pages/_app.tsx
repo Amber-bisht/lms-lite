@@ -4,6 +4,7 @@ import Head from 'next/head'
 import Script from 'next/script'
 import { ThemeProvider } from '../contexts/ThemeContext'
 import CookieConsent from '../components/CookieConsent'
+import { Analytics } from '@vercel/analytics/react'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -56,6 +57,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
         <CookieConsent />
       </ThemeProvider>
+      <Analytics />
     </>
   )
 }
