@@ -1,5 +1,6 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Link from 'next/link';
+import Head from 'next/head';
 import Layout from '../../components/Layout';
 import { ICourse } from '../../lib/dataUtils';
 import { getAllCategories, getCoursesByCategory } from '../../lib/dataUtils';
@@ -10,24 +11,37 @@ interface CategoryPageProps {
 }
 
 export default function CategoryPage({ courses, categoryName }: CategoryPageProps) {
+  const canonicalUrl = `https://unlockedcoding.com/r/${encodeURIComponent(categoryName.toLowerCase())}`;
+  const pageTitle = `${categoryName.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Courses | Unlocked Coding`;
+  const pageDescription = `Browse ${courses.length} free ${categoryName} courses. Learn with high-quality video tutorials from top instructors.`;
 
   return (
-    <Layout>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-        <div className="mb-6 sm:mb-8">
-          <Link 
-            href="/r" 
-            className="text-sm sm:text-base text-primary hover:opacity-80 mb-3 sm:mb-4 inline-block transition-opacity"
-          >
-            ← Back to Categories
-          </Link>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground capitalize">
-            {categoryName} Courses
-          </h1>
-          <p className="text-sm sm:text-base text-muted-foreground mt-2">
-            {courses.length} courses available
-          </p>
-        </div>
+    <>
+      <Head>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="website" />
+      </Head>
+      <Layout>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+          <div className="mb-6 sm:mb-8">
+            <Link 
+              href="/r" 
+              className="text-sm sm:text-base text-primary hover:opacity-80 mb-3 sm:mb-4 inline-block transition-opacity"
+            >
+              ← Back to Categories
+            </Link>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground capitalize">
+              {categoryName.replace(/-/g, ' ')} Courses
+            </h1>
+            <p className="text-sm sm:text-base text-muted-foreground mt-2">
+              {courses.length} courses available
+            </p>
+          </div>
 
         {courses.length === 0 ? (
           <div className="text-center py-12">
@@ -85,7 +99,7 @@ export default function CategoryPage({ courses, categoryName }: CategoryPageProp
               return (
                 <Link 
                   key={course.courseName}
-                  href={`/r/${categoryName}/${encodeURIComponent(course.courseName)}`}
+                  href={`/r/${categoryName.toLowerCase()}/${encodeURIComponent(course.courseName)}`}
                   className="bg-card rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden border border-border"
                 >
                   <img 
@@ -124,6 +138,7 @@ export default function CategoryPage({ courses, categoryName }: CategoryPageProp
         )}
       </div>
     </Layout>
+    </>
   );
 }
 
@@ -133,7 +148,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     
     const paths = categories.map((category) => ({
       params: {
-        category: category.category,
+        category: category.category.toLowerCase(), // Normalize to lowercase
       },
     }));
 
@@ -152,7 +167,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
-    const categoryName = params?.category as string;
+    // Normalize category to lowercase for case-insensitive matching
+    const categoryName = (params?.category as string).toLowerCase();
     
     const courses = getCoursesByCategory(categoryName);
 
@@ -168,7 +184,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     return {
       props: {
         courses: [],
-        categoryName: params?.category as string,
+        categoryName: (params?.category as string).toLowerCase(),
       },
       revalidate: 60,
     };

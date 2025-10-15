@@ -1,10 +1,24 @@
 import Layout from '../components/Layout';
+import Head from 'next/head';
 
 export default function Home() {
-  const siteName = process.env.NEXT_PUBLIC_SITE_NAME;
+  const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'Unlocked Coding';
   
   return (
-    <Layout>
+    <>
+      <Head>
+        <title>Unlocked Coding - Free Programming Courses & Tutorials</title>
+        <meta name="description" content="Master programming with free comprehensive courses. Learn web development, data structures, algorithms, system design, and more from industry experts." />
+        <link rel="canonical" href="https://unlockedcoding.com/" />
+        <meta property="og:title" content="Unlocked Coding - Free Programming Courses" />
+        <meta property="og:description" content="Master programming with free comprehensive courses. Learn web development, DSA, system design, and more." />
+        <meta property="og:url" content="https://unlockedcoding.com/" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Unlocked Coding - Free Programming Courses" />
+        <meta name="twitter:description" content="Master programming with free comprehensive courses." />
+      </Head>
+      <Layout>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 text-center">
         {/* Hero Section with Gradient Background */}
         <div className="relative overflow-hidden">
@@ -85,106 +99,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-
-
-
-        {/* Telegram Community Section */}
-        <div className="relative overflow-hidden bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 border border-border/50 rounded-3xl p-8 sm:p-12 max-w-5xl mx-auto text-center mt-32 sm:mt-40">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-10 left-10 w-20 h-20 bg-blue-500/20 rounded-full blur-xl"></div>
-            <div className="absolute bottom-10 right-10 w-32 h-32 bg-purple-500/20 rounded-full blur-xl"></div>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-pink-500/10 rounded-full blur-2xl"></div>
-          </div>
-
-          {/* Content */}
-          <div className="relative z-10">
-            {/* Telegram Icon with Animation */}
-            <div className="relative inline-block mb-8">
-              <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto shadow-2xl animate-pulse">
-                <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                </svg>
-              </div>
-              {/* Floating rings around icon */}
-              <div className="absolute inset-0 rounded-full border-2 border-blue-400/30 animate-ping"></div>
-              <div className="absolute inset-2 rounded-full border border-blue-300/20 animate-ping animation-delay-1000"></div>
-            </div>
-            
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Join Our Community
-            </h2>
-            
-            <p className="text-lg sm:text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-              Connect with fellow learners, get daily challenges, peer support, and mentor Q&A sessions.
-            </p>
-
-            {/* Enhanced Benefits Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
-              <div className="bg-card/30 backdrop-blur-sm border border-border/30 rounded-xl p-6 hover:bg-card/50 transition-all duration-300 group">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-500 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">Daily Programming Challenges</h3>
-                <p className="text-sm text-muted-foreground">Sharpen your skills with daily coding problems and real-world projects</p>
-              </div>
-
-              <div className="bg-card/30 backdrop-blur-sm border border-border/30 rounded-xl p-6 hover:bg-card/50 transition-all duration-300 group">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-500 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">Peer Support Network</h3>
-                <p className="text-sm text-muted-foreground">Connect with like-minded learners and get help when you need it</p>
-              </div>
-
-              <div className="bg-card/30 backdrop-blur-sm border border-border/30 rounded-xl p-6 hover:bg-card/50 transition-all duration-300 group">
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-500 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">Mentor Q&A Sessions</h3>
-                <p className="text-sm text-muted-foreground">Get direct access to industry experts and experienced developers</p>
-              </div>
-            </div>
-
-            {/* Enhanced Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
-              <a 
-                href={process.env.NEXT_PUBLIC_TELEGRAM_GROUP_URL || '#'}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 sm:px-10 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-              >
-                <span className="flex items-center justify-center gap-2">
-                  Join Telegram Group
-                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </span>
-              </a>
-              <a 
-                href={process.env.NEXT_PUBLIC_TELEGRAM_CHANNEL_URL || '#'}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white px-8 sm:px-10 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-              >
-                <span className="flex items-center justify-center gap-2">
-                  Join Telegram Channel
-                  <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-5 5v-5zM4 19h6v-6H4v6z" />
-                  </svg>
-                </span>
-              </a>
-            </div>
-          </div>
-        </div>
       </div>
     </Layout>
+    </>
   );
 }

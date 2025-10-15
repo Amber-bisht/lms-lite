@@ -19,8 +19,8 @@ function getAllCategories() {
           try {
             const data = JSON.parse(fileContent);
             categories.push({
-              name: data.category,
-              slug: file.replace('.json', '')
+              name: data.category, // Use the category name from the JSON content
+              slug: data.category  // Use the same category name for consistency
             });
           } catch (err) {
             console.error(`Error parsing ${file}:`, err.message);
@@ -104,10 +104,30 @@ function generateSitemap() {
   </url>
 `;
 
+  // Add privacy policy page
+  sitemap += `  <url>
+    <loc>${DOMAIN}/privacy</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+`;
+
+  // Add terms of service page
+  sitemap += `  <url>
+    <loc>${DOMAIN}/terms</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+`;
+
   // Add category pages
   categories.forEach(category => {
+    // Ensure consistent lowercase URLs
+    const categorySlug = (category.name || category.slug).toLowerCase();
     sitemap += `  <url>
-    <loc>${DOMAIN}/r/${category.slug}</loc>
+    <loc>${DOMAIN}/r/${encodeURIComponent(categorySlug)}</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -119,16 +139,18 @@ function generateSitemap() {
   const addedUrls = new Set();
   courses.forEach(course => {
     // URL encode the course name and category to handle special characters and spaces
-    const encodedCategory = encodeURIComponent(course.category);
+    // Ensure consistent lowercase for categories
+    const encodedCategory = encodeURIComponent(course.category.toLowerCase());
     const encodedCourseName = encodeURIComponent(course.courseName);
     const url = `${DOMAIN}/r/${encodedCategory}/${encodedCourseName}`;
     
-    // Skip duplicates
-    if (addedUrls.has(url)) {
+    // Skip duplicates (case-insensitive)
+    const urlLower = url.toLowerCase();
+    if (addedUrls.has(urlLower)) {
       console.warn(`⚠️  Skipping duplicate URL: ${url}`);
       return;
     }
-    addedUrls.add(url);
+    addedUrls.add(urlLower);
     
     sitemap += `  <url>
     <loc>${url}</loc>

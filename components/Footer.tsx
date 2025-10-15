@@ -17,6 +17,22 @@ export default function Footer() {
         <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
           Your gateway to mastering programming and technology. Learn, build, and grow with our comprehensive courses.
         </p>
+        
+        {/* Footer Links */}
+        <div className="flex flex-wrap justify-center gap-6 mb-8">
+          <a href="/privacy" className="text-muted-foreground hover:text-primary transition-colors text-sm sm:text-base">
+            Privacy Policy
+          </a>
+          <span className="text-border">•</span>
+          <a href="/terms" className="text-muted-foreground hover:text-primary transition-colors text-sm sm:text-base">
+            Terms of Service
+          </a>
+          <span className="text-border">•</span>
+          <a href="/r" className="text-muted-foreground hover:text-primary transition-colors text-sm sm:text-base">
+            Browse Courses
+          </a>
+        </div>
+        
         <div className="text-muted-foreground text-sm">
           &copy; 2025 {siteName}. All rights reserved.
         </div>

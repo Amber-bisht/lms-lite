@@ -106,6 +106,21 @@
     animation: float-reverse 7s ease-in-out infinite;
   }
 
+  @keyframes slide-up {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.5s ease-out;
+  }
+
   .bg-background {
     background-color: rgb(var(--background));
   }
@@ -152,6 +167,14 @@
 
   .border-border {
     border-color: rgb(var(--border));
+  }
+
+  .text-border {
+    color: rgb(var(--border));
+  }
+
+  .text-primary-foreground {
+    color: rgb(var(--primary-foreground));
   }
 }
 

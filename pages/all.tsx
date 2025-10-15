@@ -1,5 +1,6 @@
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
+import Head from 'next/head';
 import Layout from '../components/Layout';
 import { ICourse } from '../lib/dataUtils';
 import { getAllCourses } from '../lib/dataUtils';
@@ -11,11 +12,21 @@ interface AllCoursesPageProps {
 export default function AllCoursesPage({ courses }: AllCoursesPageProps) {
 
   return (
-    <Layout>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-6 sm:mb-8 text-center">
-          All Courses
-        </h1>
+    <>
+      <Head>
+        <title>All Courses - {courses.length} Free Programming Courses | Unlocked Coding</title>
+        <meta name="description" content={`Browse all ${courses.length} free programming courses. Learn web development, DSA, system design, machine learning, and more from top instructors.`} />
+        <link rel="canonical" href="https://unlockedcoding.com/all" />
+        <meta property="og:title" content={`All Courses - ${courses.length} Free Courses | Unlocked Coding`} />
+        <meta property="og:description" content="Browse all free programming courses in one place. Find your perfect learning path." />
+        <meta property="og:url" content="https://unlockedcoding.com/all" />
+        <meta property="og:type" content="website" />
+      </Head>
+      <Layout>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-6 sm:mb-8 text-center">
+            All Courses
+          </h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {courses.map((course) => {
@@ -118,6 +129,7 @@ export default function AllCoursesPage({ courses }: AllCoursesPageProps) {
         )}
       </div>
     </Layout>
+    </>
   );
 }
 

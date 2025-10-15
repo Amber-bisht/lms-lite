@@ -1,0 +1,12 @@
+# robots.txt for https://unlockedcoding.com
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Sitemaps
+Sitemap: https://unlockedcoding.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 0
+
