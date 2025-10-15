@@ -53,6 +53,7 @@ function getAllCourses() {
           courses.push({
             courseName: data.courseName,
             category: data.coursecategory,
+            subsection: data.subsection || null,
             slug: file.replace('.json', ''),
             videos: data.videos || []
           });
@@ -67,6 +68,20 @@ function getAllCourses() {
     console.error('Error reading courses:', error);
     return [];
   }
+}
+
+// Get all unique subsections
+function getAllSubsections() {
+  const courses = getAllCourses();
+  const subsections = new Set();
+  
+  courses.forEach(course => {
+    if (course.subsection) {
+      subsections.add(course.subsection);
+    }
+  });
+  
+  return Array.from(subsections);
 }
 
 // Generate sitemap XML
@@ -104,6 +119,18 @@ function generateSitemap() {
     <priority>0.8</priority>
   </url>
 `;
+
+  // Add subsection pages
+  const subsections = getAllSubsections();
+  subsections.forEach(subsection => {
+    sitemap += `  <url>
+    <loc>${DOMAIN}/${subsection}</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+`;
+  });
 
   // Add privacy policy page
   sitemap += `  <url>

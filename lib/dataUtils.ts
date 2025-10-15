@@ -20,6 +20,7 @@ export interface ICourse {
   cost: number;
   videoType: 'hls' | 'wistia' | 'youtube' | 'internetarchive' | 'redirect';
   redirecturl?: string;
+  subsection?: string | null;
   videos: IVideo[];
   rank: 'high' | 'mid' | 'medium' | 'low';
   _id: string;
@@ -50,6 +51,7 @@ interface JsonCourse {
   cost?: number;
   videoType: 'hls' | 'wistia' | 'youtube' | 'internetarchive' | 'redirect';
   redirecturl?: string;
+  subsection?: string;
   videos: IVideo[];
   rank?: 'high' | 'mid' | 'medium' | 'low';
 }
@@ -58,7 +60,6 @@ interface JsonCategory {
   category: string;
   des: string;
   imageofcategory: string;
-  totalcourse?: number;
   rank?: 'high' | 'mid' | 'medium' | 'low';
 }
 
@@ -76,6 +77,16 @@ export function getAllCategories(): ICategory[] {
   try {
     const dataPath = getDataPath();
     const files = fs.readdirSync(dataPath);
+    
+    // Get all courses to calculate counts
+    const allCourses = getAllCourses();
+    
+    // Create a map of category counts
+    const categoryCounts: { [key: string]: number } = {};
+    allCourses.forEach(course => {
+      const category = course.coursecategory.toLowerCase();
+      categoryCounts[category] = (categoryCounts[category] || 0) + 1;
+    });
     
     const categories: any[] = [];
     
@@ -97,7 +108,7 @@ export function getAllCategories(): ICategory[] {
             category: jsonData.category,
             des: jsonData.des,
             imageofcategory: jsonData.imageofcategory,
-            totalcourse: jsonData.totalcourse || 0,
+            totalcourse: categoryCounts[jsonData.category.toLowerCase()] || 0,
             rank: jsonData.rank || 'mid',
             _id: file.replace('.json', ''),
             __v: 0
@@ -153,6 +164,7 @@ export function getAllCourses(): ICourse[] {
             cost: jsonData.cost || 0,
             videoType: jsonData.videoType,
             redirecturl: jsonData.redirecturl,
+            subsection: jsonData.subsection || null,
             videos: jsonData.videos || [],
             rank: jsonData.rank || 'mid',
             _id: file.replace('.json', ''),
@@ -197,32 +209,17 @@ export function getCourseByName(categoryName: string, courseName: string): ICour
   ) || null;
 }
 
+// Get courses by subsection
+export function getCoursesBySubsection(subsectionName: string): ICourse[] {
+  const allCourses = getAllCourses();
+  return allCourses.filter(course => 
+    course.subsection && course.subsection.toLowerCase() === subsectionName.toLowerCase()
+  );
+}
+
 // Get categories by rank
 export function getCategoriesByRank(rank: 'high' | 'mid' | 'medium' | 'low'): ICategory[] {
   const allCategories = getAllCategories();
   return allCategories.filter(category => category.rank === rank);
 }
 
-// Update category course counts
-export function updateCategoryCourseCounts(): void {
-  const categories = getAllCategories();
-  const courses = getAllCourses();
-  
-  // Create a map of category counts
-  const categoryCounts: { [key: string]: number } = {};
-  
-  courses.forEach(course => {
-    const category = course.coursecategory.toLowerCase();
-    categoryCounts[category] = (categoryCounts[category] || 0) + 1;
-  });
-  
-  // Update category files with counts
-  categories.forEach(category => {
-    const count = categoryCounts[category.category.toLowerCase()] || 0;
-    if (count !== category.totalcourse) {
-      console.log(`Category ${category.category}: ${category.totalcourse} -> ${count} courses`);
-      // Note: In a real implementation, you might want to update the JSON files
-      // For now, we'll just log the difference
-    }
-  });
-}
