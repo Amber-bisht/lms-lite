@@ -247,7 +247,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
   try {
     const courses = getAllCourses();
     
-    const paths = [];
+    const paths: Array<{
+      params: {
+        category: string;
+        course: string;
+        video: string;
+      };
+    }> = [];
     
     courses.forEach((course) => {
       course.videos.forEach((_, videoIndex) => {
