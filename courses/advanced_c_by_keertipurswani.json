@@ -3,7 +3,7 @@
   "coursecategory": "programming",
   "viewtype": "both",
   "des": "Learn Advanced C++ by keertipurswani with comprehensive video tutorials and hands-on projects.",
-  "imageofinstructur": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300",
+  "imageofinstructur": "https://media.licdn.com/dms/image/v2/D5622AQFJ-IvDtc3rTA/feedshare-shrink_800/feedshare-shrink_800/0/1698045285581?e=2147483647&v=beta&t=GG5cRP-cWWkqQfbPnQIA1Olmp3PTnytdukG3QXKCXyM",
   "instructorname": "keertipurswani",
   "imageofcourse": "https://appxcontent.kaxa.in/paid_course3/2024-10-22-0.4957051785391853.png",
   "audio": "english",
@@ -11,6 +11,11 @@
   "videoType": "hls",
   "redirecturl": "",
   "rank": "high",
+  "subsection": [
+    "keertipurswani",
+    "educosys",
+    "keerti"
+  ],
   "videos": [
     {
       "title": "Day 1",
@@ -36,5 +41,43 @@
       "title": "Day 6",
       "url": "https://appx-transcoded-videos-mcdn.akamai.net.in/videos/keertipurswani-data/356243-1708332595/hls-3a0c31/720p/master-5451439.575556307.m3u8"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master C++ object-oriented programming concepts",
+    "Understand STL containers, algorithms, and iterators",
+    "Learn advanced C++ features like templates and exceptions",
+    "Master memory management and smart pointers",
+    "Understand performance optimization and modern C++",
+    "Solve competitive programming problems efficiently"
+  ],
+  "requirements": [
+    "Basic understanding of C programming fundamentals",
+    "C++ compiler installed (GCC, Clang, or Visual Studio)",
+    "Internet connection for video streaming",
+    "Code editor (VS Code recommended) with C++ extensions",
+    "Understanding of object-oriented programming concepts"
+  ],
+  "rating": {
+    "average": 4.8,
+    "count": 518,
+    "breakdown": {
+      "1": 3,
+      "2": 9,
+      "3": 23,
+      "4": 63,
+      "5": 207
+    }
+  },
+  "duration": "10h 30m",
+  "level": "Advanced",
+  "language": "Hindi",
+  "studentsEnrolled": 473,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }

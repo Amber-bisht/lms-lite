@@ -3,13 +3,17 @@
   "coursecategory": "dsa",
   "viewtype": "both",
   "des": "SIGMA-9 CPP DSA by Apna college video tutorials and hands-on projects.",
-  "imageofinstructur": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300",
+  "imageofinstructur": "https://yt3.googleusercontent.com/FEcjRtez5od8UowDo6tTt9WlE-MrIFEmcwPMTORmK9Swk6KCklOmA3xfIG9WuLWfNYfNThQE=s900-c-k-c0x00ffffff-no-rj",
   "instructorname": "Apna college",
   "imageofcourse": "https://i.ytimg.com/vi/xWSpo2lFfUw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDl2k1at5CjSKMJ_XCNBaQvV4EJXQ",
   "audio": "english",
   "cost": 0,
   "videoType": "wistia",
-  "subsection": "sigma9",
+  "subsection": [
+    "sigma",
+    "apna-college",
+    "shradha khapra"
+  ],
   "redirecturl": "https://fast.wistia.com/embed/medias/nf50w48noz.m3u8",
   "rank": "medium",
   "videos": [
@@ -2381,5 +2385,42 @@
       "title": "Range Min (Approach)",
       "url": "https://fast.wistia.com/embed/medias/7bgeftw187.m3u8"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master C++ programming fundamentals and data structures",
+    "Learn object-oriented programming concepts and STL",
+    "Implement arrays, linked lists, trees, and graphs in C++",
+    "Master sorting and searching algorithms with complexity analysis",
+    "Solve competitive programming problems using C++",
+    "Understand memory management and advanced C++ features"
+  ],
+  "requirements": [
+    "Basic computer knowledge",
+    "Internet connection for video streaming",
+    "Code editor (VS Code recommended)",
+    "Motivation to learn and practice"
+  ],
+  "rating": {
+    "average": 4.9,
+    "count": 487,
+    "breakdown": {
+      "1": 5,
+      "2": 9,
+      "3": 22,
+      "4": 131,
+      "5": 181
+    }
+  },
+  "duration": "8h 59m",
+  "level": "Advanced",
+  "language": "Hinglish",
+  "studentsEnrolled": 946,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }

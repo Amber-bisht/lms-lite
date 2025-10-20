@@ -2224,5 +2224,43 @@
       "thumbnail": "https://i.ytimg.com/vi/M4IHWsk-EAM/mqdefault.jpg",
       "publishedAt": "2025-01-26T04:51:16Z"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master A-Z data structures and algorithms for placements",
+    "Solve 450+ coding problems from basic to advanced level",
+    "Learn optimal approaches and time-space complexity analysis",
+    "Master competitive programming and interview preparation",
+    "Understand problem-solving patterns and techniques",
+    "Build strong foundation for technical interviews"
+  ],
+  "requirements": [
+    "Basic programming knowledge in C++/Java/Python",
+    "Understanding of basic data structures (arrays, strings)",
+    "Internet connection for video streaming",
+    "Code editor (VS Code recommended) for practice",
+    "Commitment to solve 450+ coding problems systematically"
+  ],
+  "rating": {
+    "average": 4.9,
+    "count": 413,
+    "breakdown": {
+      "1": 2,
+      "2": 9,
+      "3": 25,
+      "4": 56,
+      "5": 259
+    }
+  },
+  "duration": "13h 1m",
+  "level": "Intermediate",
+  "language": "Hindi",
+  "studentsEnrolled": 863,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }

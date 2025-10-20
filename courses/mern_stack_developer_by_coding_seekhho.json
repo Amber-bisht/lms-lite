@@ -3,7 +3,7 @@
   "coursecategory": "web-development",
   "viewtype": "both",
   "des": "Learn MERN STACK Developer BY Coding Seekhho with comprehensive video tutorials and hands-on projects.",
-  "imageofinstructur": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300",
+  "imageofinstructur": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3baEqD8xPD7tg8hJzHwo1A_owabzwrZsEIQ&s",
   "instructorname": "Coding Seekhho",
   "imageofcourse": "https://appxcontent.kaxa.in/paid_course3/2024-07-25-0.3567487920636736.jpg",
   "audio": "english",
@@ -348,5 +348,43 @@
       "title": "REACT BOOTSRAP",
       "url": "https://appx-transcoded-videos-mcdn.akamai.net.in/videos/codingseekho-data/173543-1733398576/hls-9f69e2/1080p/master-7128364.78768527.m3u8"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master MongoDB, Express.js, React, and Node.js stack",
+    "Build full-stack web applications from scratch",
+    "Learn authentication and authorization systems",
+    "Understand RESTful API design and implementation",
+    "Deploy applications to cloud platforms like Heroku/AWS",
+    "Master modern JavaScript ES6+ and React hooks"
+  ],
+  "requirements": [
+    "Basic understanding of HTML, CSS, and JavaScript",
+    "Node.js and npm installed on your system",
+    "Internet connection for video streaming",
+    "Code editor (VS Code recommended) with extensions",
+    "MongoDB installed locally or MongoDB Atlas account"
+  ],
+  "rating": {
+    "average": 4.6,
+    "count": 282,
+    "breakdown": {
+      "1": 2,
+      "2": 2,
+      "3": 29,
+      "4": 71,
+      "5": 187
+    }
+  },
+  "duration": "10h 45m",
+  "level": "Advanced",
+  "language": "Hinglish",
+  "studentsEnrolled": 507,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }

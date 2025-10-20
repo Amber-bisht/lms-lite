@@ -120,5 +120,41 @@
       "title": "Mocking Network Calls",
       "url": "https://appx-transcoded-videos-mcdn.akamai.net.in/videos/harkirat-data/326294-1704665116/hls-a160a7/1080p/master-5101727.113871859.m3u8"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master the fundamentals and core concepts",
+    "Build real-world projects and applications",
+    "Understand best practices and industry standards",
+    "Develop problem-solving skills",
+    "Learn debugging and testing techniques"
+  ],
+  "requirements": [
+    "Basic computer knowledge",
+    "Internet connection for video streaming",
+    "Code editor (VS Code recommended)",
+    "Motivation to learn and practice"
+  ],
+  "rating": {
+    "average": 4.2,
+    "count": 363,
+    "breakdown": {
+      "1": 3,
+      "2": 5,
+      "3": 13,
+      "4": 62,
+      "5": 182
+    }
+  },
+  "duration": "9h 23m",
+  "level": "Advanced",
+  "language": "English",
+  "studentsEnrolled": 573,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }

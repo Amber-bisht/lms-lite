@@ -3,13 +3,17 @@
   "coursecategory": "gate",
   "viewtype": "both",
   "des": "Learn Theory of Computation TOC for GATE 2028 by Amit Khurana Sir Hinglish with comprehensive video tutorials and hands-on projects.",
-  "imageofinstructur": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300",
+  "imageofinstructur": "https://yt3.googleusercontent.com/opSYNbbIvjetOtq0lvUBupJlKEFPQEENUmDaajkPweEjJLNH25fBuU4bADoR6yT5AhWSS-OETA=s900-c-k-c0x00ffffff-no-rj",
   "instructorname": "Amit Khurana Sir Hinglish",
   "imageofcourse": "https://i.ytimg.com/vi/BvdTGXccV1s/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDf-T8O9zlz6zldmLAkDKlaFJVGCw",
   "audio": "hinglish",
   "cost": 0,
   "videoType": "hls",
-  "subsection": "amitkhurana",
+  "subsection": [
+    "amit-khurana",
+    "gate",
+    "computer-science"
+  ],
   "redirecturl": "",
   "rank": "high",
   "videos": [
@@ -193,5 +197,43 @@
       "title": "lecture 16- Identifying the type of language",
       "url": "https://transcoded-videos-v2.classx.co.in/videos/gatecseamitkhurana-data/245194-1739896653/hls-f17d19/720p/master-5976263.4595395485.m3u8"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master finite automata and regular languages",
+    "Understand context-free grammars and pushdown automata",
+    "Learn Turing machines and computability theory",
+    "Master decidability and complexity theory concepts",
+    "Solve GATE-level problems on formal languages",
+    "Understand computational complexity classes (P, NP, NP-Complete)"
+  ],
+  "requirements": [
+    "Basic understanding of formal languages and automata",
+    "Knowledge of mathematical logic and set theory",
+    "Internet connection for video streaming",
+    "Notebook for drawing state diagrams and proofs",
+    "GATE exam preparation mindset and dedication"
+  ],
+  "rating": {
+    "average": 4.2,
+    "count": 516,
+    "breakdown": {
+      "1": 3,
+      "2": 2,
+      "3": 33,
+      "4": 53,
+      "5": 225
+    }
+  },
+  "duration": "12h 21m",
+  "level": "Advanced",
+  "language": "English",
+  "studentsEnrolled": 151,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }

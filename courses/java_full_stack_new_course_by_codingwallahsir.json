@@ -3,7 +3,7 @@
   "coursecategory": "web-development",
   "viewtype": "both",
   "des": "Learn Java Full Stack NEW Course by Codingwallahsir with comprehensive video tutorials and hands-on projects.",
-  "imageofinstructur": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300",
+  "imageofinstructur": "https://framerusercontent.com/images/y7CcMBX2K5B9Uekni4arlrfBsE.png",
   "instructorname": "Codingwallahsir",
   "imageofcourse": "https://appxcontent.kaxa.in/subject/2024-10-24-0.5396263352863484.png",
   "audio": "english",
@@ -11,6 +11,7 @@
   "videoType": "hls",
   "redirecturl": "",
   "rank": "high",
+  "homepage": true,
   "videos": [
     {
       "title": "Course Introduction for ALL | Coding vs Programming",
@@ -344,5 +345,42 @@
       "title": "AWS S3 | How to Deploy React.js on AWS",
       "url": "https://appx-transcoded-videos-mcdn.akamai.net.in/videos/codingwallahsir-data/999959-1720850488/hls-e9f26f/720p/master-786987.1663291072.m3u8"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master the fundamentals and core concepts",
+    "Build real-world projects and applications",
+    "Understand best practices and industry standards",
+    "Develop problem-solving skills",
+    "Learn debugging and testing techniques",
+    "Master object-oriented programming concepts"
+  ],
+  "requirements": [
+    "Basic computer knowledge",
+    "Internet connection for video streaming",
+    "Code editor (VS Code recommended)",
+    "Motivation to learn and practice"
+  ],
+  "rating": {
+    "average": 4.2,
+    "count": 215,
+    "breakdown": {
+      "1": 5,
+      "2": 9,
+      "3": 29,
+      "4": 94,
+      "5": 265
+    }
+  },
+  "duration": "5h 49m",
+  "level": "Intermediate",
+  "language": "Hindi",
+  "studentsEnrolled": 783,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }

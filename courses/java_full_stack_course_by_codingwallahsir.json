@@ -3,7 +3,7 @@
   "coursecategory": "web-development",
   "viewtype": "both",
   "des": "Learn Java Full Stack Course by Codingwallahsir with comprehensive video tutorials and hands-on projects.",
-  "imageofinstructur": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300",
+  "imageofinstructur": "https://framerusercontent.com/images/y7CcMBX2K5B9Uekni4arlrfBsE.png",
   "instructorname": "Codingwallahsir",
   "imageofcourse": "https://framerusercontent.com/images/m7aqaXbTrkPK2skyL4NgsZgNrw.png?scale-down-to=1024",
   "audio": "english",
@@ -460,5 +460,43 @@
       "title": "31 live | React.js",
       "url": "https://appx-transcoded-videos-mcdn.akamai.net.in/videos/codingwallahsir-data/1044304-1722056850/hls-0b094d/720p/master-2287539.577692248.m3u8"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master Java fundamentals and object-oriented programming",
+    "Build full-stack applications with Spring Boot and React",
+    "Learn database design and integration with MySQL/PostgreSQL",
+    "Understand RESTful API development and microservices",
+    "Deploy applications using Docker and cloud platforms",
+    "Master modern development tools and best practices"
+  ],
+  "requirements": [
+    "Basic understanding of programming concepts",
+    "Java Development Kit (JDK) installed on your system",
+    "Internet connection for video streaming",
+    "IDE (IntelliJ IDEA or VS Code) for Java development",
+    "Node.js and npm installed for frontend development"
+  ],
+  "rating": {
+    "average": 4,
+    "count": 456,
+    "breakdown": {
+      "1": 4,
+      "2": 9,
+      "3": 20,
+      "4": 53,
+      "5": 257
+    }
+  },
+  "duration": "19h 40m",
+  "level": "Advanced",
+  "language": "English",
+  "studentsEnrolled": 733,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }

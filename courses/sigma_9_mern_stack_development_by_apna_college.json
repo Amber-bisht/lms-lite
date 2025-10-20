@@ -3,15 +3,20 @@
   "coursecategory": "web-development",
   "viewtype": "both",
   "des": "Learn SIGMA - 9 MERN STACK DEVELOPMENT by Apna college with comprehensive video tutorials and hands-on projects.",
-  "imageofinstructur": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300",
+  "imageofinstructur": "https://yt3.googleusercontent.com/FEcjRtez5od8UowDo6tTt9WlE-MrIFEmcwPMTORmK9Swk6KCklOmA3xfIG9WuLWfNYfNThQE=s900-c-k-c0x00ffffff-no-rj",
   "instructorname": "Apna college",
   "imageofcourse": "https://i.ytimg.com/vi/xWSpo2lFfUw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDl2k1at5CjSKMJ_XCNBaQvV4EJXQ",
   "audio": "english",
   "cost": 0,
   "videoType": "wistia",
-  "subsection": "sigma9",
+  "subsection": [
+    "sigma",
+    "apna-college",
+    "shradha khapra"
+  ],
   "redirecturl": "https://fast.wistia.com/embed/medias/hucl9u6so2.m3u8",
   "rank": "medium",
+  "homepage": true,
   "videos": [
     {
       "title": "Welcome to Delta!",
@@ -2901,5 +2906,42 @@
       "title": "Delete Todo",
       "url": "https://fast.wistia.com/embed/medias/fk6nknvz5h.m3u8"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master MERN stack development: MongoDB, Express.js, React, Node.js",
+    "Build full-stack web applications from scratch",
+    "Learn authentication, authorization, and security best practices",
+    "Understand RESTful API design and database integration",
+    "Deploy applications to cloud platforms and production",
+    "Master modern JavaScript ES6+ and React development"
+  ],
+  "requirements": [
+    "Basic computer knowledge",
+    "Internet connection for video streaming",
+    "Code editor (VS Code recommended)",
+    "Motivation to learn and practice"
+  ],
+  "rating": {
+    "average": 4.6,
+    "count": 205,
+    "breakdown": {
+      "1": 2,
+      "2": 3,
+      "3": 11,
+      "4": 135,
+      "5": 244
+    }
+  },
+  "duration": "10h 27m",
+  "level": "Beginner",
+  "language": "English",
+  "studentsEnrolled": 751,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }

@@ -3,13 +3,17 @@
   "coursecategory": "gate",
   "viewtype": "both",
   "des": "Learn Computer Networks CN for GATE 2028 by Amit Khurana Sir Hinglish with comprehensive video tutorials and hands-on projects.",
-  "imageofinstructur": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300",
+  "imageofinstructur": "https://yt3.googleusercontent.com/opSYNbbIvjetOtq0lvUBupJlKEFPQEENUmDaajkPweEjJLNH25fBuU4bADoR6yT5AhWSS-OETA=s900-c-k-c0x00ffffff-no-rj",
   "instructorname": "Amit Khurana Sir Hinglish",
   "imageofcourse": "https://i.ytimg.com/vi/BvdTGXccV1s/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDf-T8O9zlz6zldmLAkDKlaFJVGCw",
   "audio": "hinglish",
   "cost": 0,
   "videoType": "hls",
-  "subsection": "amitkhurana",
+  "subsection": [
+    "amit-khurana",
+    "gate",
+    "computer-science"
+  ],
   "redirecturl": "",
   "rank": "high",
   "videos": [
@@ -285,5 +289,43 @@
       "title": "TCP/IP model",
       "url": "https://appx-transcoded-videos-mcdn.akamai.net.in/videos/gatecseamitkhurana-data/716117-1712826983/hls-c1dd9f/720p/master-6033727.42299213.m3u8"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master Computer Networks fundamentals including OSI and TCP/IP models",
+    "Understand network protocols like HTTP, FTP, SMTP, and DNS",
+    "Learn error detection and correction techniques (CRC, Hamming codes)",
+    "Master flow control and congestion control algorithms",
+    "Solve GATE-level problems on routing algorithms and IP addressing",
+    "Understand network security concepts and protocols"
+  ],
+  "requirements": [
+    "Basic understanding of computer science fundamentals",
+    "Knowledge of binary number system and basic mathematics",
+    "Internet connection for video streaming",
+    "Notebook for taking notes and solving problems",
+    "GATE exam preparation mindset and dedication"
+  ],
+  "rating": {
+    "average": 4.6,
+    "count": 497,
+    "breakdown": {
+      "1": 1,
+      "2": 9,
+      "3": 19,
+      "4": 118,
+      "5": 207
+    }
+  },
+  "duration": "21h 57m",
+  "level": "Beginner",
+  "language": "English",
+  "studentsEnrolled": 830,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }

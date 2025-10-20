@@ -121,6 +121,75 @@
     animation: slide-up 0.5s ease-out;
   }
 
+  /* Carousel Animations */
+  @keyframes carousel-slide {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes carousel-fade {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-carousel-slide {
+    animation: carousel-slide 0.6s ease-out;
+  }
+
+  .animate-carousel-fade {
+    animation: carousel-fade 0.4s ease-out;
+  }
+
+/* Hover scale effect */
+.hover\:scale-102:hover {
+  transform: scale(1.02);
+}
+
+/* Alternating row scroll animations */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 20s linear infinite;
+}
+
+.animate-scroll-right {
+  animation: scroll-right 20s linear infinite;
+}
+
+/* Pause animation on hover */
+.animate-scroll-left:hover,
+.animate-scroll-right:hover {
+  animation-play-state: paused;
+}
+
   .bg-background {
     background-color: rgb(var(--background));
   }

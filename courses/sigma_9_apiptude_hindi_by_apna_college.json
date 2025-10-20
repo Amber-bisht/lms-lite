@@ -3,13 +3,17 @@
   "coursecategory": "aptitude",
   "viewtype": "both",
   "des": "Learn SIGMA - 9 APIPTUDE - HINDI by Apna college with comprehensive video tutorials and hands-on projects.",
-  "imageofinstructur": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300",
+  "imageofinstructur": "https://yt3.googleusercontent.com/FEcjRtez5od8UowDo6tTt9WlE-MrIFEmcwPMTORmK9Swk6KCklOmA3xfIG9WuLWfNYfNThQE=s900-c-k-c0x00ffffff-no-rj",
   "instructorname": "Apna college",
   "imageofcourse": "https://i.ytimg.com/vi/xWSpo2lFfUw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDl2k1at5CjSKMJ_XCNBaQvV4EJXQ",
   "audio": "english",
   "cost": 0,
   "videoType": "wistia",
-  "subsection": "sigma9",
+  "subsection": [
+    "sigma",
+    "apna-college",
+    "shradha khapra"
+  ],
   "redirecturl": "https://fast.wistia.com/embed/medias/a94t2ivslh.m3u8",
   "rank": "medium",
   "videos": [
@@ -237,5 +241,42 @@
       "title": "Reading Comprehension",
       "url": "https://fast.wistia.com/embed/medias/pn00fkfndw.m3u8"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master quantitative aptitude and mathematical reasoning in Hindi",
+    "Solve complex numerical and logical problems",
+    "Understand data interpretation and analysis",
+    "Learn time management and exam strategies",
+    "Master verbal and non-verbal reasoning",
+    "Develop analytical and critical thinking skills"
+  ],
+  "requirements": [
+    "Basic computer knowledge",
+    "Internet connection for video streaming",
+    "Code editor (VS Code recommended)",
+    "Motivation to learn and practice"
+  ],
+  "rating": {
+    "average": 4.4,
+    "count": 533,
+    "breakdown": {
+      "1": 1,
+      "2": 1,
+      "3": 25,
+      "4": 135,
+      "5": 343
+    }
+  },
+  "duration": "7h 47m",
+  "level": "Intermediate",
+  "language": "Hindi",
+  "studentsEnrolled": 329,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }

@@ -3,13 +3,17 @@
   "coursecategory": "aptitude",
   "viewtype": "both",
   "des": "Learn SIGMA - 9 APIPTUDE - ENGLISH by Apna college with comprehensive video tutorials and hands-on projects.",
-  "imageofinstructur": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300",
+  "imageofinstructur": "https://yt3.googleusercontent.com/FEcjRtez5od8UowDo6tTt9WlE-MrIFEmcwPMTORmK9Swk6KCklOmA3xfIG9WuLWfNYfNThQE=s900-c-k-c0x00ffffff-no-rj",
   "instructorname": "Apna college",
   "imageofcourse": "https://i.ytimg.com/vi/xWSpo2lFfUw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDl2k1at5CjSKMJ_XCNBaQvV4EJXQ",
   "audio": "english",
   "cost": 0,
   "videoType": "wistia",
-  "subsection": "sigma9",
+  "subsection": [
+    "sigma",
+    "apna-college",
+    "shradha khapra"
+  ],
   "redirecturl": "https://fast.wistia.com/embed/medias/a94t2ivslh.m3u8",
   "rank": "medium",
   "videos": [
@@ -205,5 +209,43 @@
       "title": "Reading Comprehension",
       "url": "https://fast.wistia.com/embed/medias/pn00fkfndw.m3u8"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master quantitative aptitude and mathematical reasoning",
+    "Solve complex numerical and logical problems",
+    "Understand data interpretation and analysis",
+    "Learn time management and exam strategies",
+    "Master verbal and non-verbal reasoning",
+    "Develop analytical and critical thinking skills"
+  ],
+  "requirements": [
+    "Basic understanding of mathematics and logical reasoning",
+    "Knowledge of English language for verbal reasoning",
+    "Internet connection for video streaming",
+    "Calculator for numerical calculations",
+    "Notebook for practice problems and notes"
+  ],
+  "rating": {
+    "average": 4,
+    "count": 408,
+    "breakdown": {
+      "1": 5,
+      "2": 6,
+      "3": 13,
+      "4": 61,
+      "5": 247
+    }
+  },
+  "duration": "12h 46m",
+  "level": "Intermediate",
+  "language": "Hindi",
+  "studentsEnrolled": 1035,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }

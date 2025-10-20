@@ -3,13 +3,17 @@
   "coursecategory": "web-development",
   "viewtype": "both",
   "des": "Learn Live 0 100 Complete by harkirat Singh with comprehensive video tutorials and hands-on projects.",
-  "imageofinstructur": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300",
+  "imageofinstructur": "https://appx-wsb-gcp-mcdn.akamai.net.in/subject/2023-01-17-0.3698267942851394.jpg",
   "instructorname": "harkirat Singh",
   "imageofcourse": "https://appx-wsb-gcp-mcdn.akamai.net.in/teachcode/admin/COURSE/cover/1699610005757WhatsApp-Image-2023-11-10-at-3.16.18-PM.jpeg",
   "audio": "english",
   "cost": 0,
   "videoType": "hls",
-  "subsection": "harkirat",
+  "subsection": [
+    "harkirat",
+    "harkirat-Singh",
+    "100xdevs"
+  ],
   "redirecturl": "",
   "rank": "high",
   "videos": [
@@ -589,5 +593,42 @@
       "title": "35.1 | Adhoc coding - PayTM Merchant app",
       "url": "https://appx-transcoded-videos-mcdn.akamai.net.in/videos/harkirat-data/82112-1722348994/hls-ddde3d/1080p/master-4528041.430262992.m3u8"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master full-stack web development from zero to advanced",
+    "Build real-world projects with React, Node.js, and databases",
+    "Learn modern development practices and deployment strategies",
+    "Understand system design and architecture principles",
+    "Master debugging, testing, and production optimization",
+    "Develop industry-ready skills and portfolio projects"
+  ],
+  "requirements": [
+    "Basic computer knowledge",
+    "Internet connection for video streaming",
+    "Code editor (VS Code recommended)",
+    "Motivation to learn and practice"
+  ],
+  "rating": {
+    "average": 4.7,
+    "count": 489,
+    "breakdown": {
+      "1": 2,
+      "2": 7,
+      "3": 18,
+      "4": 78,
+      "5": 233
+    }
+  },
+  "duration": "16h 37m",
+  "level": "Advanced",
+  "language": "Hindi",
+  "studentsEnrolled": 761,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }

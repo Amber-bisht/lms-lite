@@ -3,7 +3,7 @@
   "coursecategory": "web-development",
   "viewtype": "both",
   "des": "Learn PYTHON Web Development BY Coding Seekhho with comprehensive video tutorials and hands-on projects.",
-  "imageofinstructur": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300",
+  "imageofinstructur": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3baEqD8xPD7tg8hJzHwo1A_owabzwrZsEIQ&s",
   "instructorname": "Coding Seekhho",
   "imageofcourse": "https://appxcontent.kaxa.in/subject/2024-10-23-0.5523212172513641.jpg",
   "audio": "english",
@@ -432,5 +432,43 @@
       "title": "DJANGO PROJECT DOUBT SESSION SOLVE SESSION 2",
       "url": "https://appx-transcoded-videos-mcdn.akamai.net.in/videos/codingseekho-data/866465-1717045459/hls-ff66e5/1080p/master-6052512.133699493.m3u8"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master Python web development with Django/FastAPI",
+    "Build scalable web applications and APIs",
+    "Learn database integration with PostgreSQL/MySQL",
+    "Understand frontend integration with React/Vue.js",
+    "Deploy applications using Docker and cloud services",
+    "Master Python best practices and testing frameworks"
+  ],
+  "requirements": [
+    "Basic understanding of HTML, CSS, and JavaScript",
+    "Python 3.x installed on your system",
+    "Internet connection for video streaming",
+    "Code editor (VS Code recommended) with Python extensions",
+    "PostgreSQL or MySQL database installed locally"
+  ],
+  "rating": {
+    "average": 4.3,
+    "count": 260,
+    "breakdown": {
+      "1": 3,
+      "2": 1,
+      "3": 26,
+      "4": 51,
+      "5": 318
+    }
+  },
+  "duration": "15h 6m",
+  "level": "Advanced",
+  "language": "Hinglish",
+  "studentsEnrolled": 522,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }

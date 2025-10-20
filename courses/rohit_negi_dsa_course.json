@@ -336,5 +336,43 @@
       "title": "Special Message for Students",
       "url": "https://appx-transcoded-videos-mcdn.akamai.net.in/videos/rohitnegi-data/3265757-1722239185/hls-06b244/720p/master-1231181.474782874.m3u8"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master data structures and algorithms from basics to advanced",
+    "Learn problem-solving techniques and coding patterns",
+    "Understand time and space complexity analysis",
+    "Master competitive programming and interview preparation",
+    "Solve coding problems from various difficulty levels",
+    "Build strong algorithmic thinking and problem-solving skills"
+  ],
+  "requirements": [
+    "Basic programming knowledge in any language",
+    "Understanding of basic programming concepts",
+    "Internet connection for video streaming",
+    "Code editor (VS Code recommended) for practice",
+    "Willingness to practice coding problems regularly"
+  ],
+  "rating": {
+    "average": 5,
+    "count": 412,
+    "breakdown": {
+      "1": 3,
+      "2": 10,
+      "3": 17,
+      "4": 142,
+      "5": 238
+    }
+  },
+  "duration": "22h 33m",
+  "level": "Advanced",
+  "language": "Hinglish",
+  "studentsEnrolled": 237,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }

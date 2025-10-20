@@ -3,7 +3,7 @@
   "coursecategory": "system-design",
   "viewtype": "both",
   "des": "Learn LLD Low Level System Design by keertipurswani with comprehensive video tutorials and hands-on projects.",
-  "imageofinstructur": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300",
+  "imageofinstructur": "https://media.licdn.com/dms/image/v2/D5622AQFJ-IvDtc3rTA/feedshare-shrink_800/feedshare-shrink_800/0/1698045285581?e=2147483647&v=beta&t=GG5cRP-cWWkqQfbPnQIA1Olmp3PTnytdukG3QXKCXyM",
   "instructorname": "keertipurswani",
   "imageofcourse": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqksMKezB3ijNYv3lIz8QHcajlJH7hNnh7kw&s",
   "audio": "english",
@@ -11,6 +11,11 @@
   "videoType": "hls",
   "redirecturl": "",
   "rank": "medium",
+  "subsection": [
+    "keertipurswani",
+    "educosys",
+    "keerti"
+  ],
   "videos": [
     {
       "title": "Day 1 - OOPs, SOLID Principles",
@@ -72,5 +77,43 @@
       "title": "Day 15 - Parking Lot, Recommendation System, Arena Question",
       "url": "https://appx-transcoded-videos-mcdn.akamai.net.in/videos/keertipurswani-data/1092653-1723443752/hls-e21a75/1080p/master-1194374.7461643994.m3u8"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master low-level system design and object-oriented principles",
+    "Design classes, interfaces, and design patterns",
+    "Understand SOLID principles and clean code practices",
+    "Learn to design scalable and maintainable software systems",
+    "Master common design patterns and their implementations",
+    "Build real-world system design projects and case studies"
+  ],
+  "requirements": [
+    "Basic understanding of object-oriented programming",
+    "Knowledge of design patterns and software engineering principles",
+    "Internet connection for video streaming",
+    "Code editor (VS Code recommended) for practice",
+    "Experience with software development and system design"
+  ],
+  "rating": {
+    "average": 4.8,
+    "count": 276,
+    "breakdown": {
+      "1": 4,
+      "2": 6,
+      "3": 18,
+      "4": 112,
+      "5": 301
+    }
+  },
+  "duration": "9h 57m",
+  "level": "Beginner",
+  "language": "Hindi",
+  "studentsEnrolled": 423,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }

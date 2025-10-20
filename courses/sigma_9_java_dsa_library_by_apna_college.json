@@ -3,13 +3,17 @@
   "coursecategory": "dsa",
   "viewtype": "both",
   "des": "Learn SIGMA - 9 JAVA DSA LIBRARY by Apna college with comprehensive video tutorials and hands-on projects.",
-  "imageofinstructur": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300",
+  "imageofinstructur": "https://yt3.googleusercontent.com/FEcjRtez5od8UowDo6tTt9WlE-MrIFEmcwPMTORmK9Swk6KCklOmA3xfIG9WuLWfNYfNThQE=s900-c-k-c0x00ffffff-no-rj",
   "instructorname": "Apna college",
   "imageofcourse": "https://i.ytimg.com/vi/xWSpo2lFfUw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDl2k1at5CjSKMJ_XCNBaQvV4EJXQ",
   "audio": "english",
   "cost": 0,
   "videoType": "wistia",
-  "subsection": "sigma9",
+  "subsection": [
+    "sigma",
+    "apna-college",
+    "shradha khapra"
+  ],
   "redirecturl": "https://fast.wistia.com/embed/medias/sz83lzg6nl.m3u8",
   "rank": "medium",
   "videos": [
@@ -577,5 +581,42 @@
       "title": "Palindrome Partitioning II",
       "url": "https://fast.wistia.com/embed/medias/ozbf0imslx.m3u8"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master the fundamentals and core concepts",
+    "Build real-world projects and applications",
+    "Understand best practices and industry standards",
+    "Develop problem-solving skills",
+    "Learn debugging and testing techniques",
+    "Master object-oriented programming concepts"
+  ],
+  "requirements": [
+    "Basic computer knowledge",
+    "Internet connection for video streaming",
+    "Code editor (VS Code recommended)",
+    "Motivation to learn and practice"
+  ],
+  "rating": {
+    "average": 4.5,
+    "count": 524,
+    "breakdown": {
+      "1": 4,
+      "2": 8,
+      "3": 26,
+      "4": 142,
+      "5": 222
+    }
+  },
+  "duration": "19h 56m",
+  "level": "Beginner",
+  "language": "English",
+  "studentsEnrolled": 797,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }

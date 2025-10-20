@@ -2,7 +2,7 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import Link from 'next/link';
 import Head from 'next/head';
 import Layout from '../components/Layout';
-import { ICourse, getCoursesBySubsection } from '../lib/dataUtils';
+import { ICourse, getCoursesBySubsection, getAllSubsections } from '../lib/dataUtils';
 
 interface SubsectionPageProps {
   courses: ICourse[];
@@ -141,11 +141,10 @@ export default function SubsectionPage({ courses, subsectionName }: SubsectionPa
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // For now, we'll only generate paths for known subsections
-  // In the future, this could be dynamic based on actual subsection data
-  const knownSubsections = ['sigma9', 'harkirat', 'amitkhurana'];
+  // Get all unique subsections from course data
+  const allSubsections = getAllSubsections();
   
-  const paths = knownSubsections.map((subsection) => ({
+  const paths = allSubsections.map((subsection) => ({
     params: { subsection },
   }));
 

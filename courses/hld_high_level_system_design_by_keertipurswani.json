@@ -3,7 +3,7 @@
   "coursecategory": "system-design",
   "viewtype": "both",
   "des": "Learn HLD High Level System Design by keertipurswani with comprehensive video tutorials and hands-on projects.",
-  "imageofinstructur": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300",
+  "imageofinstructur": "https://media.licdn.com/dms/image/v2/D5622AQFJ-IvDtc3rTA/feedshare-shrink_800/feedshare-shrink_800/0/1698045285581?e=2147483647&v=beta&t=GG5cRP-cWWkqQfbPnQIA1Olmp3PTnytdukG3QXKCXyM",
   "instructorname": "keertipurswani",
   "imageofcourse": "https://appxcontent.kaxa.in/paid_course3/2024-05-13-0.547368900127966.PNG",
   "audio": "english",
@@ -11,6 +11,11 @@
   "videoType": "hls",
   "redirecturl": "",
   "rank": "medium",
+  "subsection": [
+    "keertipurswani",
+    "educosys",
+    "keerti"
+  ],
   "videos": [
     {
       "title": "Class 1 - Client Server Architecture and Networking",
@@ -72,5 +77,43 @@
       "title": "Class 15 - Uber, Zerodha Mock Interview",
       "url": "https://appx-recordings-mcdn.akamai.net.in/drm/cf1de84c-9d21-4de0-90b9-6b3bdc3b3426/720p/drm-hls/master-8039683.424174737.m3u8.m3u8"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master high-level system design principles and patterns",
+    "Design scalable distributed systems and microservices",
+    "Understand database design and caching strategies",
+    "Learn load balancing and system optimization techniques",
+    "Design fault-tolerant and highly available systems",
+    "Master system architecture patterns and best practices"
+  ],
+  "requirements": [
+    "Basic understanding of computer science fundamentals",
+    "Knowledge of databases and distributed systems concepts",
+    "Internet connection for video streaming",
+    "Drawing tools (draw.io, Lucidchart) for system diagrams",
+    "Experience with software development and system architecture"
+  ],
+  "rating": {
+    "average": 4.3,
+    "count": 437,
+    "breakdown": {
+      "1": 4,
+      "2": 10,
+      "3": 33,
+      "4": 106,
+      "5": 341
+    }
+  },
+  "duration": "21h 10m",
+  "level": "Beginner",
+  "language": "Hinglish",
+  "studentsEnrolled": 478,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }

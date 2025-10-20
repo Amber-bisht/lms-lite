@@ -20,11 +20,42 @@ export interface ICourse {
   cost: number;
   videoType: 'hls' | 'wistia' | 'youtube' | 'internetarchive' | 'redirect';
   redirecturl?: string;
-  subsection?: string | null;
+  subsection?: string | string[] | null;
   videos: IVideo[];
   rank: 'high' | 'mid' | 'medium' | 'low';
+  homepage?: boolean;
   _id: string;
   __v: number;
+  // New fields for enhanced course info
+  syllabus?: ISyllabusItem[];
+  whatYouWillLearn?: string[];
+  requirements?: string[];
+  rating?: IRating;
+  duration?: string;
+  level?: string;
+  language?: string;
+  studentsEnrolled?: number;
+  lastUpdated?: string;
+  features?: string[];
+}
+
+export interface ISyllabusItem {
+  id: number;
+  title: string;
+  duration: string;
+  completed: boolean;
+}
+
+export interface IRating {
+  average: number;
+  count: number;
+  breakdown: {
+    1: number;
+    2: number;
+    3: number;
+    4: number;
+    5: number;
+  };
 }
 
 // Define interfaces for category data
@@ -51,9 +82,21 @@ interface JsonCourse {
   cost?: number;
   videoType: 'hls' | 'wistia' | 'youtube' | 'internetarchive' | 'redirect';
   redirecturl?: string;
-  subsection?: string;
+  subsection?: string | string[];
   videos: IVideo[];
   rank?: 'high' | 'mid' | 'medium' | 'low';
+  homepage?: boolean;
+  // New fields for enhanced course info
+  syllabus?: ISyllabusItem[];
+  whatYouWillLearn?: string[];
+  requirements?: string[];
+  rating?: IRating;
+  duration?: string;
+  level?: string;
+  language?: string;
+  studentsEnrolled?: number;
+  lastUpdated?: string;
+  features?: string[];
 }
 
 interface JsonCategory {
@@ -167,8 +210,20 @@ export function getAllCourses(): ICourse[] {
             subsection: jsonData.subsection || null,
             videos: jsonData.videos || [],
             rank: jsonData.rank || 'mid',
+            homepage: jsonData.homepage || false,
             _id: file.replace('.json', ''),
-            __v: 0
+            __v: 0,
+            // New fields
+            syllabus: jsonData.syllabus || [],
+            whatYouWillLearn: jsonData.whatYouWillLearn || [],
+            requirements: jsonData.requirements || [],
+            rating: jsonData.rating || { average: 4.5, count: 0, breakdown: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
+            duration: jsonData.duration || 'N/A',
+            level: jsonData.level || 'Beginner',
+            language: jsonData.language || 'English',
+            studentsEnrolled: jsonData.studentsEnrolled || 0,
+            lastUpdated: jsonData.lastUpdated || new Date().toISOString().split('T')[0],
+            features: jsonData.features || []
           };
           
           courses.push(course);
@@ -212,14 +267,47 @@ export function getCourseByName(categoryName: string, courseName: string): ICour
 // Get courses by subsection
 export function getCoursesBySubsection(subsectionName: string): ICourse[] {
   const allCourses = getAllCourses();
-  return allCourses.filter(course => 
-    course.subsection && course.subsection.toLowerCase() === subsectionName.toLowerCase()
-  );
+  return allCourses.filter(course => {
+    if (!course.subsection) return false;
+    
+    // Handle both string and array subsections
+    if (Array.isArray(course.subsection)) {
+      return course.subsection.some(sub => 
+        sub.toLowerCase() === subsectionName.toLowerCase()
+      );
+    } else {
+      return course.subsection.toLowerCase() === subsectionName.toLowerCase();
+    }
+  });
+}
+
+// Get all unique subsections
+export function getAllSubsections(): string[] {
+  const allCourses = getAllCourses();
+  const subsections = new Set<string>();
+  
+  allCourses.forEach(course => {
+    if (course.subsection) {
+      if (Array.isArray(course.subsection)) {
+        course.subsection.forEach(sub => subsections.add(sub.toLowerCase()));
+      } else {
+        subsections.add(course.subsection.toLowerCase());
+      }
+    }
+  });
+  
+  return Array.from(subsections).sort();
 }
 
 // Get categories by rank
 export function getCategoriesByRank(rank: 'high' | 'mid' | 'medium' | 'low'): ICategory[] {
   const allCategories = getAllCategories();
   return allCategories.filter(category => category.rank === rank);
+}
+
+// Get courses for homepage carousel
+export function getHomepageCourses(): ICourse[] {
+  const allCourses = getAllCourses();
+  return allCourses.filter(course => course.homepage === true);
 }
 

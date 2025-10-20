@@ -3,7 +3,7 @@
   "coursecategory": "system-design",
   "viewtype": "both",
   "des": "Learn HHLD Hands On High Level System Design Implementation by keertipurswani with comprehensive video tutorials and hands-on projects.",
-  "imageofinstructur": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300",
+  "imageofinstructur": "https://media.licdn.com/dms/image/v2/D5622AQFJ-IvDtc3rTA/feedshare-shrink_800/feedshare-shrink_800/0/1698045285581?e=2147483647&v=beta&t=GG5cRP-cWWkqQfbPnQIA1Olmp3PTnytdukG3QXKCXyM",
   "instructorname": "keertipurswani",
   "imageofcourse": "https://appx-content-v2.classx.co.in/paid_course3/2025-04-04-0.22335640900944154.png",
   "audio": "english",
@@ -11,6 +11,12 @@
   "videoType": "hls",
   "redirecturl": "",
   "rank": "medium",
+  "homepage": true,
+  "subsection": [
+    "keertipurswani",
+    "educosys",
+    "keerti"
+  ],
   "videos": [
     {
       "title": "Day 1 - Intro to AWS - Regions, AZs, VPCs, Subnets, EC2",
@@ -108,5 +114,41 @@
       "title": "May 15 MeetUp",
       "url": "https://appx-transcoded-videos-mcdn.akamai.net.in/videos/keertipurswani-data/384752-1717225821/hls-5f7f36/1080p/master-5350290.176349852.m3u8"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master the fundamentals and core concepts",
+    "Build real-world projects and applications",
+    "Understand best practices and industry standards",
+    "Develop problem-solving skills",
+    "Learn debugging and testing techniques"
+  ],
+  "requirements": [
+    "Basic computer knowledge",
+    "Internet connection for video streaming",
+    "Code editor (VS Code recommended)",
+    "Motivation to learn and practice"
+  ],
+  "rating": {
+    "average": 4.9,
+    "count": 550,
+    "breakdown": {
+      "1": 2,
+      "2": 6,
+      "3": 13,
+      "4": 145,
+      "5": 309
+    }
+  },
+  "duration": "14h 24m",
+  "level": "Intermediate",
+  "language": "Hindi",
+  "studentsEnrolled": 689,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }

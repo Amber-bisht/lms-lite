@@ -3,13 +3,17 @@
   "coursecategory": "gate",
   "viewtype": "both",
   "des": "Learn Digital Logic for GATE 2028 by Amit Khurana Sir Hinglish with comprehensive video tutorials and hands-on projects.",
-  "imageofinstructur": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300",
+  "imageofinstructur": "https://yt3.googleusercontent.com/opSYNbbIvjetOtq0lvUBupJlKEFPQEENUmDaajkPweEjJLNH25fBuU4bADoR6yT5AhWSS-OETA=s900-c-k-c0x00ffffff-no-rj",
   "instructorname": "Amit Khurana Sir Hinglish",
   "imageofcourse": "https://i.ytimg.com/vi/BvdTGXccV1s/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDf-T8O9zlz6zldmLAkDKlaFJVGCw",
   "audio": "hinglish",
   "cost": 0,
   "videoType": "hls",
-  "subsection": "amitkhurana",
+  "subsection": [
+    "amit-khurana",
+    "gate",
+    "computer-science"
+  ],
   "redirecturl": "",
   "rank": "high",
   "videos": [
@@ -205,5 +209,43 @@
       "title": "ROM",
       "url": "https://appx-transcoded-videos-mcdn.akamai.net.in/videos/gatecseamitkhurana-data/668623-1711285176/hls-028fad/720p/master-4863141.713210293.m3u8"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master Boolean algebra and logic gates fundamentals",
+    "Understand combinational and sequential circuit design",
+    "Learn number system conversions and arithmetic operations",
+    "Master Karnaugh maps and logic minimization techniques",
+    "Solve GATE-level problems on flip-flops and counters",
+    "Understand memory organization and digital system design"
+  ],
+  "requirements": [
+    "Basic understanding of binary number system",
+    "Knowledge of Boolean algebra fundamentals",
+    "Internet connection for video streaming",
+    "Calculator for number system conversions",
+    "GATE exam preparation mindset and dedication"
+  ],
+  "rating": {
+    "average": 5,
+    "count": 577,
+    "breakdown": {
+      "1": 4,
+      "2": 2,
+      "3": 10,
+      "4": 75,
+      "5": 209
+    }
+  },
+  "duration": "7h 35m",
+  "level": "Advanced",
+  "language": "English",
+  "studentsEnrolled": 728,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }

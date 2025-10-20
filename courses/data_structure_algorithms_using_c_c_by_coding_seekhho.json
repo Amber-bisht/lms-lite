@@ -3,7 +3,7 @@
   "coursecategory": "dsa",
   "viewtype": "both",
   "des": "Learn Data Structure Algorithms Using C C++ by Coding Seekhho with comprehensive video tutorials and hands-on projects.",
-  "imageofinstructur": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300",
+  "imageofinstructur": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3baEqD8xPD7tg8hJzHwo1A_owabzwrZsEIQ&s",
   "instructorname": "Coding Seekhho",
   "imageofcourse": "https://codingseekho.in/wp-content/uploads/2024/04/128b2ef2-64c4-4dd3-8e27-9d32bf0338f3.jpeg",
   "audio": "english",
@@ -124,5 +124,42 @@
       "title": "28. Traversing Binary Tree, Level Order Traversal With Pseudo Code",
       "url": "https://appx-transcoded-videos-mcdn.akamai.net.in/videos/codingseekho-data/784092-1714815436/hls-b05908/1080p/master-4001445.032795714.m3u8"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master C/C++ programming fundamentals and data structures",
+    "Implement arrays, linked lists, stacks, and queues in C/C++",
+    "Learn tree and graph algorithms with practical implementations",
+    "Master sorting and searching algorithms with complexity analysis",
+    "Solve competitive programming problems using C/C++",
+    "Understand memory management and pointer operations"
+  ],
+  "requirements": [
+    "Basic computer knowledge",
+    "Internet connection for video streaming",
+    "Code editor (VS Code recommended)",
+    "Motivation to learn and practice"
+  ],
+  "rating": {
+    "average": 4.3,
+    "count": 447,
+    "breakdown": {
+      "1": 5,
+      "2": 1,
+      "3": 21,
+      "4": 97,
+      "5": 153
+    }
+  },
+  "duration": "18h 39m",
+  "level": "Advanced",
+  "language": "Hinglish",
+  "studentsEnrolled": 884,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }

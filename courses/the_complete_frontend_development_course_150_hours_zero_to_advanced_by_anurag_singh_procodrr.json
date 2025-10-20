@@ -1650,5 +1650,41 @@
       "thumbnail": "https://i.ytimg.com/vi/_ifL3Dx1_jo/mqdefault.jpg",
       "publishedAt": "2023-12-28T12:47:22Z"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master the fundamentals and core concepts",
+    "Build real-world projects and applications",
+    "Understand best practices and industry standards",
+    "Develop problem-solving skills",
+    "Learn debugging and testing techniques"
+  ],
+  "requirements": [
+    "Basic computer knowledge",
+    "Internet connection for video streaming",
+    "Code editor (VS Code recommended)",
+    "Motivation to learn and practice"
+  ],
+  "rating": {
+    "average": 4.8,
+    "count": 234,
+    "breakdown": {
+      "1": 1,
+      "2": 2,
+      "3": 28,
+      "4": 141,
+      "5": 159
+    }
+  },
+  "duration": "10h 12m",
+  "level": "Advanced",
+  "language": "English",
+  "studentsEnrolled": 1035,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }

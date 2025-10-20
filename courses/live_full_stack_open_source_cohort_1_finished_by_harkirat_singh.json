@@ -3,15 +3,20 @@
   "coursecategory": "web-development",
   "viewtype": "both",
   "des": "Learn Live Full Stack Open Source Cohort 1 Finished by harkirat Singh with comprehensive video tutorials and hands-on projects.",
-  "imageofinstructur": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300",
+  "imageofinstructur": "https://appx-wsb-gcp-mcdn.akamai.net.in/subject/2023-01-17-0.3698267942851394.jpg",
   "instructorname": "harkirat Singh",
   "imageofcourse": "https://appx-wsb-gcp-mcdn.akamai.net.in/paid_course3/2023-11-10-0.3523174787735883.jpeg",
   "audio": "english",
   "cost": 0,
   "videoType": "hls",
-  "subsection": "harkirat",
+  "subsection": [
+    "harkirat",
+    "harkirat-Singh",
+    "100xdevs"
+  ],
   "redirecturl": "",
   "rank": "high",
+  "homepage": true,
   "videos": [
     {
       "title": "DSA | Trial Class | Introduction | 02/04/24",
@@ -465,5 +470,41 @@
       "title": "testing",
       "url": "https://appx-recordings-mcdn.akamai.net.in/videos/harkirat-data/78419-1701271891/hls/1080p/master-598194.7722108804.m3u8.m3u8"
     }
+  ],
+  "whatYouWillLearn": [
+    "Master the fundamentals and core concepts",
+    "Build real-world projects and applications",
+    "Understand best practices and industry standards",
+    "Develop problem-solving skills",
+    "Learn debugging and testing techniques"
+  ],
+  "requirements": [
+    "Basic computer knowledge",
+    "Internet connection for video streaming",
+    "Code editor (VS Code recommended)",
+    "Motivation to learn and practice"
+  ],
+  "rating": {
+    "average": 4.5,
+    "count": 273,
+    "breakdown": {
+      "1": 1,
+      "2": 7,
+      "3": 22,
+      "4": 136,
+      "5": 198
+    }
+  },
+  "duration": "15h 53m",
+  "level": "Intermediate",
+  "language": "Hindi",
+  "studentsEnrolled": 349,
+  "lastUpdated": "2025-10-20",
+  "features": [
+    "Lifetime Access",
+    "Certificate of Completion",
+    "Mobile and Desktop Access",
+    "Downloadable Resources",
+    "Community Support"
   ]
 }
