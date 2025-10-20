@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const https = require('https');
 
 const DOMAIN = 'https://unlockedcoding.com';
 
@@ -55,7 +56,10 @@ function getAllCourses() {
             category: data.coursecategory,
             subsection: data.subsection || null,
             slug: file.replace('.json', ''),
-            videos: data.videos || []
+            videos: data.videos || [],
+            homepage: data.homepage || false,
+            lastUpdated: data.lastUpdated || new Date().toISOString().split('T')[0],
+            instructorname: data.instructorname || null
           });
         } catch (err) {
           console.error(`Error parsing ${file}:`, err.message);
@@ -77,11 +81,34 @@ function getAllSubsections() {
   
   courses.forEach(course => {
     if (course.subsection) {
-      subsections.add(course.subsection);
+      // Handle both string and array subsections
+      if (Array.isArray(course.subsection)) {
+        course.subsection.forEach(sub => {
+          if (sub && typeof sub === 'string') {
+            subsections.add(sub);
+          }
+        });
+      } else if (typeof course.subsection === 'string') {
+        subsections.add(course.subsection);
+      }
     }
   });
   
   return Array.from(subsections);
+}
+
+// Get all unique instructor names
+function getAllInstructors() {
+  const courses = getAllCourses();
+  const instructors = new Set();
+  
+  courses.forEach(course => {
+    if (course.instructorname) {
+      instructors.add(course.instructorname);
+    }
+  });
+  
+  return Array.from(instructors);
 }
 
 // Generate sitemap XML
@@ -102,12 +129,33 @@ function generateSitemap() {
   </url>
 `;
 
+  // Add featured courses section (homepage carousel)
+  const featuredCourses = courses.filter(course => course.homepage === true);
+  if (featuredCourses.length > 0) {
+    sitemap += `  <url>
+    <loc>${DOMAIN}/#featured-courses</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+`;
+  }
+
   // Add all courses page
   sitemap += `  <url>
     <loc>${DOMAIN}/all</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+`;
+
+  // Add play page
+  sitemap += `  <url>
+    <loc>${DOMAIN}/play</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
 `;
 
@@ -123,11 +171,27 @@ function generateSitemap() {
   // Add subsection pages
   const subsections = getAllSubsections();
   subsections.forEach(subsection => {
+    // URL encode subsection to handle special characters
+    const encodedSubsection = encodeURIComponent(subsection);
     sitemap += `  <url>
-    <loc>${DOMAIN}/${subsection}</loc>
+    <loc>${DOMAIN}/${encodedSubsection}</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+`;
+  });
+
+  // Add instructor pages
+  const instructors = getAllInstructors();
+  instructors.forEach(instructorName => {
+    // URL encode instructor name to handle special characters
+    const encodedInstructorName = encodeURIComponent(instructorName);
+    sitemap += `  <url>
+    <loc>${DOMAIN}/teacher/${encodedInstructorName}</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
 `;
   });
@@ -198,12 +262,16 @@ function generateSitemap() {
     }
     addedUrls.add(courseUrlLower);
     
+    // Higher priority for featured courses
+    const priority = course.homepage ? '0.8' : '0.7';
+    const lastmod = course.lastUpdated || new Date().toISOString();
+    
     // Add course page only (no individual video pages)
     sitemap += `  <url>
     <loc>${courseUrl}</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>${priority}</priority>
   </url>
 `;
   });
@@ -211,6 +279,32 @@ function generateSitemap() {
   sitemap += `</urlset>`;
   
   return sitemap;
+}
+
+// Ping search engines about sitemap update
+function pingSearchEngines() {
+  const sitemapUrl = `${DOMAIN}/sitemap.xml`;
+  
+  const searchEngines = [
+    `https://www.google.com/ping?sitemap=${encodeURIComponent(sitemapUrl)}`,
+    `https://www.bing.com/ping?sitemap=${encodeURIComponent(sitemapUrl)}`
+  ];
+  
+  searchEngines.forEach((url, index) => {
+    const engineName = index === 0 ? 'Google' : 'Bing';
+    
+    https.get(url, (res) => {
+      if (res.statusCode === 200) {
+        console.log(`✅ ${engineName}: Sitemap pinged successfully`);
+      } else {
+        console.log(`⚠️  ${engineName}: Ping returned status ${res.statusCode}`);
+      }
+    }).on('error', (err) => {
+      console.log(`❌ ${engineName}: Ping failed - ${err.message}`);
+    });
+  });
+  
+  console.log('📡 Search engine pings initiated');
 }
 
 // Main execution
@@ -231,9 +325,21 @@ try {
   console.log(`📍 Location: ${sitemapPath}`);
   console.log(`🔗 Will be available at: ${DOMAIN}/sitemap.xml`);
   
-  // Count URLs
+  // Count URLs and provide detailed stats
   const urlCount = (sitemap.match(/<url>/g) || []).length;
+  const courses = getAllCourses();
+  const featuredCourses = courses.filter(course => course.homepage === true);
+  
   console.log(`📊 Total URLs: ${urlCount}`);
+  console.log(`📚 Total Courses: ${courses.length}`);
+  console.log(`⭐ Featured Courses: ${featuredCourses.length}`);
+  console.log(`📁 Categories: ${getAllCategories().length}`);
+  console.log(`📄 Subsections: ${getAllSubsections().length}`);
+  console.log(`👨‍🏫 Instructors: ${getAllInstructors().length}`);
+  
+  // Ping search engines
+  console.log('\n🔍 Pinging search engines...');
+  pingSearchEngines();
 } catch (error) {
   console.error('❌ Error generating sitemap:', error);
   process.exit(1);

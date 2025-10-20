@@ -15,6 +15,10 @@ function getAllCourses() {
         
         try {
           const data = JSON.parse(fileContent);
+          // Ensure subsection is properly handled
+          if (data.subsection && !Array.isArray(data.subsection)) {
+            data.subsection = [data.subsection];
+          }
           courses.push(data);
         } catch (err) {
           console.error(`Error parsing ${file}:`, err.message);

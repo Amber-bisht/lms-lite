@@ -4,10 +4,10 @@
   "viewtype": "both",
   "des": "Learn Advanced Web Development by harkirat Singh with comprehensive video tutorials and hands-on projects.",
   "imageofinstructur": "https://appx-wsb-gcp-mcdn.akamai.net.in/subject/2023-01-17-0.3698267942851394.jpg",
-  "instructorname": "harkirat Singh",
+  "instructorname": "harkirat-Singh",
   "imageofcourse": "https://appxcontent.kaxa.in/paid_course3/2024-07-07-0.07833836520330406.png",
   "audio": "english",
-  "cost": 2499,
+  "cost": 0,
   "videoType": "redirect",
   "subsection": [
     "harkirat",
@@ -42,10 +42,10 @@
       "5": 288
     }
   },
-  "duration": "13h 13m",
+  "duration": "99h 99m",
   "level": "Intermediate",
-  "language": "Hinglish",
-  "studentsEnrolled": 362,
+  "language": "English",
+  "studentsEnrolled": "170000",
   "lastUpdated": "2025-10-20",
   "features": [
     "Lifetime Access",

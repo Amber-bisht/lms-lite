@@ -10,7 +10,9 @@
     "ping": "node scripts/ping.js",
     "ping:continuous": "node -e \"setInterval(() => require('./scripts/ping.js').runPingCycle(), 5 * 60 * 1000)\"",
     "sitemap": "node scripts/generate-sitemap.js && node scripts/generate-video-sitemap.js",
-    "video-sitemap": "node scripts/generate-video-sitemap.js"
+    "sitemap:ping": "node scripts/generate-sitemap.js && node scripts/generate-video-sitemap.js && echo 'Sitemap generation and search engine pinging completed!'",
+    "video-sitemap": "node scripts/generate-video-sitemap.js",
+    "fix-instructors": "node scripts/fix-instructor-names.js"
   },
   "dependencies": {
     "@vercel/analytics": "^1.5.0",
