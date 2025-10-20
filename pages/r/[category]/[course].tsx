@@ -120,7 +120,7 @@ export default function CourseInfoPage({ course, categoryName, courseName }: Cou
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Main Content */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 order-2 lg:order-1">
               {/* Course Header */}
               <div className="mb-8">
                 <h1 className="text-3xl font-bold text-foreground mb-4">
@@ -213,7 +213,7 @@ export default function CourseInfoPage({ course, categoryName, courseName }: Cou
             </div>
 
             {/* Right Sidebar - Course Info */}
-            <div className="lg:col-span-1">
+            <div className="lg:col-span-1 order-1 lg:order-2">
               <div className="sticky top-6">
                 {/* Course Image */}
                 <div className="mb-6">

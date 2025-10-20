@@ -178,8 +178,20 @@ export function getAllCategories(): ICategory[] {
   }
 }
 
-// Read all courses from JSON files
+// Cache for courses to avoid repeated file reads
+let coursesCache: ICourse[] | null = null;
+let coursesCacheTime: number = 0;
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
+// Read all courses from JSON files with caching
 export function getAllCourses(): ICourse[] {
+  const now = Date.now();
+  
+  // Return cached data if still valid
+  if (coursesCache && (now - coursesCacheTime) < CACHE_DURATION) {
+    return coursesCache;
+  }
+  
   try {
     const coursesPath = getCoursesPath();
     const files = fs.readdirSync(coursesPath);
@@ -239,6 +251,10 @@ export function getAllCourses(): ICourse[] {
       const rankDiff = rankOrder[a.rank] - rankOrder[b.rank];
       return rankDiff !== 0 ? rankDiff : a.courseName.localeCompare(b.courseName);
     });
+    
+    // Cache the result
+    coursesCache = courses as ICourse[];
+    coursesCacheTime = now;
     
     return courses as ICourse[];
   } catch (error) {
@@ -309,5 +325,73 @@ export function getCategoriesByRank(rank: 'high' | 'mid' | 'medium' | 'low'): IC
 export function getHomepageCourses(): ICourse[] {
   const allCourses = getAllCourses();
   return allCourses.filter(course => course.homepage === true);
+}
+
+// Lightweight course interface for list pages (reduces bundle size)
+export interface ILightCourse {
+  courseName: string;
+  coursecategory: string;
+  des: string;
+  imageofinstructur: string;
+  instructorname: string;
+  imageofcourse: string;
+  audio: 'english' | 'hindi';
+  cost: number;
+  videoType: 'hls' | 'wistia' | 'youtube' | 'internetarchive' | 'redirect';
+  redirecturl?: string;
+  subsection?: string | string[] | null;
+  videos: { length: number }; // Only store length, not full video data
+  rank: 'high' | 'mid' | 'medium' | 'low';
+  homepage?: boolean;
+  _id: string;
+  __v: number;
+}
+
+// Get lightweight courses for list pages (reduces data size significantly)
+export function getLightweightCourses(): ILightCourse[] {
+  const allCourses = getAllCourses();
+  return allCourses.map(course => ({
+    courseName: course.courseName,
+    coursecategory: course.coursecategory,
+    des: course.des,
+    imageofinstructur: course.imageofinstructur,
+    instructorname: course.instructorname,
+    imageofcourse: course.imageofcourse,
+    audio: course.audio,
+    cost: course.cost,
+    videoType: course.videoType,
+    redirecturl: course.redirecturl,
+    subsection: course.subsection,
+    videos: { length: course.videos.length }, // Only store length
+    rank: course.rank,
+    homepage: course.homepage,
+    _id: course._id,
+    __v: course.__v,
+  }));
+}
+
+// Get lightweight courses by category
+export function getLightweightCoursesByCategory(categoryName: string): ILightCourse[] {
+  const allCourses = getLightweightCourses();
+  return allCourses.filter(course => 
+    course.coursecategory.toLowerCase() === categoryName.toLowerCase()
+  );
+}
+
+// Get lightweight courses by subsection
+export function getLightweightCoursesBySubsection(subsectionName: string): ILightCourse[] {
+  const allCourses = getLightweightCourses();
+  return allCourses.filter(course => {
+    if (!course.subsection) return false;
+    
+    // Handle both string and array subsections
+    if (Array.isArray(course.subsection)) {
+      return course.subsection.some(sub => 
+        sub.toLowerCase() === subsectionName.toLowerCase()
+      );
+    } else {
+      return course.subsection.toLowerCase() === subsectionName.toLowerCase();
+    }
+  });
 }
 

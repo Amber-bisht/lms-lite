@@ -2,10 +2,10 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import Link from 'next/link';
 import Head from 'next/head';
 import Layout from '../components/Layout';
-import { ICourse, getCoursesBySubsection, getAllSubsections } from '../lib/dataUtils';
+import { ILightCourse, getLightweightCoursesBySubsection, getAllSubsections } from '../lib/dataUtils';
 
 interface SubsectionPageProps {
-  courses: ICourse[];
+  courses: ILightCourse[];
   subsectionName: string;
 }
 
@@ -168,7 +168,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       };
     }
 
-    const courses = getCoursesBySubsection(subsectionName);
+    const courses = getLightweightCoursesBySubsection(subsectionName);
 
     return {
       props: {

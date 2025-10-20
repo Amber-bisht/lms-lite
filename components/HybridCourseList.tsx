@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import CourseSkeleton from './CourseSkeleton';
-import { ICourse } from '../lib/dataUtils';
+import { ICourse, ILightCourse } from '../lib/dataUtils';
 import { useInfiniteScroll } from '../hooks/useInfiniteScroll';
 import { shouldUsePagination } from '../lib/seoUtils';
 
 interface HybridCourseListProps {
-  courses: ICourse[];
+  courses: ICourse[] | ILightCourse[];
   coursesPerPage?: number;
 }
 
@@ -42,7 +42,7 @@ export default function HybridCourseList({
 
   const displayedCourses = usePagination ? paginatedCourses : infiniteScrollCourses;
 
-  const renderCourseCard = (course: ICourse) => {
+  const renderCourseCard = (course: ICourse | ILightCourse) => {
     if (course.videoType === 'redirect' && course.redirecturl) {
       return (
         <a
@@ -70,7 +70,16 @@ export default function HybridCourseList({
               {course.courseName}
             </h3>
             <div className="flex items-center mb-3">
-              <div className="w-4 h-4 sm:w-5 sm:h-5 bg-muted rounded-full mr-2 flex-shrink-0"></div>
+              <img
+                src={course.imageofinstructur}
+                alt={course.instructorname}
+                className="w-4 h-4 sm:w-5 sm:h-5 rounded-full mr-2 flex-shrink-0 object-cover"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                }}
+              />
+              <div className="w-4 h-4 sm:w-5 sm:h-5 bg-muted rounded-full mr-2 flex-shrink-0 hidden"></div>
               <span className="text-xs sm:text-sm text-muted-foreground truncate">
                 {course.instructorname}
               </span>
@@ -111,7 +120,16 @@ export default function HybridCourseList({
             {course.courseName}
           </h3>
           <div className="flex items-center mb-3">
-            <div className="w-4 h-4 sm:w-5 sm:h-5 bg-muted rounded-full mr-2 flex-shrink-0"></div>
+            <img
+              src={course.imageofinstructur}
+              alt={course.instructorname}
+              className="w-4 h-4 sm:w-5 sm:h-5 rounded-full mr-2 flex-shrink-0 object-cover"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+                e.currentTarget.nextElementSibling?.classList.remove('hidden');
+              }}
+            />
+            <div className="w-4 h-4 sm:w-5 sm:h-5 bg-muted rounded-full mr-2 flex-shrink-0 hidden"></div>
             <span className="text-xs sm:text-sm text-muted-foreground truncate">
               {course.instructorname}
             </span>
@@ -120,7 +138,7 @@ export default function HybridCourseList({
             {course.des}
           </p>
           <div className="flex justify-between items-center text-xs text-muted-foreground">
-            <span>{course.videos?.length || 0} videos</span>
+            <span>{'length' in course.videos ? course.videos.length : (course.videos as any)?.length || 0} videos</span>
             <span>{course.audio || 'English'}</span>
           </div>
         </div>
