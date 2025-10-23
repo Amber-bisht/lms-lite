@@ -68,6 +68,7 @@ export default function About() {
         <title>About Us - {siteName}</title>
         <meta name="description" content={`Learn more about ${siteName} - Your gateway to mastering programming and technology. Discover our mission to democratize coding education.`} />
         <link rel="canonical" href="https://unlockedcoding.com/about" />
+        <meta name="robots" content="index, follow" />
         
         {/* Open Graph */}
         <meta property="og:title" content={`About Us - ${siteName}`} />

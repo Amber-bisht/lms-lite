@@ -19,6 +19,11 @@ const nextConfig = {
   
   // Webpack optimizations
   webpack: (config, { dev, isServer }) => {
+    if (dev) {
+      // Disable source maps in development to prevent HMR issues
+      config.devtool = false;
+    }
+    
     if (!dev && !isServer) {
       // Optimize chunks
       config.optimization.splitChunks = {

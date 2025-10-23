@@ -73,13 +73,12 @@ export default function CoursePlayPage({ course, categoryName, courseName }: Cou
 
   // Show loading state for redirect courses
   if (course.videoType === 'redirect' && course.redirecturl) {
-    const canonicalUrl = `https://unlockedcoding.com/r/${encodeURIComponent(categoryName.toLowerCase())}/${encodeURIComponent(courseName)}/play`;
     return (
       <>
         <Head>
           <title>{course.courseName} | Unlocked Coding</title>
           <meta name="description" content={course.des} />
-          <link rel="canonical" href={canonicalUrl} />
+          <link rel="canonical" href={`https://unlockedcoding.com/r/${encodeURIComponent(categoryName.toLowerCase())}/${encodeURIComponent(courseName)}/play`} />
           <meta name="robots" content="noindex, follow" />
         </Head>
         <Layout>
@@ -110,8 +109,6 @@ export default function CoursePlayPage({ course, categoryName, courseName }: Cou
     );
   }
 
-  const canonicalUrl = `https://unlockedcoding.com/r/${encodeURIComponent(categoryName.toLowerCase())}/${encodeURIComponent(courseName)}/play`;
-  
   // Use optimized structured data to reduce page size
   const structuredData = generateOptimizedCourseStructuredData(course, categoryName, courseName);
   
@@ -120,13 +117,13 @@ export default function CoursePlayPage({ course, categoryName, courseName }: Cou
       <Head>
         <title>{course.courseName} - {course.instructorname || 'Free Course'} | Unlocked Coding</title>
         <meta name="description" content={course.des} />
-        <link rel="canonical" href={canonicalUrl} />
+        <link rel="canonical" href={`https://unlockedcoding.com/r/${encodeURIComponent(categoryName.toLowerCase())}/${encodeURIComponent(courseName)}/play`} />
         
         {/* Open Graph / Facebook */}
         <meta property="og:title" content={course.courseName} />
         <meta property="og:description" content={course.des} />
         <meta property="og:image" content={course.imageofcourse} />
-        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:url" content={`https://unlockedcoding.com/r/${encodeURIComponent(categoryName.toLowerCase())}/${encodeURIComponent(courseName)}/play`} />
         <meta property="og:type" content="video.course" />
         <meta property="og:site_name" content="Unlocked Coding" />
         

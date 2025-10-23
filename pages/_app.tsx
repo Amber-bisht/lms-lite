@@ -4,6 +4,7 @@ import Head from 'next/head'
 import Script from 'next/script'
 import { ThemeProvider } from '../contexts/ThemeContext'
 import CookieConsent from '../components/CookieConsent'
+import ErrorBoundary from '../components/ErrorBoundary'
 import { Analytics } from '@vercel/analytics/react'
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -28,21 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
         {/* Web App Manifest */}
         <link rel="manifest" href="/manifest.json" />
       </Head>
-      <Script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9147048330170417"
-        crossOrigin="anonymous"
-        strategy="beforeInteractive"
-      />
-      <Script
-        id="adsense-init"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            (adsbygoogle = window.adsbygoogle || []).push({});
-          `,
-        }}
-      />
+      {/* AdSense script removed - no ad units currently on site */}
       
       {/* Google Analytics */}
       <Script
@@ -62,10 +49,12 @@ export default function App({ Component, pageProps }: AppProps) {
           `,
         }}
       />
-      <ThemeProvider>
-        <Component {...pageProps} />
-        <CookieConsent />
-      </ThemeProvider>
+      <ErrorBoundary>
+        <ThemeProvider>
+          <Component {...pageProps} />
+          <CookieConsent />
+        </ThemeProvider>
+      </ErrorBoundary>
       <Analytics />
     </>
   )

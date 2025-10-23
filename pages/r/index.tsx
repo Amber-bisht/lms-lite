@@ -17,6 +17,7 @@ export default function CategoriesPage({ categories }: CategoriesPageProps) {
         <title>All Course Categories | Unlocked Coding</title>
         <meta name="description" content={`Browse ${categories.length} categories of free programming courses including web development, DSA, system design, machine learning, and more.`} />
         <link rel="canonical" href="https://unlockedcoding.com/r" />
+        <meta name="robots" content="index, follow" />
         <meta property="og:title" content="All Course Categories | Unlocked Coding" />
         <meta property="og:description" content="Browse all programming course categories. Find the perfect course to advance your skills." />
         <meta property="og:url" content="https://unlockedcoding.com/r" />

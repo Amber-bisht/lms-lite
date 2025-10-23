@@ -17,11 +17,15 @@ export default function Home({ homepageCourses }: HomeProps) {
   // Debug logging
   console.log('Homepage courses in component:', homepageCourses);
   
+  // Ensure homepageCourses is always an array
+  const safeHomepageCourses = Array.isArray(homepageCourses) ? homepageCourses : [];
+  
   return (
     <>
       <Head>
         <title>Unlocked Coding - Free Programming Courses & Tutorials</title>
         <meta name="description" content="Master programming with free comprehensive courses. Learn web development, data structures, algorithms, system design, and more from industry experts." />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://unlockedcoding.com/" />
         <meta property="og:title" content="Unlocked Coding - Free Programming Courses" />
         <meta property="og:description" content="Master programming with free comprehensive courses. Learn web development, DSA, system design, and more." />
@@ -132,9 +136,9 @@ export default function Home({ homepageCourses }: HomeProps) {
         </div>
 
         {/* Featured Courses Carousel - Mobile Optimized */}
-        {homepageCourses && homepageCourses.length > 0 && (
+        {safeHomepageCourses && safeHomepageCourses.length > 0 && (
           <div className="container mx-auto px-4 py-6 sm:py-8">
-            <HomepageCarousel courses={homepageCourses} />
+            <HomepageCarousel courses={safeHomepageCourses} />
           </div>
         )}
 
@@ -149,9 +153,12 @@ export const getStaticProps: GetStaticProps = async () => {
     const homepageCourses = getHomepageCourses();
     console.log('Homepage courses loaded:', homepageCourses?.length || 0);
     
+    // Ensure we always return a valid array
+    const safeHomepageCourses = Array.isArray(homepageCourses) ? homepageCourses : [];
+    
     return {
       props: {
-        homepageCourses: homepageCourses || [],
+        homepageCourses: safeHomepageCourses,
       },
       revalidate: 3600, // Revalidate every hour
     };

@@ -17,7 +17,7 @@ export function generateOptimizedCourseStructuredData(
   categoryName: string,
   courseName: string
 ) {
-  const canonicalUrl = `https://unlockedcoding.com/r/${encodeURIComponent(categoryName.toLowerCase())}/${encodeURIComponent(courseName)}`;
+  const canonicalUrl = `https://unlockedcoding.com/r/${categoryName.toLowerCase()}/${courseName}`;
   
   // Only include essential structured data to reduce size
   return {
@@ -55,7 +55,7 @@ export function generateOptimizedVideoStructuredData(
   categoryName: string,
   courseName: string
 ) {
-  const canonicalUrl = `https://unlockedcoding.com/r/${encodeURIComponent(categoryName.toLowerCase())}/${encodeURIComponent(courseName)}/${videoIndex}`;
+  const canonicalUrl = `https://unlockedcoding.com/r/${categoryName.toLowerCase()}/${courseName}/${videoIndex}`;
   
   return {
     "@context": "https://schema.org",

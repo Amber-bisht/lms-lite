@@ -11,6 +11,13 @@ export default function Privacy() {
         <meta name="description" content={`Privacy Policy for ${siteName}. Learn about how we protect your privacy.`} />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://unlockedcoding.com/privacy" />
+        <meta property="og:title" content={`Privacy Policy - ${siteName}`} />
+        <meta property="og:description" content={`Privacy Policy for ${siteName}. Learn about how we protect your privacy.`} />
+        <meta property="og:url" content="https://unlockedcoding.com/privacy" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={`Privacy Policy - ${siteName}`} />
+        <meta name="twitter:description" content={`Privacy Policy for ${siteName}. Learn about how we protect your privacy.`} />
       </Head>
       <Layout>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 max-w-4xl">

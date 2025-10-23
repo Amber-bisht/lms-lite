@@ -11,6 +11,13 @@ export default function Terms() {
         <meta name="description" content={`Terms of Service for ${siteName}. Learn about our terms and conditions.`} />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://unlockedcoding.com/terms" />
+        <meta property="og:title" content={`Terms of Service - ${siteName}`} />
+        <meta property="og:description" content={`Terms of Service for ${siteName}. Learn about our terms and conditions.`} />
+        <meta property="og:url" content="https://unlockedcoding.com/terms" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={`Terms of Service - ${siteName}`} />
+        <meta name="twitter:description" content={`Terms of Service for ${siteName}. Learn about our terms and conditions.`} />
       </Head>
       <Layout>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 max-w-4xl">

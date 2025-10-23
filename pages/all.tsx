@@ -34,6 +34,7 @@ export default function AllCoursesPage({ courses }: AllCoursesPageProps) {
         <title>All Courses - {courses.length} Free Programming Courses | Unlocked Coding</title>
         <meta name="description" content={`Browse all ${courses.length} free programming courses. Learn web development, DSA, system design, machine learning, and more from top instructors.`} />
         <link rel="canonical" href="https://unlockedcoding.com/all" />
+        <meta name="robots" content="index, follow" />
         <meta property="og:title" content={`All Courses - ${courses.length} Free Courses | Unlocked Coding`} />
         <meta property="og:description" content="Browse all free programming courses in one place. Find your perfect learning path." />
         <meta property="og:url" content="https://unlockedcoding.com/all" />

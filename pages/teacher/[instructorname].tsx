@@ -19,14 +19,43 @@ export default function InstructorPage({ instructorName, courses, instructorImag
         <title>{instructorName} - Courses by {instructorName} | {siteName}</title>
         <meta name="description" content={`Explore all programming courses by ${instructorName}. Learn from industry experts with hands-on projects and real-world applications.`} />
         <meta name="keywords" content={`${instructorName}, programming courses, coding tutorials, web development, software engineering`} />
+        <link rel="canonical" href={`https://unlockedcoding.com/teacher/${encodeURIComponent(instructorName)}`} />
+        <meta name="robots" content="index, follow" />
         <meta property="og:title" content={`${instructorName} - Courses by ${instructorName}`} />
         <meta property="og:description" content={`Explore all programming courses by ${instructorName}. Learn from industry experts.`} />
         <meta property="og:image" content={instructorImage} />
+        <meta property="og:url" content={`https://unlockedcoding.com/teacher/${encodeURIComponent(instructorName)}`} />
         <meta property="og:type" content="profile" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${instructorName} - Courses by ${instructorName}`} />
         <meta name="twitter:description" content={`Explore all programming courses by ${instructorName}.`} />
         <meta name="twitter:image" content={instructorImage} />
+        
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": instructorName,
+              "url": `https://unlockedcoding.com/teacher/${encodeURIComponent(instructorName)}`,
+              "image": instructorImage,
+              "jobTitle": "Programming Instructor",
+              "worksFor": {
+                "@type": "Organization",
+                "name": siteName,
+                "url": "https://unlockedcoding.com"
+              },
+              "teaches": courses.map(course => ({
+                "@type": "Course",
+                "name": course.courseName,
+                "description": course.des,
+                "url": `https://unlockedcoding.com/r/${course.coursecategory.toLowerCase()}/${encodeURIComponent(course.courseName)}`
+              }))
+            })
+          }}
+        />
       </Head>
       
       <Layout>

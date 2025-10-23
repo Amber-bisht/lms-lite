@@ -47,7 +47,43 @@ export default function SubsectionPage({ courses, subsectionName }: SubsectionPa
           name="description" 
           content={`Explore ${subsectionName.toUpperCase()} courses with comprehensive video tutorials and hands-on projects.`} 
         />
+        <link rel="canonical" href={`https://unlockedcoding.com/${encodeURIComponent(subsectionName)}`} />
         <meta name="robots" content="index, follow" />
+        <meta property="og:title" content={`${subsectionName.toUpperCase()} Courses | Unlocked Coding`} />
+        <meta property="og:description" content={`Explore ${subsectionName.toUpperCase()} courses with comprehensive video tutorials and hands-on projects.`} />
+        <meta property="og:url" content={`https://unlockedcoding.com/${encodeURIComponent(subsectionName)}`} />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${subsectionName.toUpperCase()} Courses | Unlocked Coding`} />
+        <meta name="twitter:description" content={`Explore ${subsectionName.toUpperCase()} courses with comprehensive video tutorials.`} />
+        
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "CollectionPage",
+              "name": `${subsectionName.toUpperCase()} Courses`,
+              "description": `Explore ${subsectionName.toUpperCase()} courses with comprehensive video tutorials and hands-on projects.`,
+              "url": `https://unlockedcoding.com/${encodeURIComponent(subsectionName)}`,
+              "mainEntity": {
+                "@type": "ItemList",
+                "numberOfItems": courses.length,
+                "itemListElement": courses.slice(0, 50).map((course, index) => ({
+                  "@type": "ListItem",
+                  "position": index + 1,
+                  "item": {
+                    "@type": "Course",
+                    "name": course.courseName,
+                    "description": course.des,
+                    "url": `https://unlockedcoding.com/r/${course.coursecategory.toLowerCase()}/${encodeURIComponent(course.courseName)}`
+                  }
+                }))
+              }
+            })
+          }}
+        />
       </Head>
       <Layout>
         <div className="container mx-auto px-4 py-8">

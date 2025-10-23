@@ -58,6 +58,7 @@ export default function CourseInfoPage({ course, categoryName, courseName }: Cou
         <title>{course.courseName} - {course.instructorname || 'Free Course'} | Unlocked Coding</title>
         <meta name="description" content={course.des} />
         <link rel="canonical" href={canonicalUrl} />
+        <meta name="robots" content="index, follow" />
         
         {/* Open Graph / Facebook */}
         <meta property="og:title" content={course.courseName} />
