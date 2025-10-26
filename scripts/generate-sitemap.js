@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const https = require('https');
 
 const DOMAIN = 'https://unlockedcoding.com';
 
@@ -20,8 +19,8 @@ function getAllCategories() {
           try {
             const data = JSON.parse(fileContent);
             categories.push({
-              name: data.category, // Use the category name from the JSON content
-              slug: data.category  // Use the same category name for consistency
+              name: data.category,
+              slug: data.category
             });
           } catch (err) {
             console.error(`Error parsing ${file}:`, err.message);
@@ -56,7 +55,6 @@ function getAllCourses() {
             category: data.coursecategory,
             subsection: data.subsection || null,
             slug: file.replace('.json', ''),
-            videos: data.videos || [],
             homepage: data.homepage || false,
             lastUpdated: data.lastUpdated || new Date().toISOString().split('T')[0],
             instructorname: data.instructorname || null
@@ -74,6 +72,19 @@ function getAllCourses() {
   }
 }
 
+// Read all blogs
+function getAllBlogs() {
+  try {
+    const blogsPath = path.join(process.cwd(), 'data', 'blogs.json');
+    const fileContent = fs.readFileSync(blogsPath, 'utf8');
+    const blogs = JSON.parse(fileContent);
+    return blogs;
+  } catch (error) {
+    console.error('Error reading blogs:', error);
+    return [];
+  }
+}
+
 // Get all unique subsections
 function getAllSubsections() {
   const courses = getAllCourses();
@@ -81,7 +92,6 @@ function getAllSubsections() {
   
   courses.forEach(course => {
     if (course.subsection) {
-      // Handle both string and array subsections
       if (Array.isArray(course.subsection)) {
         course.subsection.forEach(sub => {
           if (sub && typeof sub === 'string') {
@@ -115,12 +125,15 @@ function getAllInstructors() {
 function generateSitemap() {
   const categories = getAllCategories();
   const courses = getAllCourses();
+  const blogs = getAllBlogs();
+  const subsections = getAllSubsections();
+  const instructors = getAllInstructors();
   
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 `;
 
-  // Add homepage
+  // 1. Homepage
   sitemap += `  <url>
     <loc>${DOMAIN}/</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
@@ -129,49 +142,50 @@ function generateSitemap() {
   </url>
 `;
 
-  // Add featured courses section (homepage carousel)
-  const featuredCourses = courses.filter(course => course.homepage === true);
-  if (featuredCourses.length > 0) {
+  // 2. Static Pages
+  const staticPages = [
+    { path: '/all', priority: '0.9', changefreq: 'daily' },
+    { path: '/r', priority: '0.8', changefreq: 'daily' },
+    { path: '/about', priority: '0.6', changefreq: 'monthly' },
+    { path: '/privacy', priority: '0.5', changefreq: 'monthly' },
+    { path: '/terms', priority: '0.5', changefreq: 'monthly' },
+    { path: '/contact', priority: '0.6', changefreq: 'monthly' },
+    { path: '/faq', priority: '0.6', changefreq: 'monthly' },
+    { path: '/cookie-policy', priority: '0.5', changefreq: 'monthly' }
+  ];
+
+  staticPages.forEach(page => {
     sitemap += `  <url>
-    <loc>${DOMAIN}/#featured-courses</loc>
+    <loc>${DOMAIN}${page.path}</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>
   </url>
 `;
-  }
+  });
 
-  // Add all courses page
+  // 3. Blog Pages
   sitemap += `  <url>
-    <loc>${DOMAIN}/all</loc>
+    <loc>${DOMAIN}/blog</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-`;
-
-  // Add play page
-  sitemap += `  <url>
-    <loc>${DOMAIN}/play</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>daily</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 `;
 
-  // Add categories index page
-  sitemap += `  <url>
-    <loc>${DOMAIN}/r</loc>
+  // Individual blog pages
+  blogs.forEach(blog => {
+    sitemap += `  <url>
+    <loc>${DOMAIN}/blog/${blog.id}</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 `;
+  });
 
-  // Add subsection pages
-  const subsections = getAllSubsections();
+  // 4. Subsection Pages
   subsections.forEach(subsection => {
-    // URL encode subsection to handle special characters
     const encodedSubsection = encodeURIComponent(subsection);
     sitemap += `  <url>
     <loc>${DOMAIN}/${encodedSubsection}</loc>
@@ -182,10 +196,8 @@ function generateSitemap() {
 `;
   });
 
-  // Add instructor pages
-  const instructors = getAllInstructors();
+  // 5. Instructor/Teacher Pages
   instructors.forEach(instructorName => {
-    // URL encode instructor name to handle special characters
     const encodedInstructorName = encodeURIComponent(instructorName);
     sitemap += `  <url>
     <loc>${DOMAIN}/teacher/${encodedInstructorName}</loc>
@@ -196,45 +208,8 @@ function generateSitemap() {
 `;
   });
 
-  // Add privacy policy page
-  sitemap += `  <url>
-    <loc>${DOMAIN}/privacy</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-`;
-
-  // Add terms of service page
-  sitemap += `  <url>
-    <loc>${DOMAIN}/terms</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-`;
-
-  // Add about page
-  sitemap += `  <url>
-    <loc>${DOMAIN}/about</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-`;
-
-  // Add manifest.json
-  sitemap += `  <url>
-    <loc>${DOMAIN}/manifest.json</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-`;
-
-  // Add category pages
+  // 6. Category Pages
   categories.forEach(category => {
-    // Ensure consistent lowercase URLs
     const categorySlug = (category.name || category.slug).toLowerCase();
     sitemap += `  <url>
     <loc>${DOMAIN}/r/${encodeURIComponent(categorySlug)}</loc>
@@ -245,35 +220,47 @@ function generateSitemap() {
 `;
   });
 
-  // Add course pages (with URL encoding and deduplication)
+  // 7. Course Pages (with deduplication)
   const addedUrls = new Set();
   courses.forEach(course => {
-    // URL encode the course name and category to handle special characters and spaces
-    // Ensure consistent lowercase for categories
     const encodedCategory = encodeURIComponent(course.category.toLowerCase());
     const encodedCourseName = encodeURIComponent(course.courseName);
+    
+    // Course detail page
     const courseUrl = `${DOMAIN}/r/${encodedCategory}/${encodedCourseName}`;
-    
-    // Skip duplicates (case-insensitive)
     const courseUrlLower = courseUrl.toLowerCase();
-    if (addedUrls.has(courseUrlLower)) {
-      console.warn(`⚠️  Skipping duplicate course URL: ${courseUrl}`);
-      return;
-    }
-    addedUrls.add(courseUrlLower);
     
-    // Higher priority for featured courses
-    const priority = course.homepage ? '0.8' : '0.7';
-    const lastmod = course.lastUpdated || new Date().toISOString();
-    
-    // Add course page only (no individual video pages)
-    sitemap += `  <url>
+    if (!addedUrls.has(courseUrlLower)) {
+      addedUrls.add(courseUrlLower);
+      const priority = course.homepage ? '0.8' : '0.7';
+      const lastmod = course.lastUpdated || new Date().toISOString();
+      
+      sitemap += `  <url>
     <loc>${courseUrl}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>${priority}</priority>
   </url>
 `;
+    }
+
+    // Course play page
+    const coursePlayUrl = `${DOMAIN}/r/${encodedCategory}/${encodedCourseName}/play`;
+    const coursePlayUrlLower = coursePlayUrl.toLowerCase();
+    
+    if (!addedUrls.has(coursePlayUrlLower)) {
+      addedUrls.add(coursePlayUrlLower);
+      const priority = course.homepage ? '0.7' : '0.6';
+      const lastmod = course.lastUpdated || new Date().toISOString();
+      
+      sitemap += `  <url>
+    <loc>${coursePlayUrl}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>${priority}</priority>
+  </url>
+`;
+    }
   });
 
   sitemap += `</urlset>`;
@@ -284,6 +271,8 @@ function generateSitemap() {
 // Ping search engines about sitemap update
 function pingSearchEngines() {
   const sitemapUrl = `${DOMAIN}/sitemap.xml`;
+  
+  const https = require('https');
   
   const searchEngines = [
     `https://www.google.com/ping?sitemap=${encodeURIComponent(sitemapUrl)}`,
@@ -328,14 +317,18 @@ try {
   // Count URLs and provide detailed stats
   const urlCount = (sitemap.match(/<url>/g) || []).length;
   const courses = getAllCourses();
+  const blogs = getAllBlogs();
   const featuredCourses = courses.filter(course => course.homepage === true);
   
-  console.log(`📊 Total URLs: ${urlCount}`);
+  console.log(`\n📊 Sitemap Statistics:`);
+  console.log(`📄 Total URLs: ${urlCount}`);
   console.log(`📚 Total Courses: ${courses.length}`);
   console.log(`⭐ Featured Courses: ${featuredCourses.length}`);
+  console.log(`📝 Blog Posts: ${blogs.length}`);
   console.log(`📁 Categories: ${getAllCategories().length}`);
   console.log(`📄 Subsections: ${getAllSubsections().length}`);
   console.log(`👨‍🏫 Instructors: ${getAllInstructors().length}`);
+  console.log(`🔗 Static Pages: ${8 + 1} (homepage + static)`);
   
   // Ping search engines
   console.log('\n🔍 Pinging search engines...');
@@ -344,4 +337,3 @@ try {
   console.error('❌ Error generating sitemap:', error);
   process.exit(1);
 }
-

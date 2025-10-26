@@ -58,61 +58,65 @@ const MeetYourTeachers: React.FC<MeetYourTeachersProps> = ({ teachers }) => {
         {/* Teachers Grid - Single Line */}
         <div className="flex flex-wrap justify-center gap-4">
           {teachers.map((teacher) => (
-            <Link
+            <div
               key={teacher.name}
-              href={`/teacher/${encodeURIComponent(teacher.name)}`}
               className="bg-card text-card-foreground rounded-lg p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-border group flex items-center gap-4 min-w-[300px] hover:border-primary/20"
             >
-              {/* Teacher Image */}
-              <div className="flex-shrink-0">
-                <div className="w-16 h-16 rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-purple-500/20 flex items-center justify-center">
-                  {teacher.image ? (
-                    <img
-                      src={teacher.image}
-                      alt={formatTeacherName(teacher.name)}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                        target.nextElementSibling?.classList.remove('hidden');
-                      }}
-                    />
-                  ) : null}
-                  <div className={`w-full h-full flex items-center justify-center text-xl font-bold text-primary ${teacher.image ? 'hidden' : ''}`}>
-                    {formatTeacherName(teacher.name).charAt(0)}
+              <Link
+                href={`/teacher/${encodeURIComponent(teacher.name)}`}
+                className="flex items-center gap-4 w-full"
+              >
+                {/* Teacher Image */}
+                <div className="flex-shrink-0">
+                  <div className="w-16 h-16 rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-purple-500/20 flex items-center justify-center">
+                    {teacher.image ? (
+                      <img
+                        src={teacher.image}
+                        alt={formatTeacherName(teacher.name)}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          target.nextElementSibling?.classList.remove('hidden');
+                        }}
+                      />
+                    ) : null}
+                    <div className={`w-full h-full flex items-center justify-center text-xl font-bold text-primary ${teacher.image ? 'hidden' : ''}`}>
+                      {formatTeacherName(teacher.name).charAt(0)}
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Teacher Info */}
-              <div className="flex-grow">
-                <h3 className="text-lg font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
-                  {formatTeacherName(teacher.name)}
-                </h3>
-                
-                {/* Course Count */}
-                <div className="text-sm text-muted-foreground mb-2">
-                  <span className="font-semibold text-primary">{teacher.courseCount}</span> course{teacher.courseCount > 1 ? 's' : ''}
-                </div>
+                {/* Teacher Info */}
+                <div className="flex-grow">
+                  <h3 className="text-lg font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
+                    {formatTeacherName(teacher.name)}
+                  </h3>
+                  
+                  {/* Course Count */}
+                  <div className="text-sm text-muted-foreground mb-2">
+                    <span className="font-semibold text-primary">{teacher.courseCount}</span> course{teacher.courseCount > 1 ? 's' : ''}
+                  </div>
 
-                {/* Specializations */}
-                <div className="flex flex-wrap gap-1">
-                  {teacher.categories.slice(0, 3).map((category, catIndex) => (
-                    <span
-                      key={catIndex}
-                      className="bg-primary/10 text-primary px-2 py-1 rounded-full text-xs"
-                    >
-                      {getCategoryDisplayName(category)}
-                    </span>
-                  ))}
-                  {teacher.categories.length > 3 && (
-                    <span className="text-muted-foreground text-xs">
-                      +{teacher.categories.length - 3} more
-                    </span>
-                  )}
+                  {/* Specializations */}
+                  <div className="flex flex-wrap gap-1">
+                    {teacher.categories.slice(0, 3).map((category, catIndex) => (
+                      <span
+                        key={catIndex}
+                        className="bg-primary/10 text-primary px-2 py-1 rounded-full text-xs"
+                      >
+                        {getCategoryDisplayName(category)}
+                      </span>
+                    ))}
+                    {teacher.categories.length > 3 && (
+                      <span className="text-muted-foreground text-xs">
+                        +{teacher.categories.length - 3} more
+                      </span>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </div>
           ))}
         </div>
       </div>

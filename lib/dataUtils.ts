@@ -518,6 +518,70 @@ export interface ITeacher {
   categories: string[];
 }
 
+// Enhanced teacher interface for detailed teacher data
+export interface ITeacherDetail {
+  id: string;
+  name: string;
+  displayName: string;
+  bio: string;
+  expertise: string[];
+  experience: string;
+  studentsHelped: string;
+  specialization: string;
+  teachingStyle: string;
+  achievements: string[];
+  image: string;
+  socialLinks: {
+    youtube?: string;
+    telegram?: string;
+    twitter?: string;
+    linkedin?: string;
+    github?: string;
+    instagram?: string;
+    website?: string;
+  };
+}
+
+// Load teacher data from JSON file
+export function loadTeacherData(): ITeacherDetail[] {
+  try {
+    const teachersPath = path.join(process.cwd(), 'data', 'teachers.json');
+    const teachersData = JSON.parse(fs.readFileSync(teachersPath, 'utf8'));
+    return teachersData;
+  } catch (error) {
+    console.error('Error loading teacher data:', error);
+    return [];
+  }
+}
+
+// Get teacher details by instructor name
+export function getTeacherDetails(instructorName: string): ITeacherDetail | null {
+  try {
+    const teachers = loadTeacherData();
+    
+    // Try to find teacher by exact name match first
+    let teacher = teachers.find(t => 
+      t.name.toLowerCase() === instructorName.toLowerCase() ||
+      t.displayName.toLowerCase() === instructorName.toLowerCase()
+    );
+    
+    // If not found, try partial matching
+    if (!teacher) {
+      teacher = teachers.find(t => 
+        t.name.toLowerCase().includes(instructorName.toLowerCase()) ||
+        t.displayName.toLowerCase().includes(instructorName.toLowerCase()) ||
+        instructorName.toLowerCase().includes(t.name.toLowerCase()) ||
+        instructorName.toLowerCase().includes(t.displayName.toLowerCase())
+      );
+    }
+    
+    return teacher || null;
+  } catch (error) {
+    console.error('Error getting teacher details:', error);
+    return null;
+  }
+}
+
 // Get unique teachers from all courses
 export function getUniqueTeachers(): ITeacher[] {
   try {

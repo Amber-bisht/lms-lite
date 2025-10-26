@@ -107,9 +107,85 @@ export default function About() {
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
                 Our Mission
               </h2>
-              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
+              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed mb-6">
                 We believe that programming education should be accessible to everyone, regardless of their background or financial situation. Our platform provides high-quality, comprehensive coding courses from industry experts, completely free of charge.
               </p>
+              <p className="text-muted-foreground leading-relaxed mb-6">
+                Founded in April 2024, Unlocked Coding emerged from a simple yet powerful vision: to democratize access to world-class programming education. 
+                We recognized that traditional coding bootcamps and expensive courses were creating barriers for talented individuals who couldn't afford premium education. 
+                Our solution was to curate the best programming content from top instructors and make it freely available to everyone.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Today, we're proud to serve a thriving community of over 44,000 learners through our Telegram channel (t.me/unlocked_coding), 
+                providing not just courses but also mentorship, career guidance, and a supportive learning environment that helps students succeed in their tech journey.
+              </p>
+            </div>
+          </div>
+
+          {/* Team Section */}
+          <div className="bg-card rounded-2xl p-8 sm:p-12 mb-12 sm:mb-16 border border-border">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+                Meet Our Team
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Passionate educators and industry professionals dedicated to your success
+              </p>
+            </div>
+            
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-white/5 rounded-xl p-8 border border-border/50">
+                <div className="flex flex-col md:flex-row items-center gap-6">
+                  <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                    U
+                  </div>
+                  <div className="flex-1 text-center md:text-left">
+                    <h3 className="text-2xl font-bold text-foreground mb-2">Unlocked</h3>
+                    <p className="text-primary font-semibold mb-3">Founder & Lead Educator</p>
+                    <p className="text-muted-foreground leading-relaxed mb-4">
+                      A passionate Computer Science student with 3 years of experience in software development and education. 
+                      Unlocked founded this platform with the vision of making quality programming education accessible to everyone. 
+                      With expertise in full-stack development and a deep understanding of industry requirements, 
+                      Unlocked ensures that our curriculum stays current with the latest technologies and best practices.
+                    </p>
+                    <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                      <span className="bg-blue-500/10 text-blue-500 px-3 py-1 rounded-full text-sm">Full-Stack Development</span>
+                      <span className="bg-green-500/10 text-green-500 px-3 py-1 rounded-full text-sm">System Design</span>
+                      <span className="bg-purple-500/10 text-purple-500 px-3 py-1 rounded-full text-sm">Education</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Our Story Section */}
+          <div className="bg-gradient-to-r from-green-500/5 via-blue-500/5 to-purple-500/5 rounded-2xl p-8 sm:p-12 mb-12 sm:mb-16 border border-border/50">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6 text-center">
+                Our Story
+              </h2>
+              <div className="space-y-6 text-muted-foreground leading-relaxed">
+                <p>
+                  Unlocked Coding began as a small Telegram channel in April 2024, created by a Computer Science student who was frustrated 
+                  by the high cost of quality programming education. What started as a way to share free resources with fellow students 
+                  quickly grew into a comprehensive platform serving thousands of learners worldwide.
+                </p>
+                <p>
+                  The journey wasn't easy. Building a platform that could handle thousands of users while maintaining high-quality content 
+                  required countless hours of work, learning, and iteration. But the vision was clear: create a place where anyone, 
+                  regardless of their financial situation, could access world-class programming education.
+                </p>
+                <p>
+                  Today, we're proud to have helped thousands of students land their dream jobs in tech companies, from startups to Fortune 500 companies. 
+                  Our success stories include students who went from complete beginners to senior developers, all through our free courses and community support.
+                </p>
+                <p>
+                  Located in New Delhi, India, our team operates from the 100xDev School building, where we continue to develop new courses, 
+                  improve our platform, and support our growing community of learners. We believe that education is the key to unlocking potential, 
+                  and we're committed to making that key accessible to everyone.
+                </p>
+              </div>
             </div>
           </div>
 

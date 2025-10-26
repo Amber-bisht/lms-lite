@@ -103,10 +103,10 @@ export default function Home({ homepageCourses, reviewsData, teachers }: HomePro
               {/* Free Course Banner - Mobile Optimized */}
               <div className="bg-primary/10 border border-primary/20 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6 max-w-4xl mx-auto">
                 <p className="text-xs sm:text-sm md:text-base text-foreground font-semibold mb-2">
-                  Get Free course - No scam genuine place to become 100xdev no paywall no scam pure intention
+                  🎓 100% Free Premium Courses - No Hidden Fees, No Paywalls
                 </p>
                 <p className="text-xs sm:text-sm md:text-base text-primary font-bold">
-                  Get job-ready and land your dream offers
+                  Master in-demand skills and land your dream tech job
                 </p>
               </div>
               
@@ -151,6 +151,57 @@ export default function Home({ homepageCourses, reviewsData, teachers }: HomePro
 
         {/* Meet Your Teachers Section */}
         <MeetYourTeachers teachers={teachers} />
+
+        {/* Mission Statement Section */}
+        <div className="container mx-auto px-4 py-8 sm:py-12">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-6">
+              Why Choose Unlocked Coding?
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              <div className="bg-card rounded-xl p-6 border border-border">
+                <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                  <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-3">Industry-Standard Curriculum</h3>
+                <p className="text-muted-foreground">
+                  Our courses are designed by industry experts and cover the latest technologies and best practices used in top tech companies.
+                </p>
+              </div>
+              <div className="bg-card rounded-xl p-6 border border-border">
+                <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                  <svg className="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-3">Hands-On Learning</h3>
+                <p className="text-muted-foreground">
+                  Learn by building real projects that you can showcase in your portfolio. Every course includes practical exercises and assignments.
+                </p>
+              </div>
+            </div>
+            
+            <div className="bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-white/5 rounded-2xl p-8 border border-border/50">
+              <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-4">
+                Our Mission: Democratizing Programming Education
+              </h3>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                At Unlocked Coding, we believe that high-quality programming education should be accessible to everyone, regardless of their financial background. 
+                Our platform was founded with the vision of breaking down barriers in tech education and empowering individuals to pursue their dreams in software development.
+              </p>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                We've curated the best programming courses from renowned instructors and made them completely free. From data structures and algorithms to full-stack web development, 
+                system design, and machine learning - our comprehensive curriculum covers everything you need to become a successful developer.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Join our community of over 44,000 learners who are already transforming their careers through our platform. Whether you're a complete beginner or looking to advance your skills, 
+                we provide the resources, support, and guidance you need to succeed in the competitive tech industry.
+              </p>
+            </div>
+          </div>
+        </div>
 
       </div>
     </Layout>

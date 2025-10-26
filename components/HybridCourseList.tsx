@@ -45,27 +45,31 @@ export default function HybridCourseList({
   const renderCourseCard = (course: ICourse | ILightCourse) => {
     if (course.videoType === 'redirect' && course.redirecturl) {
       return (
-        <a
+        <div
           key={`${course.coursecategory}-${course.courseName}`}
-          href={course.redirecturl}
-          target="_blank"
-          rel="noopener noreferrer"
           className="bg-card rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden border border-border group"
         >
-          <div className="relative">
-            <img 
-              src={course.imageofcourse} 
-              alt={course.courseName}
-              className="w-full h-32 sm:h-40 md:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-            {course.rating && (
-              <div className="absolute bottom-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
-                <span>★</span>
-                <span>{course.rating.average}</span>
-                <span>({course.rating.count})</span>
-              </div>
-            )}
-          </div>
+          <a
+            href={course.redirecturl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block"
+          >
+            <div className="relative">
+              <img 
+                src={course.imageofcourse} 
+                alt={course.courseName}
+                className="w-full h-32 sm:h-40 md:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              {course.rating && (
+                <div className="absolute bottom-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
+                  <span>★</span>
+                  <span>{course.rating.average}</span>
+                  <span>({course.rating.count})</span>
+                </div>
+              )}
+            </div>
+          </a>
           <div className="p-4 sm:p-6">
             <div className="flex justify-between items-start mb-2">
               <span className="text-xs sm:text-sm text-primary font-medium capitalize bg-primary/10 px-2 py-1 rounded">
@@ -222,30 +226,34 @@ export default function HybridCourseList({
               </span>
             </div>
           </div>
-        </a>
+        </div>
       );
     }
 
     return (
-      <Link
+      <div
         key={`${course.coursecategory}-${course.courseName}`}
-        href={`/r/${course.coursecategory.toLowerCase()}/${encodeURIComponent(course.courseName)}`}
         className="bg-card rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden border border-border group"
       >
-        <div className="relative">
-          <img 
-            src={course.imageofcourse} 
-            alt={course.courseName}
-            className="w-full h-32 sm:h-40 md:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-          {course.rating && (
-            <div className="absolute bottom-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
-              <span>★</span>
-              <span>{course.rating.average}</span>
-              <span>({course.rating.count})</span>
-            </div>
-          )}
-        </div>
+        <Link
+          href={`/r/${course.coursecategory.toLowerCase()}/${encodeURIComponent(course.courseName)}`}
+          className="block"
+        >
+          <div className="relative">
+            <img 
+              src={course.imageofcourse} 
+              alt={course.courseName}
+              className="w-full h-32 sm:h-40 md:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+            {course.rating && (
+              <div className="absolute bottom-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
+                <span>★</span>
+                <span>{course.rating.average}</span>
+                <span>({course.rating.count})</span>
+              </div>
+            )}
+          </div>
+        </Link>
         <div className="p-4 sm:p-6">
           <div className="flex justify-between items-start mb-2">
             <span className="text-xs sm:text-sm text-primary font-medium capitalize bg-primary/10 px-2 py-1 rounded">
@@ -402,7 +410,7 @@ export default function HybridCourseList({
             </span>
           </div>
         </div>
-      </Link>
+      </div>
     );
   };
 

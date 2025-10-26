@@ -1,0 +1,170 @@
+[
+  {
+    "id": "amit-khurana-sir",
+    "name": "Amit Khurana Sir",
+    "displayName": "Amit-Khurana-Sir",
+    "bio": "Amit Khurana Sir is a renowned Computer Science educator and GATE expert with over 15 years of experience in teaching computer science subjects. He specializes in GATE preparation and has helped thousands of students achieve their dream of cracking GATE with top ranks. His teaching methodology focuses on conceptual clarity and practical problem-solving approaches.",
+    "expertise": [
+      "Computer Networks",
+      "Digital Logic Design", 
+      "Discrete Mathematics",
+      "Theory of Computation",
+      "GATE Preparation"
+    ],
+    "experience": "15+ years",
+    "studentsHelped": "50000+",
+    "specialization": "GATE CS Preparation",
+    "teachingStyle": "Conceptual clarity with practical problem-solving",
+    "achievements": [
+      "Helped 1000+ students crack GATE with top 100 ranks",
+      "Expert in Computer Networks and Digital Logic",
+      "Published author of CS textbooks",
+      "YouTube educator with 2M+ views"
+    ],
+    "image": "https://yt3.googleusercontent.com/opSYNbbIvjetOtq0lvUBupJlKEFPQEENUmDaajkPweEjJLNH25fBuU4bADoR6yT5AhWSS-OETA=s900-c-k-c0x00ffffff-no-rj",
+    "socialLinks": {
+      "youtube": "https://youtube.com/@amitkhurana",
+      "telegram": "https://t.me/amitkhurana_gate"
+    }
+  },
+  {
+    "id": "harkirat-singh",
+    "name": "Harkirat Singh",
+    "displayName": "Harkirat-Singh",
+    "bio": "Harkirat Singh is a full-stack developer and educator who has built multiple successful startups. He specializes in modern web development technologies and has taught thousands of students through his comprehensive courses. His teaching approach combines industry best practices with hands-on project-based learning.",
+    "expertise": [
+      "Full-Stack Web Development",
+      "React.js",
+      "Node.js",
+      "MongoDB",
+      "System Design"
+    ],
+    "experience": "8+ years",
+    "studentsHelped": "100000+",
+    "specialization": "Full-Stack Development",
+    "teachingStyle": "Project-based learning with industry best practices",
+    "achievements": [
+      "Built multiple successful startups",
+      "100xDevs founder and lead instructor",
+      "Expert in MERN stack development",
+      "YouTube educator with 500K+ subscribers"
+    ],
+    "image": "https://appx-wsb-gcp-mcdn.akamai.net.in/subject/2023-01-17-0.3698267942851394.jpg",
+    "socialLinks": {
+      "youtube": "https://youtube.com/@harkirat",
+      "twitter": "https://twitter.com/harkirat_singh"
+    }
+  },
+  {
+    "id": "keerti-purswani",
+    "name": "Keerti Purswani",
+    "displayName": "Keerti-Purswani",
+    "bio": "Keerti Purswani is a software engineer and system design expert with extensive experience in building scalable applications. She specializes in high-level and low-level system design, helping students understand complex architectural patterns and design principles used in top tech companies.",
+    "expertise": [
+      "System Design",
+      "High-Level Design",
+      "Low-Level Design",
+      "C++ Programming",
+      "Data Structures"
+    ],
+    "experience": "6+ years",
+    "studentsHelped": "25000+",
+    "specialization": "System Design & C++",
+    "teachingStyle": "Architecture-focused learning with real-world examples",
+    "achievements": [
+      "System design expert at top tech companies",
+      "Specialized in HLD and LLD concepts",
+      "C++ programming instructor",
+      "Helped students crack FAANG interviews"
+    ],
+    "image": "https://media.licdn.com/dms/image/v2/D5622AQFJ-IvDtc3rTA/feedshare-shrink_800/feedshare-shrink_800/0/1698045285581?e=2147483647&v=beta&t=GG5cRP-cWWkqQfbPnQIA1Olmp3PTnytdukG3QXKCXyM",
+    "socialLinks": {
+      "linkedin": "https://linkedin.com/in/keertipurswani",
+      "github": "https://github.com/keertipurswani"
+    }
+  },
+  {
+    "id": "coding-seekhho",
+    "name": "Coding Seekhho",
+    "displayName": "Coding-Seekhho",
+    "bio": "Coding Seekhho is a comprehensive programming education platform led by experienced instructors. They specialize in teaching programming fundamentals, data structures, algorithms, and web development. Their courses are designed to take students from beginner to advanced level with practical, hands-on learning.",
+    "expertise": [
+      "C Programming",
+      "Data Structures",
+      "Algorithms",
+      "Web Development",
+      "Python Programming"
+    ],
+    "experience": "10+ years",
+    "studentsHelped": "75000+",
+    "specialization": "Programming Fundamentals",
+    "teachingStyle": "Step-by-step learning with practical examples",
+    "achievements": [
+      "Comprehensive programming curriculum",
+      "Expert in C and Python programming",
+      "Web development specialization",
+      "Helped students master DSA concepts"
+    ],
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3baEqD8xPD7tg8hJzHwo1A_owabzwrZsEIQ&s",
+    "socialLinks": {
+      "youtube": "https://youtube.com/@codingseekhho",
+      "website": "https://codingseekhho.com"
+    }
+  },
+  {
+    "id": "apna-college",
+    "name": "Apna College",
+    "displayName": "Apna-College",
+    "bio": "Apna College is a leading educational platform founded by Aman Dhattarwal, focusing on making quality programming education accessible to everyone. They offer comprehensive courses in Java, C++, MERN stack development, and aptitude preparation, helping students build successful careers in technology.",
+    "expertise": [
+      "Java Programming",
+      "C++ Programming",
+      "MERN Stack",
+      "Aptitude Preparation",
+      "Career Guidance"
+    ],
+    "experience": "5+ years",
+    "studentsHelped": "200000+",
+    "specialization": "Complete Programming Education",
+    "teachingStyle": "Comprehensive curriculum with career focus",
+    "achievements": [
+      "Founded by Aman Dhattarwal",
+      "Sigma 9.0 course series",
+      "Java and C++ specialization",
+      "MERN stack development courses"
+    ],
+    "image": "https://yt3.googleusercontent.com/FEcjRtez5od8UowDo6tTt9WlE-MrIFEmcwPMTORmK9Swk6KCklOmA3xfIG9WuLWfNYfNThQE=s900-c-k-c0x00ffffff-no-rj",
+    "socialLinks": {
+      "youtube": "https://youtube.com/@apnacollege",
+      "instagram": "https://instagram.com/apnacollege"
+    }
+  },
+  {
+    "id": "take-u-forward",
+    "name": "Take U Forward",
+    "displayName": "Take-U-Forward",
+    "bio": "Take U Forward, led by Striver, is a platform dedicated to helping students excel in competitive programming and technical interviews. They specialize in data structures and algorithms preparation, providing comprehensive coverage of topics essential for cracking coding interviews at top tech companies.",
+    "expertise": [
+      "Data Structures",
+      "Algorithms",
+      "Competitive Programming",
+      "Interview Preparation",
+      "Problem Solving"
+    ],
+    "experience": "4+ years",
+    "studentsHelped": "100000+",
+    "specialization": "DSA & Interview Preparation",
+    "teachingStyle": "Problem-solving focused with interview preparation",
+    "achievements": [
+      "Led by Striver (Raj Vikramaditya)",
+      "A2Z DSA course series",
+      "Interview preparation specialist",
+      "Helped students crack FAANG interviews"
+    ],
+    "image": "https://static.takeuforward.org/content/_striver.png",
+    "socialLinks": {
+      "youtube": "https://youtube.com/@takeUforward",
+      "website": "https://takeuforward.org"
+    }
+  }
+]

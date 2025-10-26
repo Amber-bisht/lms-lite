@@ -26,12 +26,28 @@ export default function Footer() {
               About Us
             </a>
             <span className="text-border">•</span>
+            <a href="/contact" className="text-black dark:text-white hover:underline hover:decoration-blue-500 hover:decoration-2 transition-all duration-200">
+              Contact Us
+            </a>
+            <span className="text-border">•</span>
+            <a href="/blog" className="text-black dark:text-white hover:underline hover:decoration-blue-500 hover:decoration-2 transition-all duration-200">
+              Blog
+            </a>
+            <span className="text-border">•</span>
+            <a href="/faq" className="text-black dark:text-white hover:underline hover:decoration-blue-500 hover:decoration-2 transition-all duration-200">
+              FAQ
+            </a>
+            <span className="text-border">•</span>
             <a href="/privacy" className="text-black dark:text-white hover:underline hover:decoration-blue-500 hover:decoration-2 transition-all duration-200">
               Privacy Policy
             </a>
             <span className="text-border">•</span>
             <a href="/terms" className="text-black dark:text-white hover:underline hover:decoration-blue-500 hover:decoration-2 transition-all duration-200">
               Terms of Service
+            </a>
+            <span className="text-border">•</span>
+            <a href="/cookie-policy" className="text-black dark:text-white hover:underline hover:decoration-blue-500 hover:decoration-2 transition-all duration-200">
+              Cookie Policy
             </a>
             <span className="text-border">•</span>
             <a href="/r" className="text-black dark:text-white hover:underline hover:decoration-blue-500 hover:decoration-2 transition-all duration-200">

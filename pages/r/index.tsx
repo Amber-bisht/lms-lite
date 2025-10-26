@@ -63,7 +63,7 @@ export default function CategoriesPage({ categories }: CategoriesPageProps) {
           {/* Hero Section */}
           <div className="text-center mb-8 sm:mb-12">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 sm:mb-6">
-              Programming Course Categories
+              Course Categories
             </h1>
             <p className="text-lg sm:text-xl text-muted-foreground mb-6 max-w-4xl mx-auto">
               Explore {categories.length} specialized categories of free programming courses. 
@@ -75,18 +75,22 @@ export default function CategoriesPage({ categories }: CategoriesPageProps) {
           <div className="mb-8 sm:mb-12">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {sortedCategories.map((category) => (
-                <Link 
+                <div 
                   key={category.category}
-                  href={`/r/${category.category.toLowerCase()}`}
                   className="bg-card rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-border group"
                 >
-                  <div className="relative">
-                    <img 
-                      src={category.imageofcategory} 
-                      alt={category.category}
-                      className="w-full h-32 sm:h-40 md:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
+                  <Link 
+                    href={`/r/${category.category.toLowerCase()}`}
+                    className="block"
+                  >
+                    <div className="relative">
+                      <img 
+                        src={category.imageofcategory} 
+                        alt={category.category}
+                        className="w-full h-32 sm:h-40 md:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  </Link>
                   <div className="p-4 sm:p-6">
                     <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-card-foreground capitalize mb-2 group-hover:text-primary transition-colors">
                       {category.category.replace(/-/g, ' ')}
@@ -121,15 +125,18 @@ export default function CategoriesPage({ categories }: CategoriesPageProps) {
                       <span className="text-xs sm:text-sm text-muted-foreground">
                         {category.totalcourse} courses
                       </span>
-                      <span className="text-xs sm:text-sm text-primary font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                      <Link 
+                        href={`/r/${category.category.toLowerCase()}`}
+                        className="text-xs sm:text-sm text-primary font-medium flex items-center gap-1 group-hover:gap-2 transition-all"
+                      >
                         Explore Courses
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
-                      </span>
+                      </Link>
                     </div>
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           </div>

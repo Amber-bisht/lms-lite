@@ -3,18 +3,19 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { useEffect } from 'react';
 import Layout from '../../../components/Layout';
-import { ICourse, ILightCourse } from '../../../lib/dataUtils';
-import { getAllCourses, getCourseByName, getSimilarCourses } from '../../../lib/dataUtils';
-import { trackCourseView } from '../../../lib/gtag';
+import { ICourse, ILightCourse, ITeacherDetail } from '../../../lib/dataUtils';
+import { getAllCourses, getCourseByName, getSimilarCourses, getTeacherDetails } from '../../../lib/dataUtils';
+import { trackCourseView, event } from '../../../lib/gtag';
 
 interface CourseInfoPageProps {
   course: ICourse | null;
   categoryName: string;
   courseName: string;
   similarCourses?: ILightCourse[];
+  teacherDetails?: ITeacherDetail | null;
 }
 
-export default function CourseInfoPage({ course, categoryName, courseName, similarCourses = [] }: CourseInfoPageProps) {
+export default function CourseInfoPage({ course, categoryName, courseName, similarCourses = [], teacherDetails }: CourseInfoPageProps) {
   // Track course view
   useEffect(() => {
     if (course && course.courseName) {
@@ -128,18 +129,127 @@ export default function CourseInfoPage({ course, categoryName, courseName, simil
                 <h1 className="text-3xl font-bold text-foreground mb-4">
                   {course.courseName}
                 </h1>
-                <p className="text-lg text-muted-foreground mb-4">
+                <p className="text-lg text-muted-foreground mb-6">
                   {course.des}
                 </p>
-                <div className="flex items-center">
-                  <img 
-                    src={course.imageofinstructur} 
-                    alt={course.instructorname}
-                    className="w-12 h-12 rounded-full mr-3"
-                  />
-                  <div>
-                    <p className="font-medium text-foreground">{course.instructorname}</p>
-                    <p className="text-sm text-muted-foreground">Instructor</p>
+                
+                {/* Instructor Bio */}
+                <div className="bg-card border rounded-lg p-6 mb-6">
+                  <div className="flex items-start space-x-4">
+                    <img 
+                      src={teacherDetails?.image || course.imageofinstructur} 
+                      alt={teacherDetails?.name || course.instructorname}
+                      className="w-16 h-16 rounded-full"
+                    />
+                    <div className="flex-1">
+                      <h3 className="text-xl font-semibold text-foreground mb-2">
+                        Meet Your Instructor: {teacherDetails?.displayName || course.instructorname}
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed mb-3">
+                        {teacherDetails?.bio || `${course.instructorname} is an experienced software engineer and educator with expertise in modern web development technologies. With years of industry experience, ${course.instructorname} brings real-world knowledge and practical insights to every lesson. Known for clear explanations and hands-on teaching methods, ${course.instructorname} has helped thousands of students master programming concepts and advance their careers in technology.`}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {teacherDetails?.expertise?.slice(0, 3).map((skill, index) => (
+                          <span key={index} className="bg-blue-500/10 text-blue-500 px-3 py-1 rounded-full text-sm">
+                            {skill}
+                          </span>
+                        )) || (
+                          <>
+                            <span className="bg-blue-500/10 text-blue-500 px-3 py-1 rounded-full text-sm">Industry Expert</span>
+                            <span className="bg-green-500/10 text-green-500 px-3 py-1 rounded-full text-sm">Experienced Educator</span>
+                            <span className="bg-purple-500/10 text-purple-500 px-3 py-1 rounded-full text-sm">Practical Focus</span>
+                          </>
+                        )}
+                      </div>
+                      {teacherDetails && (
+                        <div className="text-sm text-muted-foreground">
+                          <p><strong>Experience:</strong> {teacherDetails.experience}</p>
+                          <p><strong>Students Helped:</strong> {teacherDetails.studentsHelped}</p>
+                          <p><strong>Specialization:</strong> {teacherDetails.specialization}</p>
+                          <div className="mt-3">
+                            <Link
+                              href={`/teacher/${encodeURIComponent(course.instructorname)}`}
+                              className="text-primary hover:underline text-sm font-medium"
+                              onClick={() => event({
+                                action: 'click',
+                                category: 'Course',
+                                label: `View Teacher Profile - ${teacherDetails.name}`
+                              })}
+                            >
+                              View Full Profile →
+                            </Link>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Course Overview */}
+                <div className="bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-white/5 rounded-lg p-6 border border-border/50 mb-6">
+                  <h3 className="text-xl font-semibold text-foreground mb-4">Course Overview</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-4">
+                    {teacherDetails ? 
+                      `This comprehensive course is designed to take you from foundational concepts to advanced implementation in ${teacherDetails.specialization.toLowerCase()}. You'll learn through ${teacherDetails.teachingStyle.toLowerCase()}, building real-world projects that demonstrate your skills and enhance your portfolio.` :
+                      `This comprehensive course is designed to take you from foundational concepts to advanced implementation. You'll learn through a combination of theoretical understanding and hands-on practice, building real-world projects that demonstrate your skills and enhance your portfolio.`
+                    }
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Whether you're looking to start a new career in technology or advance your current skills, this course provides 
+                    the structured learning path and practical experience you need to succeed in today's competitive tech industry.
+                  </p>
+                </div>
+              </div>
+
+              {/* Learning Outcomes */}
+              <div className="mb-8">
+                <h2 className="text-2xl font-bold text-foreground mb-4">Learning Outcomes</h2>
+                <div className="bg-card border rounded-lg p-6">
+                  <p className="text-muted-foreground leading-relaxed mb-4">
+                    By the end of this course, you will have gained comprehensive knowledge and practical skills that will significantly 
+                    enhance your capabilities as a developer. You'll be able to:
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-3">
+                      <div className="flex items-start">
+                        <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        <span className="text-foreground">Apply industry best practices and modern development methodologies</span>
+                      </div>
+                      <div className="flex items-start">
+                        <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        <span className="text-foreground">Build production-ready applications from scratch</span>
+                      </div>
+                      <div className="flex items-start">
+                        <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        <span className="text-foreground">Debug and troubleshoot complex technical issues</span>
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="flex items-start">
+                        <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        <span className="text-foreground">Implement scalable and maintainable code architecture</span>
+                      </div>
+                      <div className="flex items-start">
+                        <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        <span className="text-foreground">Deploy applications to cloud platforms and manage production environments</span>
+                      </div>
+                      <div className="flex items-start">
+                        <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        <span className="text-foreground">Collaborate effectively in development teams using modern tools</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -147,11 +257,11 @@ export default function CourseInfoPage({ course, categoryName, courseName, simil
               {/* What You'll Learn */}
               {course.whatYouWillLearn && course.whatYouWillLearn.length > 0 && (
                 <div className="mb-8">
-                  <h2 className="text-2xl font-bold text-foreground mb-4">What You'll Learn</h2>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">Course Curriculum</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {course.whatYouWillLearn.map((item, index) => (
                       <div key={index} className="flex items-start">
-                        <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <svg className="w-5 h-5 text-blue-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
                         <span className="text-foreground">{item}</span>
@@ -400,6 +510,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     
     const course = getCourseByName(categoryName, courseName);
     const similarCourses = course ? getSimilarCourses(categoryName, courseName, 4) : [];
+    const teacherDetails = course ? getTeacherDetails(course.instructorname) : null;
 
     return {
       props: {
@@ -407,6 +518,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         categoryName,
         courseName,
         similarCourses,
+        teacherDetails,
       },
       revalidate: 60, // Revalidate every 60 seconds for ISR
     };
@@ -418,6 +530,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         categoryName: (params?.category as string).toLowerCase(),
         courseName: params?.course as string,
         similarCourses: [],
+        teacherDetails: null,
       },
       revalidate: 60,
     };

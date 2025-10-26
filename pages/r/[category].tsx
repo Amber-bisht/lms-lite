@@ -98,6 +98,78 @@ export default function CategoryPage({ courses, categoryName }: CategoryPageProp
             </p>
           </div>
 
+          {/* Category Overview */}
+          <div className="bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-white/5 rounded-2xl p-6 sm:p-8 mb-8 border border-border/50">
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
+              About {categoryName.replace(/-/g, ' ')} Development
+            </h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  {categoryName.replace(/-/g, ' ')} is one of the most in-demand skills in today's technology landscape. 
+                  This field offers exciting career opportunities and the chance to work on cutting-edge projects that shape the digital world.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  Our comprehensive curriculum covers everything from fundamental concepts to advanced implementation, 
+                  ensuring you have the knowledge and practical skills needed to succeed in this competitive field.
+                </p>
+              </div>
+              <div className="space-y-4">
+                <div className="bg-card rounded-lg p-4 border border-border">
+                  <h3 className="font-semibold text-foreground mb-2">Career Opportunities</h3>
+                  <ul className="text-sm text-muted-foreground space-y-1">
+                    <li>• Software Developer</li>
+                    <li>• Senior Developer</li>
+                    <li>• Technical Lead</li>
+                    <li>• Solutions Architect</li>
+                  </ul>
+                </div>
+                <div className="bg-card rounded-lg p-4 border border-border">
+                  <h3 className="font-semibold text-foreground mb-2">Average Salary Range</h3>
+                  <p className="text-sm text-muted-foreground">
+                    ₹6-25 LPA (Entry to Senior Level)
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Learning Path */}
+          <div className="bg-card rounded-2xl p-6 sm:p-8 mb-8 border border-border">
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-6">
+              Recommended Learning Path
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-blue-500 font-bold text-lg">1</span>
+                </div>
+                <h3 className="font-semibold text-foreground mb-2">Foundation</h3>
+                <p className="text-sm text-muted-foreground">
+                  Start with basic concepts and fundamental principles. Build a strong foundation for advanced learning.
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-green-500 font-bold text-lg">2</span>
+                </div>
+                <h3 className="font-semibold text-foreground mb-2">Intermediate</h3>
+                <p className="text-sm text-muted-foreground">
+                  Apply your knowledge through hands-on projects and real-world applications.
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-purple-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-purple-500 font-bold text-lg">3</span>
+                </div>
+                <h3 className="font-semibold text-foreground mb-2">Advanced</h3>
+                <p className="text-sm text-muted-foreground">
+                  Master advanced concepts and specialize in specific areas of expertise.
+                </p>
+              </div>
+            </div>
+          </div>
+
 
           <HybridCourseList courses={courses} coursesPerPage={9} />
         </div>
