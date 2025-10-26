@@ -3,15 +3,19 @@ import Head from 'next/head';
 import { FaHtml5, FaCss3Alt, FaJs, FaNodeJs, FaAws, FaDocker, FaReact, FaPython, FaGitAlt } from 'react-icons/fa';
 import { SiExpress, SiMongodb, SiPostgresql, SiRedis, SiTypescript, SiKubernetes } from 'react-icons/si';
 import HomepageCarousel from '../components/HomepageCarousel';
-import { getHomepageCourses, ICourse } from '../lib/dataUtils';
+import ReviewsSection from '../components/ReviewsSection';
+import MeetYourTeachers from '../components/MeetYourTeachers';
+import { getHomepageCourses, getReviewsData, getUniqueTeachers, ICourse, IReviewsData, ITeacher } from '../lib/dataUtils';
 import { GetStaticProps } from 'next';
 // import { DiCplusplus } from 'react-icons/di'; // This icon might not exist
 
 interface HomeProps {
   homepageCourses: ICourse[];
+  reviewsData: IReviewsData;
+  teachers: ITeacher[];
 }
 
-export default function Home({ homepageCourses }: HomeProps) {
+export default function Home({ homepageCourses, reviewsData, teachers }: HomeProps) {
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'Unlocked Coding';
   
   // Debug logging
@@ -38,13 +42,13 @@ export default function Home({ homepageCourses }: HomeProps) {
       <Layout>
       <div className="min-h-screen flex flex-col">
         {/* Hero Section - Mobile Optimized */}
-        <div className="flex-1 flex items-center justify-center px-4 py-6 sm:py-8">
-          <div className="w-full max-w-6xl mx-auto text-center">
+        <div className="flex-1 flex items-center justify-center px-4 py-6 sm:py-8 relative">
+          <div className="w-full max-w-6xl mx-auto text-center relative z-10">
             {/* Background Gradient - Hidden on mobile for performance */}
-            <div className="hidden sm:block absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-3xl blur-3xl"></div>
+            <div className="hidden sm:block absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-3xl blur-3xl z-0"></div>
             
             {/* Floating Tech Logos - Reduced on mobile */}
-            <div className="hidden sm:block absolute inset-0 pointer-events-none">
+            <div className="hidden sm:block absolute inset-0 pointer-events-none z-0">
               {/* Mobile: Show fewer logos */}
               <div className="absolute top-10 left-10 w-6 h-6 animate-float">
                 <FaHtml5 className="w-full h-full text-orange-500" />
@@ -142,6 +146,12 @@ export default function Home({ homepageCourses }: HomeProps) {
           </div>
         )}
 
+        {/* Reviews Section */}
+        <ReviewsSection reviewsData={reviewsData} />
+
+        {/* Meet Your Teachers Section */}
+        <MeetYourTeachers teachers={teachers} />
+
       </div>
     </Layout>
     </>
@@ -151,23 +161,34 @@ export default function Home({ homepageCourses }: HomeProps) {
 export const getStaticProps: GetStaticProps = async () => {
   try {
     const homepageCourses = getHomepageCourses();
-    console.log('Homepage courses loaded:', homepageCourses?.length || 0);
+    const reviewsData = getReviewsData();
+    const teachers = getUniqueTeachers();
     
-    // Ensure we always return a valid array
+    console.log('Homepage courses loaded:', homepageCourses?.length || 0);
+    console.log('Reviews data loaded:', reviewsData.reviews?.length || 0);
+    console.log('Teachers loaded:', teachers?.length || 0);
+    
+    // Ensure we always return valid data
     const safeHomepageCourses = Array.isArray(homepageCourses) ? homepageCourses : [];
+    const safeReviewsData = reviewsData || { reviews: [], averageRating: 0, totalReviews: 0 };
+    const safeTeachers = Array.isArray(teachers) ? teachers : [];
     
     return {
       props: {
         homepageCourses: safeHomepageCourses,
+        reviewsData: safeReviewsData,
+        teachers: safeTeachers,
       },
       revalidate: 3600, // Revalidate every hour
     };
   } catch (error) {
-    console.error('Error loading homepage courses:', error);
+    console.error('Error loading homepage data:', error);
     
     return {
       props: {
         homepageCourses: [],
+        reviewsData: { reviews: [], averageRating: 0, totalReviews: 0 },
+        teachers: [],
       },
       revalidate: 3600,
     };

@@ -50,23 +50,39 @@ export default function HybridCourseList({
           href={course.redirecturl}
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-card rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden border border-border"
+          className="bg-card rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden border border-border group"
         >
-          <img 
-            src={course.imageofcourse} 
-            alt={course.courseName}
-            className="w-full h-32 sm:h-40 md:h-48 object-cover"
-          />
+          <div className="relative">
+            <img 
+              src={course.imageofcourse} 
+              alt={course.courseName}
+              className="w-full h-32 sm:h-40 md:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+            {course.rating && (
+              <div className="absolute bottom-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
+                <span>★</span>
+                <span>{course.rating.average}</span>
+                <span>({course.rating.count})</span>
+              </div>
+            )}
+          </div>
           <div className="p-4 sm:p-6">
             <div className="flex justify-between items-start mb-2">
-              <span className="text-xs sm:text-sm text-primary font-medium capitalize">
+              <span className="text-xs sm:text-sm text-primary font-medium capitalize bg-primary/10 px-2 py-1 rounded">
                 {course.coursecategory}
               </span>
-              <span className="text-xs sm:text-sm text-green-600 font-semibold">
-                ${course.cost || '0'}
-              </span>
+              <div className="flex items-center gap-2">
+                {course.level && (
+                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                    {course.level}
+                  </span>
+                )}
+                <span className="text-xs sm:text-sm text-green-600 font-semibold">
+                  ${course.cost || '0'}
+                </span>
+              </div>
             </div>
-            <h3 className="text-sm sm:text-base font-bold text-card-foreground mb-2 line-clamp-2">
+            <h3 className="text-sm sm:text-base font-bold text-card-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
               {course.courseName}
             </h3>
             <div className="flex items-center mb-3">
@@ -87,9 +103,123 @@ export default function HybridCourseList({
             <p className="text-xs sm:text-sm text-muted-foreground mb-4 line-clamp-3">
               {course.des}
             </p>
+            
+            {/* What You'll Learn Preview */}
+            {course.whatYouWillLearn && course.whatYouWillLearn.length > 0 && (
+              <div className="mb-4">
+                <h4 className="text-xs font-semibold text-foreground mb-2">What you'll learn:</h4>
+                <ul className="space-y-1">
+                  {course.whatYouWillLearn.slice(0, 2).map((item: string, index: number) => (
+                    <li key={index} className="flex items-start text-xs text-muted-foreground">
+                      <svg className="w-3 h-3 mr-1 mt-0.5 flex-shrink-0 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="line-clamp-2">{item}</span>
+                    </li>
+                  ))}
+                  {course.whatYouWillLearn.length > 2 && (
+                    <li className="text-xs text-primary font-medium">
+                      +{course.whatYouWillLearn.length - 2} more learning outcomes
+                    </li>
+                  )}
+                </ul>
+              </div>
+            )}
+
+            {/* Enhanced course details */}
+            <div className="space-y-2 mb-4">
+              <div className="grid grid-cols-2 gap-2">
+                {course.duration && (
+                  <div className="flex items-center text-xs text-muted-foreground">
+                    <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>{course.duration}</span>
+                  </div>
+                )}
+                {course.language && (
+                  <div className="flex items-center text-xs text-muted-foreground">
+                    <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                    </svg>
+                    <span>{course.language}</span>
+                  </div>
+                )}
+              </div>
+              
+              {course.studentsEnrolled && (
+                <div className="flex items-center text-xs text-muted-foreground">
+                  <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span>{typeof course.studentsEnrolled === 'number' ? course.studentsEnrolled.toLocaleString() : course.studentsEnrolled} students enrolled</span>
+                </div>
+              )}
+              
+              {course.lastUpdated && (
+                <div className="flex items-center text-xs text-muted-foreground">
+                  <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                  <span>Updated {course.lastUpdated}</span>
+                </div>
+              )}
+            </div>
+
+            {/* Requirements */}
+            {course.requirements && course.requirements.length > 0 && (
+              <div className="mb-4">
+                <h4 className="text-xs font-semibold text-foreground mb-2">Requirements:</h4>
+                <ul className="space-y-1">
+                  {course.requirements.slice(0, 2).map((req: string, index: number) => (
+                    <li key={index} className="flex items-start text-xs text-muted-foreground">
+                      <svg className="w-3 h-3 mr-1 mt-0.5 flex-shrink-0 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className="line-clamp-2">{req}</span>
+                    </li>
+                  ))}
+                  {course.requirements.length > 2 && (
+                    <li className="text-xs text-primary font-medium">
+                      +{course.requirements.length - 2} more requirements
+                    </li>
+                  )}
+                </ul>
+              </div>
+            )}
+
+            {/* Features */}
+            {course.features && course.features.length > 0 && (
+              <div className="mb-4">
+                <h4 className="text-xs font-semibold text-foreground mb-2">Course Features:</h4>
+                <div className="flex flex-wrap gap-1">
+                  {course.features.slice(0, 3).map((feature: string, index: number) => (
+                    <span key={index} className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                      {feature}
+                    </span>
+                  ))}
+                  {course.features.length > 3 && (
+                    <span className="text-xs text-muted-foreground">
+                      +{course.features.length - 3} more
+                    </span>
+                  )}
+                </div>
+              </div>
+            )}
+
             <div className="flex justify-between items-center text-xs text-muted-foreground">
-              <span className="text-primary font-medium">External Link</span>
-              <span>{course.audio || 'English'}</span>
+              <span className="text-primary font-medium flex items-center gap-1">
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                External Link
+              </span>
+              <span className="flex items-center gap-1">
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                </svg>
+                {course.audio || 'English'}
+              </span>
             </div>
           </div>
         </a>
@@ -100,23 +230,39 @@ export default function HybridCourseList({
       <Link
         key={`${course.coursecategory}-${course.courseName}`}
         href={`/r/${course.coursecategory.toLowerCase()}/${encodeURIComponent(course.courseName)}`}
-        className="bg-card rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden border border-border"
+        className="bg-card rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden border border-border group"
       >
-        <img 
-          src={course.imageofcourse} 
-          alt={course.courseName}
-          className="w-full h-32 sm:h-40 md:h-48 object-cover"
-        />
+        <div className="relative">
+          <img 
+            src={course.imageofcourse} 
+            alt={course.courseName}
+            className="w-full h-32 sm:h-40 md:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+          {course.rating && (
+            <div className="absolute bottom-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
+              <span>★</span>
+              <span>{course.rating.average}</span>
+              <span>({course.rating.count})</span>
+            </div>
+          )}
+        </div>
         <div className="p-4 sm:p-6">
           <div className="flex justify-between items-start mb-2">
-            <span className="text-xs sm:text-sm text-primary font-medium capitalize">
+            <span className="text-xs sm:text-sm text-primary font-medium capitalize bg-primary/10 px-2 py-1 rounded">
               {course.coursecategory}
             </span>
-            <span className="text-xs sm:text-sm text-green-600 font-semibold">
-              ${course.cost || '0'}
-            </span>
+            <div className="flex items-center gap-2">
+              {course.level && (
+                <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                  {course.level}
+                </span>
+              )}
+              <span className="text-xs sm:text-sm text-green-600 font-semibold">
+                ${course.cost || '0'}
+              </span>
+            </div>
           </div>
-          <h3 className="text-sm sm:text-base font-bold text-card-foreground mb-2 line-clamp-2">
+          <h3 className="text-sm sm:text-base font-bold text-card-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
             {course.courseName}
           </h3>
           <div className="flex items-center mb-3">
@@ -137,9 +283,123 @@ export default function HybridCourseList({
           <p className="text-xs sm:text-sm text-muted-foreground mb-4 line-clamp-3">
             {course.des}
           </p>
+          
+          {/* What You'll Learn Preview */}
+          {course.whatYouWillLearn && course.whatYouWillLearn.length > 0 && (
+            <div className="mb-4">
+              <h4 className="text-xs font-semibold text-foreground mb-2">What you'll learn:</h4>
+              <ul className="space-y-1">
+                {course.whatYouWillLearn.slice(0, 2).map((item: string, index: number) => (
+                  <li key={index} className="flex items-start text-xs text-muted-foreground">
+                    <svg className="w-3 h-3 mr-1 mt-0.5 flex-shrink-0 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="line-clamp-2">{item}</span>
+                  </li>
+                ))}
+                {course.whatYouWillLearn.length > 2 && (
+                  <li className="text-xs text-primary font-medium">
+                    +{course.whatYouWillLearn.length - 2} more learning outcomes
+                  </li>
+                )}
+              </ul>
+            </div>
+          )}
+
+          {/* Enhanced course details */}
+          <div className="space-y-2 mb-4">
+            <div className="grid grid-cols-2 gap-2">
+              {course.duration && (
+                <div className="flex items-center text-xs text-muted-foreground">
+                  <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>{course.duration}</span>
+                </div>
+              )}
+              {course.language && (
+                <div className="flex items-center text-xs text-muted-foreground">
+                  <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                  </svg>
+                  <span>{course.language}</span>
+                </div>
+              )}
+            </div>
+            
+            {course.studentsEnrolled && (
+              <div className="flex items-center text-xs text-muted-foreground">
+                <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <span>{typeof course.studentsEnrolled === 'number' ? course.studentsEnrolled.toLocaleString() : course.studentsEnrolled} students enrolled</span>
+              </div>
+            )}
+            
+            {course.lastUpdated && (
+              <div className="flex items-center text-xs text-muted-foreground">
+                <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                <span>Updated {course.lastUpdated}</span>
+              </div>
+            )}
+          </div>
+
+          {/* Requirements */}
+          {course.requirements && course.requirements.length > 0 && (
+            <div className="mb-4">
+              <h4 className="text-xs font-semibold text-foreground mb-2">Requirements:</h4>
+              <ul className="space-y-1">
+                {course.requirements.slice(0, 2).map((req: string, index: number) => (
+                  <li key={index} className="flex items-start text-xs text-muted-foreground">
+                    <svg className="w-3 h-3 mr-1 mt-0.5 flex-shrink-0 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span className="line-clamp-2">{req}</span>
+                  </li>
+                ))}
+                {course.requirements.length > 2 && (
+                  <li className="text-xs text-primary font-medium">
+                    +{course.requirements.length - 2} more requirements
+                  </li>
+                )}
+              </ul>
+            </div>
+          )}
+
+          {/* Features */}
+          {course.features && course.features.length > 0 && (
+            <div className="mb-4">
+              <h4 className="text-xs font-semibold text-foreground mb-2">Course Features:</h4>
+              <div className="flex flex-wrap gap-1">
+                {course.features.slice(0, 3).map((feature: string, index: number) => (
+                  <span key={index} className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                    {feature}
+                  </span>
+                ))}
+                {course.features.length > 3 && (
+                  <span className="text-xs text-muted-foreground">
+                    +{course.features.length - 3} more
+                  </span>
+                )}
+              </div>
+            </div>
+          )}
+
           <div className="flex justify-between items-center text-xs text-muted-foreground">
-            <span>{'length' in course.videos ? course.videos.length : (course.videos as any)?.length || 0} videos</span>
-            <span>{course.audio || 'English'}</span>
+            <span className="flex items-center gap-1">
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+              {'length' in course.videos ? course.videos.length : (course.videos as any)?.length || 0} videos
+            </span>
+            <span className="flex items-center gap-1">
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+              </svg>
+              {course.audio || 'English'}
+            </span>
           </div>
         </div>
       </Link>

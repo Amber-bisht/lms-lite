@@ -35,6 +35,7 @@ export default function CategoryPage({ courses, categoryName }: CategoryPageProp
   const pageTitle = `${categoryName.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Courses | Unlocked Coding`;
   const pageDescription = `Browse ${courses.length} free ${categoryName} courses. Learn with high-quality video tutorials from top instructors.`;
 
+
   // Track category view on mount
   useEffect(() => {
     trackCategoryView(categoryName);
@@ -96,6 +97,7 @@ export default function CategoryPage({ courses, categoryName }: CategoryPageProp
               {courses.length} courses available
             </p>
           </div>
+
 
           <HybridCourseList courses={courses} coursesPerPage={9} />
         </div>

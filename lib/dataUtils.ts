@@ -345,6 +345,16 @@ export interface ILightCourse {
   homepage?: boolean;
   _id: string;
   __v: number;
+  // Optional enhanced fields for UI display
+  rating?: IRating;
+  level?: string;
+  whatYouWillLearn?: string[];
+  duration?: string;
+  language?: string;
+  studentsEnrolled?: number;
+  lastUpdated?: string;
+  requirements?: string[];
+  features?: string[];
 }
 
 // Get lightweight courses for list pages (reduces data size significantly)
@@ -367,6 +377,16 @@ export function getLightweightCourses(): ILightCourse[] {
     homepage: course.homepage,
     _id: course._id,
     __v: course.__v,
+    // Include optional enhanced fields
+    rating: course.rating,
+    level: course.level,
+    whatYouWillLearn: course.whatYouWillLearn,
+    duration: course.duration,
+    language: course.language,
+    studentsEnrolled: course.studentsEnrolled,
+    lastUpdated: course.lastUpdated,
+    requirements: course.requirements,
+    features: course.features,
   }));
 }
 
@@ -393,5 +413,175 @@ export function getLightweightCoursesBySubsection(subsectionName: string): ILigh
       return course.subsection.toLowerCase() === subsectionName.toLowerCase();
     }
   });
+}
+
+// Define interfaces for reviews data
+export interface IReview {
+  id: number;
+  name: string;
+  rating: number;
+  review: string;
+  course: string;
+  location: string;
+}
+
+export interface IReviewsData {
+  reviews: IReview[];
+  averageRating: number;
+  totalReviews: number;
+}
+
+// Define interfaces for placements data
+export interface IPlacement {
+  id: number;
+  company: string;
+  logo: string;
+  studentsPlaced: number;
+  averagePackage: string;
+  roles: string[];
+}
+
+export interface IPlacementsData {
+  placements: IPlacement[];
+  totalStudentsPlaced: number;
+  averagePackage: string;
+}
+
+// Helper function to get data directory path
+function getDataDirectoryPath(): string {
+  return path.join(process.cwd(), 'data');
+}
+
+// Read reviews data from JSON file
+export function getReviewsData(): IReviewsData {
+  try {
+    const dataPath = getDataDirectoryPath();
+    const filePath = path.join(dataPath, 'reviews.json');
+    
+    if (!fs.existsSync(filePath)) {
+      console.warn('Reviews data file not found, returning empty data');
+      return {
+        reviews: [],
+        averageRating: 0,
+        totalReviews: 0
+      };
+    }
+    
+    const fileContent = fs.readFileSync(filePath, 'utf8');
+    const reviewsData: IReviewsData = JSON.parse(fileContent);
+    
+    return reviewsData;
+  } catch (error) {
+    console.error('Error reading reviews data:', error);
+    return {
+      reviews: [],
+      averageRating: 0,
+      totalReviews: 0
+    };
+  }
+}
+
+// Read placements data from JSON file
+export function getPlacementsData(): IPlacementsData {
+  try {
+    const dataPath = getDataDirectoryPath();
+    const filePath = path.join(dataPath, 'placements.json');
+    
+    if (!fs.existsSync(filePath)) {
+      console.warn('Placements data file not found, returning empty data');
+      return {
+        placements: [],
+        totalStudentsPlaced: 0,
+        averagePackage: '₹0 LPA'
+      };
+    }
+    
+    const fileContent = fs.readFileSync(filePath, 'utf8');
+    const placementsData: IPlacementsData = JSON.parse(fileContent);
+    
+    return placementsData;
+  } catch (error) {
+    console.error('Error reading placements data:', error);
+    return {
+      placements: [],
+      totalStudentsPlaced: 0,
+      averagePackage: '₹0 LPA'
+    };
+  }
+}
+
+// Define interface for teacher data
+export interface ITeacher {
+  name: string;
+  image: string;
+  courseCount: number;
+  categories: string[];
+}
+
+// Get unique teachers from all courses
+export function getUniqueTeachers(): ITeacher[] {
+  try {
+    const allCourses = getAllCourses();
+    const teacherMap = new Map<string, ITeacher>();
+    
+    allCourses.forEach(course => {
+      const teacherName = course.instructorname || 'Unknown Teacher';
+      const teacherImage = course.imageofinstructur || '';
+      const category = course.coursecategory;
+      
+      if (teacherMap.has(teacherName)) {
+        const existingTeacher = teacherMap.get(teacherName)!;
+        existingTeacher.courseCount += 1;
+        if (!existingTeacher.categories.includes(category)) {
+          existingTeacher.categories.push(category);
+        }
+      } else {
+        teacherMap.set(teacherName, {
+          name: teacherName,
+          image: teacherImage,
+          courseCount: 1,
+          categories: [category]
+        });
+      }
+    });
+    
+    // Convert map to array and sort by course count (most courses first)
+    const teachers = Array.from(teacherMap.values())
+      .sort((a, b) => b.courseCount - a.courseCount)
+      .slice(0, 8); // Limit to top 8 teachers
+    
+    return teachers;
+  } catch (error) {
+    console.error('Error getting unique teachers:', error);
+    return [];
+  }
+}
+
+// Get similar courses in the same category (excluding the current course)
+export function getSimilarCourses(categoryName: string, currentCourseName: string, limit: number = 4): ILightCourse[] {
+  try {
+    const allCourses = getLightweightCourses();
+    const similarCourses = allCourses.filter(course => 
+      course.coursecategory.toLowerCase() === categoryName.toLowerCase() &&
+      course.courseName !== currentCourseName
+    );
+    
+    // Sort by rank and rating, then limit results
+    return similarCourses
+      .sort((a, b) => {
+        const rankOrder: { [key: string]: number } = { high: 0, mid: 1, medium: 1, low: 2 };
+        const rankDiff = rankOrder[a.rank] - rankOrder[b.rank];
+        if (rankDiff !== 0) return rankDiff;
+        
+        // If ranks are equal, sort by rating
+        const aRating = a.rating?.average || 0;
+        const bRating = b.rating?.average || 0;
+        return bRating - aRating;
+      })
+      .slice(0, limit);
+  } catch (error) {
+    console.error('Error getting similar courses:', error);
+    return [];
+  }
 }
 
