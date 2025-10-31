@@ -1,8 +1,36 @@
+import Head from 'next/head';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { getAllCourses, getCourseByName } from '../../../lib/dataUtils';
 
-export default function LegacyCourseRedirect() {
-  return null;
+interface LegacyCourseRedirectProps {
+  destination: string | null;
+}
+
+export default function LegacyCourseRedirect({ destination }: LegacyCourseRedirectProps) {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (destination) {
+      router.replace(destination).catch(() => {
+        // Swallow navigation errors (e.g. route not ready), static export will still render fallback below
+      });
+    }
+  }, [destination, router]);
+
+  if (!destination) {
+    return null;
+  }
+
+  return (
+    <>
+      <Head>
+        <meta httpEquiv="refresh" content={`0;url=${destination}`} />
+      </Head>
+      Redirecting...
+    </>
+  );
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -29,7 +57,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps<LegacyCourseRedirectProps> = async ({ params }) => {
   try {
     const categoryName = (params?.category as string).toLowerCase();
     const courseName = params?.course as string;
@@ -45,10 +73,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
     const teacherSlug = course.instructorSlug || course.teacherId || course.instructorname;
 
+    const destination = `/teacher/${encodeURIComponent(teacherSlug)}/${encodeURIComponent(course.courseName)}`;
+
     return {
-      redirect: {
-        destination: `/teacher/${encodeURIComponent(teacherSlug)}/${encodeURIComponent(course.courseName)}`,
-        permanent: true,
+      props: {
+        destination,
       },
       revalidate: 60,
     };
