@@ -53,7 +53,7 @@ export default function InstructorPage({ instructorName, courses, instructorImag
                 "@type": "Course",
                 "name": course.courseName,
                 "description": course.des,
-                "url": `https://unlockedcoding.com/r/${course.coursecategory.toLowerCase()}/${encodeURIComponent(course.courseName)}`
+                "url": `https://unlockedcoding.com/teacher/${encodeURIComponent(course.instructorSlug || course.teacherId || instructorName)}/${encodeURIComponent(course.courseName)}`
               }))
             })
           }}
@@ -240,115 +240,73 @@ export default function InstructorPage({ instructorName, courses, instructorImag
             
             {courses.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {courses.map((course, index) => (
+                {courses.map((course) => (
                   <div key={`${course.coursecategory}-${course.courseName}`} className="group">
-                    {course.videoType === 'redirect' && course.redirecturl ? (
-                      <a
-                        href={course.redirecturl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-border hover:scale-102"
-                      >
-                        <div className="relative">
-                          <img 
-                            src={course.imageofcourse} 
-                            alt={course.courseName}
-                            className="w-full h-48 object-cover"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                          <div className="absolute bottom-4 left-4 right-4">
-                            <div className="flex items-center space-x-2">
-                              <img 
-                                src={course.imageofinstructur} 
-                                alt={course.instructorname}
-                                className="w-8 h-8 rounded-full object-cover border-2 border-white/30"
-                              />
-                              <span className="text-white text-sm font-medium">
-                                {course.instructorname}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="p-6">
-                          <div className="flex justify-between items-center mb-3">
-                            <span className="text-xs text-primary font-medium capitalize bg-primary/10 px-2 py-1 rounded-full">
-                              {course.coursecategory}
-                            </span>
-                            <div className="flex items-center space-x-1">
-                              <span className="text-yellow-400">★★★★★</span>
-                              <span className="text-sm text-muted-foreground">4.8/5</span>
-                            </div>
-                          </div>
-                          <h3 className="text-lg font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-                            {course.courseName}
-                          </h3>
-                          <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                            {course.des}
-                          </p>
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center space-x-2">
-                              <span className="text-xs text-muted-foreground">🌐</span>
-                              <span className="text-xs text-muted-foreground">{course.audio || 'English'}</span>
-                            </div>
-                            <span className="bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary/90 transition-all">
-                              View Details
+                    <Link
+                      href={`/teacher/${encodeURIComponent(course.instructorSlug || course.teacherId || instructorName)}/${encodeURIComponent(course.courseName)}`}
+                      className="block bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-border hover:scale-102"
+                    >
+                      <div className="relative">
+                        <img 
+                          src={course.imageofcourse} 
+                          alt={course.courseName}
+                          className="w-full h-48 object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <div className="flex items-center space-x-2">
+                            <img 
+                              src={course.imageofinstructur} 
+                              alt={teacherDetails?.displayName || teacherDetails?.name || course.instructorDisplayName || course.instructorSlug}
+                              className="w-8 h-8 rounded-full object-cover border-2 border-white/30"
+                            />
+                            <span className="text-white text-sm font-medium">
+                              {teacherDetails?.displayName || teacherDetails?.name || course.instructorDisplayName || course.instructorSlug}
                             </span>
                           </div>
                         </div>
-                      </a>
-                    ) : (
-                      <Link
-                        href={`/r/${course.coursecategory.toLowerCase()}/${encodeURIComponent(course.courseName)}`}
-                        className="block bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-border hover:scale-102"
-                      >
-                        <div className="relative">
-                          <img 
-                            src={course.imageofcourse} 
-                            alt={course.courseName}
-                            className="w-full h-48 object-cover"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                          <div className="absolute bottom-4 left-4 right-4">
-                            <div className="flex items-center space-x-2">
-                              <img 
-                                src={course.imageofinstructur} 
-                                alt={course.instructorname}
-                                className="w-8 h-8 rounded-full object-cover border-2 border-white/30"
-                              />
-                              <span className="text-white text-sm font-medium">
-                                {course.instructorname}
-                              </span>
-                            </div>
+                        {course.videoType === 'redirect' && course.redirecturl && (
+                          <span className="absolute top-3 right-3 bg-amber-500 text-white text-xs px-2 py-1 rounded-full shadow">
+                            External
+                          </span>
+                        )}
+                      </div>
+                      <div className="p-6">
+                        <div className="flex justify-between items-center mb-3">
+                          <span className="text-xs text-primary font-medium capitalize bg-primary/10 px-2 py-1 rounded-full">
+                            {course.coursecategory}
+                          </span>
+                          <div className="flex items-center space-x-1">
+                            <span className="text-yellow-400">★★★★★</span>
+                            <span className="text-sm text-muted-foreground">4.8/5</span>
                           </div>
                         </div>
-                        <div className="p-6">
-                          <div className="flex justify-between items-center mb-3">
-                            <span className="text-xs text-primary font-medium capitalize bg-primary/10 px-2 py-1 rounded-full">
-                              {course.coursecategory}
-                            </span>
-                            <div className="flex items-center space-x-1">
-                              <span className="text-yellow-400">★★★★★</span>
-                              <span className="text-sm text-muted-foreground">4.8/5</span>
-                            </div>
+                        <h3 className="text-lg font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                          {course.courseName}
+                        </h3>
+                        <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                          {course.des}
+                        </p>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center space-x-2">
+                            {course.videoType === 'redirect' && course.redirecturl ? (
+                              <>
+                                <span className="text-xs text-muted-foreground">🌐 External</span>
+                                <span className="text-xs text-muted-foreground">Partner Access</span>
+                              </>
+                            ) : (
+                              <>
+                                <span className="text-xs text-muted-foreground">🎥</span>
+                                <span className="text-xs text-muted-foreground">{course.videos?.length || 0} videos</span>
+                              </>
+                            )}
                           </div>
-                          <h3 className="text-lg font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-                            {course.courseName}
-                          </h3>
-                          <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                            {course.des}
-                          </p>
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center space-x-2">
-                              <span className="text-xs text-muted-foreground">🎥</span>
-                              <span className="text-xs text-muted-foreground">{course.videos?.length || 0} videos</span>
-                            </div>
-                            <span className="bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary/90 transition-all">
-                              View Details
-                            </span>
-                          </div>
+                          <span className="bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary/90 transition-all">
+                            {course.videoType === 'redirect' && course.redirecturl ? 'Access Course' : 'View Details'}
+                          </span>
                         </div>
-                      </Link>
-                    )}
+                      </div>
+                    </Link>
                   </div>
                 ))}
               </div>

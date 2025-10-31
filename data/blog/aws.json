@@ -1,0 +1,79 @@
+{
+    "id": "aws-educate-program",
+    "name": "AWS Educate Program Access",
+    "description": "Learn cloud computing with AWS Educate - get free credits, courses, and hands-on labs for students and educators.",
+    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    "requirements": [
+      "Student or educator status",
+      "Valid email address",
+      "Educational institution affiliation",
+      "Age 13+ years"
+    ],
+    "youtubeTutorialLink": "https://www.youtube.com/watch?v=lWxbtQX4vTs",
+    "steps": [
+      "Go to AWS Educate website",
+      "Click 'Join AWS Educate'",
+      "Select your role (Student or Educator)",
+      "Create AWS Educate account",
+      "Verify your email address",
+      "Complete profile with institution details",
+      "Access free AWS credits and courses"
+    ],
+    "links": [
+      {
+        "name": "AWS Educate",
+        "url": "https://aws.amazon.com/education/awseducate/"
+      },
+      {
+        "name": "Student Portal",
+        "url": "https://awseducate.com/"
+      },
+      {
+        "name": "Free Credits",
+        "url": "https://aws.amazon.com/education/awseducate/credits/"
+      }
+    ],
+    "category": "Cloud Computing",
+    "tags": ["aws", "cloud", "education", "free credits"],
+    "featured": false
+  },
+  {
+    "id": "notion-student-plan",
+    "name": "Notion Student Plan Setup",
+    "description": "Get Notion Pro for free as a student - organize your studies, projects, and notes with unlimited blocks and advanced features.",
+    "image": "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    "requirements": [
+      "Student email address",
+      "Notion account",
+      "Student verification",
+      "Educational institution proof"
+    ],
+    "youtubeTutorialLink": "https://www.youtube.com/watch?v=example6",
+    "steps": [
+      "Create Notion account",
+      "Go to Notion for Education page",
+      "Click 'Get Notion for free'",
+      "Enter student email address",
+      "Verify email and student status",
+      "Access Pro features",
+      "Start organizing your studies"
+    ],
+    "links": [
+      {
+        "name": "Notion for Education",
+        "url": "https://www.notion.so/product/notion-for-education"
+      },
+      {
+        "name": "Student Verification",
+        "url": "https://www.notion.so/help/notion-for-students"
+      },
+      {
+        "name": "Study Templates",
+        "url": "https://www.notion.so/templates/student"
+      }
+    ],
+    "category": "Productivity",
+    "tags": ["notion", "productivity", "student", "organization"],
+    "featured": false
+  }
+

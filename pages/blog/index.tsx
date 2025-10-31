@@ -3,26 +3,10 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import Layout from '../../components/Layout';
 import { event } from '../../lib/gtag';
-
-interface BlogPost {
-  id: string;
-  name: string;
-  description: string;
-  image: string;
-  requirements: string[];
-  youtubeTutorialLink: string;
-  steps: string[];
-  links: Array<{
-    name: string;
-    url: string;
-  }>;
-  category: string;
-  tags: string[];
-  featured: boolean;
-}
+import { IBlogPost, loadBlogPosts } from '../../lib/dataUtils';
 
 interface BlogProps {
-  posts: BlogPost[];
+  posts: IBlogPost[];
 }
 
 export default function Blog({ posts }: BlogProps) {
@@ -231,21 +215,17 @@ export default function Blog({ posts }: BlogProps) {
 
 export async function getStaticProps() {
   try {
-    const fs = require('fs');
-    const path = require('path');
-    
-    const blogDataPath = path.join(process.cwd(), 'data', 'blogs.json');
-    const blogData = JSON.parse(fs.readFileSync(blogDataPath, 'utf8'));
-    
+    const posts = loadBlogPosts();
+
     return {
       props: {
-        posts: blogData,
+        posts,
       },
       revalidate: 3600, // Revalidate every hour
     };
   } catch (error) {
     console.error('Error loading blog data:', error);
-    
+
     return {
       props: {
         posts: [],

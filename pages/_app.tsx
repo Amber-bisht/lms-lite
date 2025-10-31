@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Script from 'next/script'
 import { ThemeProvider } from '../contexts/ThemeContext'
+import { AuthProvider } from '../contexts/AuthContext'
 import CookieConsent from '../components/CookieConsent'
 import ErrorBoundary from '../components/ErrorBoundary'
 import { Analytics } from '@vercel/analytics/react'
@@ -50,10 +51,12 @@ export default function App({ Component, pageProps }: AppProps) {
         }}
       />
       <ErrorBoundary>
-        <ThemeProvider>
-          <Component {...pageProps} />
-          <CookieConsent />
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider>
+            <Component {...pageProps} />
+            <CookieConsent />
+          </ThemeProvider>
+        </AuthProvider>
       </ErrorBoundary>
       <Analytics />
     </>

@@ -1,10 +1,12 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import ThemeToggle from './ThemeToggle';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function Header() {
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, login, logout, isReady } = useAuth();
   
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -44,6 +46,42 @@ export default function Header() {
               </Link>
             </nav>
             <ThemeToggle />
+            {isReady && (
+              user ? (
+                <div className="flex items-center space-x-3">
+                  {user.picture ? (
+                    <img
+                      src={user.picture}
+                      alt={user.name}
+                      className="w-9 h-9 rounded-full border border-gray-200 dark:border-gray-700"
+                      referrerPolicy="no-referrer"
+                    />
+                  ) : (
+                    <div className="w-9 h-9 rounded-full bg-blue-500 text-white flex items-center justify-center text-sm font-semibold">
+                      {user.name.charAt(0).toUpperCase()}
+                    </div>
+                  )}
+                  <div className="flex flex-col">
+                    <span className="text-sm font-semibold text-black dark:text-white leading-tight">
+                      {user.name.split(' ')[0]}
+                    </span>
+                    <button
+                      onClick={logout}
+                      className="text-xs text-blue-500 hover:underline text-left"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <button
+                  onClick={() => login()}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 shadow-sm"
+                >
+                  Login with Google
+                </button>
+              )
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -114,6 +152,51 @@ export default function Header() {
                 About
               </Link>
             </nav>
+            {isReady && (
+              <div className="mt-4">
+                {user ? (
+                  <div className="flex items-center justify-between bg-gray-100 dark:bg-gray-900 px-4 py-3 rounded-lg">
+                    <div className="flex items-center space-x-3">
+                      {user.picture ? (
+                        <img
+                          src={user.picture}
+                          alt={user.name}
+                          className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700"
+                          referrerPolicy="no-referrer"
+                        />
+                      ) : (
+                        <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center text-base font-semibold">
+                          {user.name.charAt(0).toUpperCase()}
+                        </div>
+                      )}
+                      <div>
+                        <p className="text-sm font-semibold text-black dark:text-white">{user.name}</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400">{user.email}</p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => {
+                        logout();
+                        closeMobileMenu();
+                      }}
+                      className="text-sm text-blue-500 hover:underline"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => {
+                      login();
+                      closeMobileMenu();
+                    }}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg text-sm font-semibold transition-colors duration-200 shadow-sm"
+                  >
+                    Login with Google
+                  </button>
+                )}
+              </div>
+            )}
           </div>
         )}
       </div>

@@ -1,0 +1,29 @@
+{
+  "id": "keertipurswani",
+  "name": "Keerti Purswani",
+  "displayName": "Keerti-Purswani",
+  "bio": "Keerti Purswani is a software engineer and system design expert with extensive experience in building scalable applications. She specializes in high-level and low-level system design, helping students understand complex architectural patterns and design principles used in top tech companies.",
+  "expertise": [
+    "System Design",
+    "High-Level Design",
+    "Low-Level Design",
+    "C++ Programming",
+    "Data Structures"
+  ],
+  "experience": "6+ years",
+  "studentsHelped": "25000+",
+  "specialization": "System Design & C++",
+  "teachingStyle": "Architecture-focused learning with real-world examples",
+  "achievements": [
+    "System design expert at top tech companies",
+    "Specialized in HLD and LLD concepts",
+    "C++ programming instructor",
+    "Helped students crack FAANG interviews"
+  ],
+  "image": "https://media.licdn.com/dms/image/v2/D5622AQFJ-IvDtc3rTA/feedshare-shrink_800/feedshare-shrink_800/0/1698045285581?e=2147483647&v=beta&t=GG5cRP-cWWkqQfbPnQIA1Olmp3PTnytdukG3QXKCXyM",
+  "socialLinks": {
+    "linkedin": "https://linkedin.com/in/keertipurswani",
+    "github": "https://github.com/keertipurswani"
+  }
+}
+

@@ -1,0 +1,29 @@
+{
+  "id": "apna-college",
+  "name": "Apna College",
+  "displayName": "Apna-College",
+  "bio": "Apna College is a leading educational platform founded by Aman Dhattarwal, focusing on making quality programming education accessible to everyone. They offer comprehensive courses in Java, C++, MERN stack development, and aptitude preparation, helping students build successful careers in technology.",
+  "expertise": [
+    "Java Programming",
+    "C++ Programming",
+    "MERN Stack",
+    "Aptitude Preparation",
+    "Career Guidance"
+  ],
+  "experience": "5+ years",
+  "studentsHelped": "200000+",
+  "specialization": "Complete Programming Education",
+  "teachingStyle": "Comprehensive curriculum with career focus",
+  "achievements": [
+    "Founded by Aman Dhattarwal",
+    "Sigma 9.0 course series",
+    "Java and C++ specialization",
+    "MERN stack development courses"
+  ],
+  "image": "https://yt3.googleusercontent.com/FEcjRtez5od8UowDo6tTt9WlE-MrIFEmcwPMTORmK9Swk6KCklOmA3xfIG9WuLWfNYfNThQE=s900-c-k-c0x00ffffff-no-rj",
+  "socialLinks": {
+    "youtube": "https://youtube.com/@apnacollege",
+    "instagram": "https://instagram.com/apnacollege"
+  }
+}
+

@@ -77,7 +77,7 @@ export default function SubsectionPage({ courses, subsectionName }: SubsectionPa
                     "@type": "Course",
                     "name": course.courseName,
                     "description": course.des,
-                    "url": `https://unlockedcoding.com/r/${course.coursecategory.toLowerCase()}/${encodeURIComponent(course.courseName)}`
+                    "url": `https://unlockedcoding.com/teacher/${encodeURIComponent(course.instructorSlug)}/${encodeURIComponent(course.courseName)}`
                   }
                 }))
               }
@@ -105,7 +105,7 @@ export default function SubsectionPage({ courses, subsectionName }: SubsectionPa
             {courses.map((course) => (
               <Link
                 key={course._id}
-                href={`/r/${course.coursecategory}/${course.courseName}`}
+                href={`/teacher/${encodeURIComponent(course.instructorSlug)}/${encodeURIComponent(course.courseName)}`}
                 className="group bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105"
               >
                 <div className="relative">
@@ -130,10 +130,10 @@ export default function SubsectionPage({ courses, subsectionName }: SubsectionPa
                     <div className="flex items-center text-muted-foreground">
                       <img
                         src={course.imageofinstructur}
-                        alt={course.instructorname}
+                        alt={course.instructorDisplayName || course.instructorSlug}
                         className="w-6 h-6 rounded-full mr-2"
                       />
-                      <span>{course.instructorname}</span>
+                      <span>{course.instructorDisplayName || course.instructorSlug}</span>
                     </div>
                     
                     <div className="flex items-center space-x-2">

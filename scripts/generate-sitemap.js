@@ -3,10 +3,29 @@ const path = require('path');
 
 const DOMAIN = 'https://unlockedcoding.com';
 
+function slugify(value) {
+  if (!value || typeof value !== 'string') {
+    return '';
+  }
+
+  return value
+    .toLowerCase()
+    .replace(/[@&]/g, 'and')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+
 // Read all categories
 function getAllCategories() {
   try {
-    const categoryPath = path.join(process.cwd(), 'category');
+    const newCategoryPath = path.join(process.cwd(), 'data', 'category');
+    const legacyCategoryPath = path.join(process.cwd(), 'category');
+    const categoryPath = fs.existsSync(newCategoryPath) ? newCategoryPath : legacyCategoryPath;
+
+    if (!fs.existsSync(categoryPath)) {
+      console.warn('Category directory not found');
+      return [];
+    }
     const files = fs.readdirSync(categoryPath);
     
     const categories = [];
@@ -39,7 +58,14 @@ function getAllCategories() {
 // Read all courses
 function getAllCourses() {
   try {
-    const coursesPath = path.join(process.cwd(), 'courses');
+    const newCoursesPath = path.join(process.cwd(), 'data', 'courses');
+    const legacyCoursesPath = path.join(process.cwd(), 'courses');
+    const coursesPath = fs.existsSync(newCoursesPath) ? newCoursesPath : legacyCoursesPath;
+
+    if (!fs.existsSync(coursesPath)) {
+      console.warn('Courses directory not found');
+      return [];
+    }
     const files = fs.readdirSync(coursesPath);
     
     const courses = [];
@@ -50,6 +76,8 @@ function getAllCourses() {
         
         try {
           const data = JSON.parse(fileContent);
+          const teacherRaw = data.teacherId || data.instructorSlug || data.instructorname || '';
+          const teacherSlug = slugify(teacherRaw);
           courses.push({
             courseName: data.courseName,
             category: data.coursecategory,
@@ -57,7 +85,8 @@ function getAllCourses() {
             slug: file.replace('.json', ''),
             homepage: data.homepage || false,
             lastUpdated: data.lastUpdated || new Date().toISOString().split('T')[0],
-            instructorname: data.instructorname || null
+            teacherId: teacherSlug || null,
+            teacherSlug
           });
         } catch (err) {
           console.error(`Error parsing ${file}:`, err.message);
@@ -75,10 +104,80 @@ function getAllCourses() {
 // Read all blogs
 function getAllBlogs() {
   try {
-    const blogsPath = path.join(process.cwd(), 'data', 'blogs.json');
-    const fileContent = fs.readFileSync(blogsPath, 'utf8');
-    const blogs = JSON.parse(fileContent);
-    return blogs;
+    const blogsDir = path.join(process.cwd(), 'data', 'blog');
+    const posts = [];
+    const seenIds = new Set();
+
+    if (fs.existsSync(blogsDir)) {
+      const files = fs
+        .readdirSync(blogsDir)
+        .filter(file => file.toLowerCase().endsWith('.json'));
+
+      const parseJsonFragments = (rawContent) => {
+        const trimmed = rawContent.trim();
+        if (!trimmed) return [];
+
+        const candidates = Array.from(new Set([
+          trimmed,
+          trimmed.replace(/,\s*$/, ''),
+          `[${trimmed}]`,
+          `[${trimmed.replace(/,\s*$/, '')}]`
+        ]));
+
+        for (const candidate of candidates) {
+          try {
+            const parsed = JSON.parse(candidate);
+            if (Array.isArray(parsed)) {
+              return parsed;
+            }
+            if (parsed && typeof parsed === 'object') {
+              return [parsed];
+            }
+          } catch (error) {
+            // continue to next candidate
+          }
+        }
+
+        return [];
+      };
+
+      files.forEach(file => {
+        const filePath = path.join(blogsDir, file);
+
+        try {
+          const rawContent = fs.readFileSync(filePath, 'utf8');
+          const entries = parseJsonFragments(rawContent);
+
+          entries.forEach(entry => {
+            if (!entry || !entry.id || seenIds.has(entry.id)) {
+              return;
+            }
+
+            posts.push(entry);
+            seenIds.add(entry.id);
+          });
+        } catch (error) {
+          console.error(`Error parsing blog file ${file}:`, error.message);
+        }
+      });
+
+      if (posts.length > 0) {
+        return posts;
+      }
+    }
+
+    const legacyBlogsPath = path.join(process.cwd(), 'data', 'blogs.json');
+    if (fs.existsSync(legacyBlogsPath)) {
+      const fileContent = fs.readFileSync(legacyBlogsPath, 'utf8');
+      try {
+        const blogs = JSON.parse(fileContent);
+        return blogs;
+      } catch (legacyError) {
+        console.error('Error parsing legacy blogs.json:', legacyError.message);
+      }
+    }
+
+    return [];
   } catch (error) {
     console.error('Error reading blogs:', error);
     return [];
@@ -113,8 +212,8 @@ function getAllInstructors() {
   const instructors = new Set();
   
   courses.forEach(course => {
-    if (course.instructorname) {
-      instructors.add(course.instructorname);
+    if (course.teacherSlug) {
+      instructors.add(course.teacherSlug);
     }
   });
   
@@ -223,11 +322,15 @@ function generateSitemap() {
   // 7. Course Pages (with deduplication)
   const addedUrls = new Set();
   courses.forEach(course => {
-    const encodedCategory = encodeURIComponent(course.category.toLowerCase());
+    const encodedTeacherSlug = encodeURIComponent(course.teacherSlug || '');
     const encodedCourseName = encodeURIComponent(course.courseName);
     
+    if (!encodedTeacherSlug) {
+      return;
+    }
+
     // Course detail page
-    const courseUrl = `${DOMAIN}/r/${encodedCategory}/${encodedCourseName}`;
+    const courseUrl = `${DOMAIN}/teacher/${encodedTeacherSlug}/${encodedCourseName}`;
     const courseUrlLower = courseUrl.toLowerCase();
     
     if (!addedUrls.has(courseUrlLower)) {
@@ -244,23 +347,6 @@ function generateSitemap() {
 `;
     }
 
-    // Course play page
-    const coursePlayUrl = `${DOMAIN}/r/${encodedCategory}/${encodedCourseName}/play`;
-    const coursePlayUrlLower = coursePlayUrl.toLowerCase();
-    
-    if (!addedUrls.has(coursePlayUrlLower)) {
-      addedUrls.add(coursePlayUrlLower);
-      const priority = course.homepage ? '0.7' : '0.6';
-      const lastmod = course.lastUpdated || new Date().toISOString();
-      
-      sitemap += `  <url>
-    <loc>${coursePlayUrl}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>${priority}</priority>
-  </url>
-`;
-    }
   });
 
   sitemap += `</urlset>`;

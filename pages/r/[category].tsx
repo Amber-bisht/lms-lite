@@ -73,7 +73,7 @@ export default function CategoryPage({ courses, categoryName }: CategoryPageProp
                     "@type": "Course",
                     "name": course.courseName,
                     "description": course.des,
-                    "url": `https://unlockedcoding.com/r/${categoryName.toLowerCase()}/${encodeURIComponent(course.courseName)}`
+                    "url": `https://unlockedcoding.com/teacher/${encodeURIComponent(course.instructorSlug)}/${encodeURIComponent(course.courseName)}`
                   }
                 }))
               }

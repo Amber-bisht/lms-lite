@@ -60,7 +60,7 @@ export default function AllCoursesPage({ courses }: AllCoursesPageProps) {
                     "@type": "Course",
                     "name": course.courseName,
                     "description": course.des,
-                    "url": `https://unlockedcoding.com/r/${course.coursecategory.toLowerCase()}/${encodeURIComponent(course.courseName)}`
+                    "url": `https://unlockedcoding.com/teacher/${encodeURIComponent(course.instructorSlug)}/${encodeURIComponent(course.courseName)}`
                   }
                 }))
               }

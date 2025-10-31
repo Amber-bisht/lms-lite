@@ -1,6 +1,46 @@
 import fs from 'fs';
 import path from 'path';
 
+function parseJsonFragments<T>(rawContent: string): T[] {
+  const trimmed = rawContent.trim();
+  if (!trimmed) {
+    return [];
+  }
+
+  const candidates = Array.from(
+    new Set([
+      trimmed,
+      trimmed.replace(/,\s*$/, ''),
+      `[${trimmed}]`,
+      `[${trimmed.replace(/,\s*$/, '')}]`
+    ])
+  );
+
+  for (const candidate of candidates) {
+    try {
+      const parsed = JSON.parse(candidate);
+      if (Array.isArray(parsed)) {
+        return parsed as T[];
+      }
+      if (parsed && typeof parsed === 'object') {
+        return [parsed as T];
+      }
+    } catch (error) {
+      // Try next candidate
+    }
+  }
+
+  return [];
+}
+
+function normalizeKey(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/[@&]/g, 'and')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+
 // Define interfaces for video data
 export interface IVideo {
   title: string;
@@ -13,8 +53,12 @@ export interface ICourse {
   coursecategory: string;
   viewtype: 'mobile' | 'laptop' | 'both';
   des: string;
-  imageofinstructur: string;
+  teacherId: string;
+  instructorSlug: string;
   instructorname: string;
+  instructorDisplayName: string;
+  teacherImage: string;
+  imageofinstructur: string;
   imageofcourse: string;
   audio: 'english' | 'hindi';
   cost: number;
@@ -75,8 +119,9 @@ interface JsonCourse {
   coursecategory: string;
   viewtype?: 'mobile' | 'laptop' | 'both';
   des: string;
-  imageofinstructur: string;
+  teacherId?: string;
   instructorname?: string;
+  imageofinstructur?: string;
   imageofcourse: string;
   audio?: 'english' | 'hindi';
   cost?: number;
@@ -108,10 +153,22 @@ interface JsonCategory {
 
 // Helper function to get data directory path
 function getDataPath(): string {
+  const newPath = path.join(process.cwd(), 'data', 'category');
+  if (fs.existsSync(newPath)) {
+    return newPath;
+  }
+
+  // Backward compatibility for legacy structure
   return path.join(process.cwd(), 'category');
 }
 
 function getCoursesPath(): string {
+  const newPath = path.join(process.cwd(), 'data', 'courses');
+  if (fs.existsSync(newPath)) {
+    return newPath;
+  }
+
+  // Backward compatibility for legacy structure
   return path.join(process.cwd(), 'courses');
 }
 
@@ -195,6 +252,20 @@ export function getAllCourses(): ICourse[] {
   try {
     const coursesPath = getCoursesPath();
     const files = fs.readdirSync(coursesPath);
+    const teacherDetails = loadTeacherData();
+    const teacherMap = new Map<string, ITeacherDetail>();
+
+    teacherDetails.forEach(detail => {
+      const keys = [detail.id, detail.displayName, detail.name]
+        .filter(Boolean)
+        .map(value => normalizeKey(value!));
+
+      keys.forEach(key => {
+        if (key && !teacherMap.has(key)) {
+          teacherMap.set(key, detail);
+        }
+      });
+    });
     
     const courses: any[] = [];
     
@@ -205,15 +276,26 @@ export function getAllCourses(): ICourse[] {
         
         try {
           const jsonData: JsonCourse = JSON.parse(fileContent);
-          
+
+          const teacherIdRaw = jsonData.teacherId || jsonData.instructorname || '';
+          const teacherId = teacherIdRaw ? normalizeKey(teacherIdRaw) : 'unknown-teacher';
+          const teacherDetail = teacherId ? teacherMap.get(teacherId) : undefined;
+          const instructorSlug = teacherId;
+          const instructorDisplayName = teacherDetail?.name || teacherDetail?.displayName || (jsonData.instructorname ? jsonData.instructorname.replace(/[-_]+/g, ' ') : teacherId || 'Instructor');
+          const teacherImage = teacherDetail?.image || jsonData.imageofinstructur || '';
+
           // Transform to course format compatible with ICourse
           const course = {
             courseName: jsonData.courseName,
             coursecategory: jsonData.coursecategory.toLowerCase(),
             viewtype: jsonData.viewtype || 'both',
             des: jsonData.des,
-            imageofinstructur: jsonData.imageofinstructur,
-            instructorname: jsonData.instructorname || 'Instructor',
+            teacherId,
+            instructorSlug,
+            instructorname: instructorSlug,
+            instructorDisplayName,
+            teacherImage,
+            imageofinstructur: teacherImage,
             imageofcourse: jsonData.imageofcourse,
             audio: jsonData.audio || 'english',
             cost: jsonData.cost || 0,
@@ -280,6 +362,18 @@ export function getCourseByName(categoryName: string, courseName: string): ICour
   ) || null;
 }
 
+export function getCourseByTeacherAndName(teacherSlug: string, courseName: string): ICourse | null {
+  const allCourses = getAllCourses();
+  const normalizedTeacher = normalizeKey(teacherSlug);
+
+  return (
+    allCourses.find(course => 
+      normalizeKey(course.instructorSlug || course.teacherId || course.instructorname) === normalizedTeacher &&
+      course.courseName === courseName
+    ) || null
+  );
+}
+
 // Get courses by subsection
 export function getCoursesBySubsection(subsectionName: string): ICourse[] {
   const allCourses = getAllCourses();
@@ -334,6 +428,9 @@ export interface ILightCourse {
   des: string;
   imageofinstructur: string;
   instructorname: string;
+  instructorSlug: string;
+  instructorDisplayName: string;
+  teacherId: string;
   imageofcourse: string;
   audio: 'english' | 'hindi';
   cost: number;
@@ -364,8 +461,9 @@ export function getLightweightCourses(): ILightCourse[] {
     courseName: course.courseName,
     coursecategory: course.coursecategory,
     des: course.des,
-    imageofinstructur: course.imageofinstructur,
+    imageofinstructur: course.teacherImage,
     instructorname: course.instructorname,
+    instructorDisplayName: course.instructorDisplayName,
     imageofcourse: course.imageofcourse,
     audio: course.audio,
     cost: course.cost,
@@ -375,6 +473,8 @@ export function getLightweightCourses(): ILightCourse[] {
     videos: { length: course.videos.length }, // Only store length
     rank: course.rank,
     homepage: course.homepage,
+    teacherId: course.teacherId,
+    instructorSlug: course.instructorSlug,
     _id: course._id,
     __v: course.__v,
     // Include optional enhanced fields
@@ -542,16 +642,156 @@ export interface ITeacherDetail {
   };
 }
 
+export interface IBlogLink {
+  name: string;
+  url: string;
+}
+
+export interface IBlogPost {
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+  requirements: string[];
+  youtubeTutorialLink?: string;
+  steps: string[];
+  links: IBlogLink[];
+  category: string;
+  tags: string[];
+  featured?: boolean;
+}
+
 // Load teacher data from JSON file
 export function loadTeacherData(): ITeacherDetail[] {
   try {
-    const teachersPath = path.join(process.cwd(), 'data', 'teachers.json');
-    const teachersData = JSON.parse(fs.readFileSync(teachersPath, 'utf8'));
-    return teachersData;
+    const teachersDir = path.join(process.cwd(), 'data', 'teachers');
+
+    if (fs.existsSync(teachersDir)) {
+      const files = fs
+        .readdirSync(teachersDir)
+        .filter(file => file.toLowerCase().endsWith('.json'));
+
+      const teachers: ITeacherDetail[] = [];
+      const seenIds = new Set<string>();
+
+      files.forEach(file => {
+        const filePath = path.join(teachersDir, file);
+
+        try {
+          const rawContent = fs.readFileSync(filePath, 'utf8');
+          const teacherEntries = parseJsonFragments<ITeacherDetail>(rawContent);
+
+          teacherEntries.forEach(entry => {
+            if (entry) {
+              const normalizedId = normalizeKey(entry.id || entry.displayName || entry.name);
+              if (!normalizedId || seenIds.has(normalizedId)) {
+                return;
+              }
+
+              const teacherEntry = {
+                ...entry,
+                id: normalizedId,
+                displayName: entry.displayName || entry.name || normalizedId,
+                name: entry.name || entry.displayName || normalizedId,
+              } as ITeacherDetail;
+
+              teachers.push(teacherEntry);
+              seenIds.add(teacherEntry.id);
+            }
+          });
+        } catch (fileError) {
+          console.error(`Error reading teacher file ${file}:`, fileError);
+        }
+      });
+
+      if (teachers.length > 0) {
+        return teachers;
+      }
+    }
+
+    const legacyTeachersPath = path.join(process.cwd(), 'data', 'teachers.json');
+    if (fs.existsSync(legacyTeachersPath)) {
+      const legacyTeachers = JSON.parse(fs.readFileSync(legacyTeachersPath, 'utf8'));
+      return legacyTeachers;
+    }
+
+    return [];
   } catch (error) {
     console.error('Error loading teacher data:', error);
     return [];
   }
+}
+
+// Load blog posts from JSON files
+export function loadBlogPosts(): IBlogPost[] {
+  try {
+    const blogsDir = path.join(process.cwd(), 'data', 'blog');
+    const posts: IBlogPost[] = [];
+    const seenIds = new Set<string>();
+
+    if (fs.existsSync(blogsDir)) {
+      const files = fs
+        .readdirSync(blogsDir)
+        .filter(file => file.toLowerCase().endsWith('.json'));
+
+      files.forEach(file => {
+        const filePath = path.join(blogsDir, file);
+
+        try {
+          const rawContent = fs.readFileSync(filePath, 'utf8');
+          const blogEntries = parseJsonFragments<IBlogPost>(rawContent);
+
+          blogEntries.forEach(entry => {
+            if (!entry || !entry.id) {
+              return;
+            }
+
+            if (seenIds.has(entry.id)) {
+              return;
+            }
+
+            posts.push({
+              ...entry,
+              requirements: entry.requirements || [],
+              steps: entry.steps || [],
+              links: entry.links || [],
+              tags: entry.tags || [],
+            });
+            seenIds.add(entry.id);
+          });
+        } catch (fileError) {
+          console.error(`Error reading blog file ${file}:`, fileError);
+        }
+      });
+
+      if (posts.length > 0) {
+        return posts;
+      }
+    }
+
+    const legacyBlogsPath = path.join(process.cwd(), 'data', 'blogs.json');
+    if (fs.existsSync(legacyBlogsPath)) {
+      const legacyContent = fs.readFileSync(legacyBlogsPath, 'utf8');
+      try {
+        const legacyPosts = JSON.parse(legacyContent);
+        if (Array.isArray(legacyPosts)) {
+          return legacyPosts as IBlogPost[];
+        }
+      } catch (legacyError) {
+        console.error('Error parsing legacy blogs.json:', legacyError);
+      }
+    }
+
+    return [];
+  } catch (error) {
+    console.error('Error loading blog posts:', error);
+    return [];
+  }
+}
+
+export function getBlogPostById(id: string): IBlogPost | null {
+  const posts = loadBlogPosts();
+  return posts.find(post => post.id === id) || null;
 }
 
 // Get teacher details by instructor name
@@ -560,18 +800,21 @@ export function getTeacherDetails(instructorName: string): ITeacherDetail | null
     const teachers = loadTeacherData();
     
     // Try to find teacher by exact name match first
+    const normalizedName = instructorName.toLowerCase();
     let teacher = teachers.find(t => 
-      t.name.toLowerCase() === instructorName.toLowerCase() ||
-      t.displayName.toLowerCase() === instructorName.toLowerCase()
+      t.id?.toLowerCase() === normalizedName ||
+      t.name.toLowerCase() === normalizedName ||
+      t.displayName.toLowerCase() === normalizedName
     );
     
     // If not found, try partial matching
     if (!teacher) {
       teacher = teachers.find(t => 
-        t.name.toLowerCase().includes(instructorName.toLowerCase()) ||
-        t.displayName.toLowerCase().includes(instructorName.toLowerCase()) ||
-        instructorName.toLowerCase().includes(t.name.toLowerCase()) ||
-        instructorName.toLowerCase().includes(t.displayName.toLowerCase())
+        t.name.toLowerCase().includes(normalizedName) ||
+        t.displayName.toLowerCase().includes(normalizedName) ||
+        normalizedName.includes(t.name.toLowerCase()) ||
+        normalizedName.includes(t.displayName.toLowerCase()) ||
+        (t.id ? normalizedName.includes(t.id.toLowerCase()) : false)
       );
     }
     
@@ -586,11 +829,28 @@ export function getTeacherDetails(instructorName: string): ITeacherDetail | null
 export function getUniqueTeachers(): ITeacher[] {
   try {
     const allCourses = getAllCourses();
+    const teacherDetails = loadTeacherData();
+    const teacherDetailMap = new Map<string, ITeacherDetail>();
+
+    teacherDetails.forEach(detail => {
+      const keys = [detail.id, detail.displayName, detail.name]
+        .filter(Boolean)
+        .map(value => normalizeKey(value!));
+
+      keys.forEach(key => {
+        if (key && !teacherDetailMap.has(key)) {
+          teacherDetailMap.set(key, detail);
+        }
+      });
+    });
+
     const teacherMap = new Map<string, ITeacher>();
     
     allCourses.forEach(course => {
-      const teacherName = course.instructorname || 'Unknown Teacher';
-      const teacherImage = course.imageofinstructur || '';
+      const teacherId = course.teacherId || normalizeKey(course.instructorSlug || course.instructorname);
+      const detail = teacherDetailMap.get(teacherId);
+      const teacherName = teacherId || 'unknown-teacher';
+      const teacherImage = detail?.image || course.teacherImage || course.imageofinstructur || '';
       const category = course.coursecategory;
       
       if (teacherMap.has(teacherName)) {

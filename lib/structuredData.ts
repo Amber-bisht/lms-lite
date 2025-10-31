@@ -4,6 +4,7 @@ export interface OptimizedCourseData {
   courseName: string;
   des: string;
   instructorname?: string;
+  instructorDisplayName?: string;
   imageofcourse: string;
   coursecategory: string;
   videos: Array<{
@@ -15,9 +16,14 @@ export interface OptimizedCourseData {
 export function generateOptimizedCourseStructuredData(
   course: OptimizedCourseData,
   categoryName: string,
-  courseName: string
+  courseName: string,
+  options: { teacherSlug?: string } = {}
 ) {
-  const canonicalUrl = `https://unlockedcoding.com/r/${categoryName.toLowerCase()}/${courseName}`;
+  const teacherSlug = options.teacherSlug || course.instructorname || 'instructor';
+  const encodedTeacherSlug = encodeURIComponent(teacherSlug);
+  const encodedCourseName = encodeURIComponent(courseName);
+  const canonicalUrl = `https://unlockedcoding.com/teacher/${encodedTeacherSlug}/${encodedCourseName}`;
+  const instructorName = course.instructorDisplayName || course.instructorname || 'Course Instructor';
   
   // Only include essential structured data to reduce size
   return {
@@ -32,7 +38,7 @@ export function generateOptimizedCourseStructuredData(
     },
     "instructor": {
       "@type": "Person",
-      "name": course.instructorname || "Course Instructor"
+      "name": instructorName
     },
     "courseMode": "online",
     "educationalLevel": "beginner",
@@ -53,9 +59,14 @@ export function generateOptimizedVideoStructuredData(
   video: { title: string; url: string },
   videoIndex: number,
   categoryName: string,
-  courseName: string
+  courseName: string,
+  options: { teacherSlug?: string } = {}
 ) {
-  const canonicalUrl = `https://unlockedcoding.com/r/${categoryName.toLowerCase()}/${courseName}/${videoIndex}`;
+  const teacherSlug = options.teacherSlug || course.instructorname || 'instructor';
+  const encodedTeacherSlug = encodeURIComponent(teacherSlug);
+  const encodedCourseName = encodeURIComponent(courseName);
+  const canonicalUrl = `https://unlockedcoding.com/teacher/${encodedTeacherSlug}/${encodedCourseName}/${videoIndex}`;
+  const instructorName = course.instructorDisplayName || course.instructorname || 'Course Instructor';
   
   return {
     "@context": "https://schema.org",
@@ -74,12 +85,12 @@ export function generateOptimizedVideoStructuredData(
     },
     "instructor": {
       "@type": "Person",
-      "name": course.instructorname || "Course Instructor"
+      "name": instructorName
     },
     "partOfSeries": {
       "@type": "VideoSeries",
       "name": course.courseName,
-      "url": `https://unlockedcoding.com/r/${encodeURIComponent(categoryName.toLowerCase())}/${encodeURIComponent(courseName)}`
+      "url": `https://unlockedcoding.com/teacher/${encodedTeacherSlug}/${encodedCourseName}`
     }
   };
 }

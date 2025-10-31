@@ -1,0 +1,39 @@
+{
+    "id": "github-student-pack-guide",
+    "name": "GitHub Student Pack Complete Guide",
+    "description": "Learn how to get the GitHub Student Pack with $200+ worth of developer tools and services for free. Perfect for students and developers.",
+    "image": "https://images.unsplash.com/photo-1556075798-4825dfaaf498?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    "requirements": [
+      "Valid student email address",
+      "Student ID or enrollment proof",
+      "GitHub account",
+      "Age verification (13+ years)"
+    ],
+    "youtubeTutorialLink": "https://www.youtube.com/watch?v=sp9f9fQy_pw",
+    "steps": [
+      "Create a GitHub account if you don't have one",
+      "Go to GitHub Education website",
+      "Click on 'Student Pack' option",
+      "Fill out the application form with your details",
+      "Upload proof of student status",
+      "Wait for approval (usually 1-2 weeks)",
+      "Access your free tools and services"
+    ],
+    "links": [
+      {
+        "name": "GitHub Education",
+        "url": "https://education.github.com/pack"
+      },
+      {
+        "name": "Application Form",
+        "url": "https://education.github.com/pack/offers"
+      },
+      {
+        "name": "Student Verification",
+        "url": "https://education.github.com/pack/offers#student-verification"
+      }
+    ],
+    "category": "Developer Tools",
+    "tags": ["github", "student", "free tools", "education"],
+    "featured": true
+  }

@@ -39,12 +39,10 @@ export default function HomepageCarousel({ courses }: HomepageCarouselProps) {
   const renderCourseCard = (course: ICourse, index: number) => {
     if (course.videoType === 'redirect' && course.redirecturl) {
       return (
-        <a
+        <Link
           key={`${course.coursecategory}-${course.courseName}`}
-          href={course.redirecturl}
-          target="_blank"
-          rel="noopener noreferrer"
-        className="bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-border flex-shrink-0 w-80 hover:scale-102"
+          href={`/teacher/${encodeURIComponent(course.instructorSlug)}/${encodeURIComponent(course.courseName)}`}
+          className="bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-border flex-shrink-0 w-80 hover:scale-102"
         >
           <div className="relative">
             <img 
@@ -58,15 +56,18 @@ export default function HomepageCarousel({ courses }: HomepageCarouselProps) {
                 <div className="flex items-center space-x-2">
                   <img 
                     src={course.imageofinstructur} 
-                    alt={course.instructorname}
+                    alt={course.instructorDisplayName}
                     className="w-8 h-8 rounded-full object-cover border-2 border-white/30"
                   />
                   <span className="text-white text-sm font-medium">
-                    {course.instructorname}
+                    {course.instructorDisplayName}
                   </span>
                 </div>
               </div>
             </div>
+            <span className="absolute top-3 right-3 bg-amber-500 text-white text-xs px-2 py-1 rounded-full shadow">
+              External
+            </span>
           </div>
           <div className="p-6">
             <div className="flex justify-between items-center mb-3">
@@ -87,18 +88,18 @@ export default function HomepageCarousel({ courses }: HomepageCarouselProps) {
                 <span className="text-xs text-muted-foreground">{course.audio || 'English'}</span>
               </div>
               <span className="bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary/90 transition-all">
-                View Details
+                Access Course
               </span>
             </div>
           </div>
-        </a>
+        </Link>
       );
     }
 
     return (
       <Link
         key={`${course.coursecategory}-${course.courseName}`}
-        href={`/r/${course.coursecategory.toLowerCase()}/${encodeURIComponent(course.courseName)}`}
+        href={`/teacher/${encodeURIComponent(course.instructorSlug)}/${encodeURIComponent(course.courseName)}`}
         className="bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-border flex-shrink-0 w-80 hover:scale-102"
       >
         <div className="relative">
@@ -113,11 +114,11 @@ export default function HomepageCarousel({ courses }: HomepageCarouselProps) {
               <div className="flex items-center space-x-2">
                 <img 
                   src={course.imageofinstructur} 
-                  alt={course.instructorname}
+                  alt={course.instructorDisplayName}
                   className="w-8 h-8 rounded-full object-cover border-2 border-white/30"
                 />
                 <span className="text-white text-sm font-medium">
-                  {course.instructorname}
+                  {course.instructorDisplayName}
                 </span>
               </div>
             </div>

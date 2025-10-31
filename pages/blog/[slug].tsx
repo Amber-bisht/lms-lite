@@ -4,26 +4,10 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import { useEffect } from 'react';
 import Layout from '../../components/Layout';
 import { event } from '../../lib/gtag';
-
-interface BlogPost {
-  id: string;
-  name: string;
-  description: string;
-  image: string;
-  requirements: string[];
-  youtubeTutorialLink: string;
-  steps: string[];
-  links: Array<{
-    name: string;
-    url: string;
-  }>;
-  category: string;
-  tags: string[];
-  featured: boolean;
-}
+import { IBlogPost, getBlogPostById, loadBlogPosts } from '../../lib/dataUtils';
 
 interface BlogPostPageProps {
-  post: BlogPost | null;
+  post: IBlogPost | null;
 }
 
 export default function BlogPostPage({ post }: BlogPostPageProps) {
@@ -316,13 +300,9 @@ export default function BlogPostPage({ post }: BlogPostPageProps) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
-    const fs = require('fs');
-    const path = require('path');
-    
-    const blogDataPath = path.join(process.cwd(), 'data', 'blogs.json');
-    const blogData = JSON.parse(fs.readFileSync(blogDataPath, 'utf8'));
-    
-    const paths = blogData.map((post: BlogPost) => ({
+    const posts = loadBlogPosts();
+
+    const paths = posts.map(post => ({
       params: {
         slug: post.id,
       },
@@ -343,17 +323,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
-    const fs = require('fs');
-    const path = require('path');
-    
-    const blogDataPath = path.join(process.cwd(), 'data', 'blogs.json');
-    const blogData = JSON.parse(fs.readFileSync(blogDataPath, 'utf8'));
-    
-    const post = blogData.find((p: BlogPost) => p.id === params?.slug);
+    const slug = params?.slug as string;
+    const post = getBlogPostById(slug);
 
     return {
       props: {
-        post: post || null,
+        post,
       },
       revalidate: 3600, // Revalidate every hour
     };

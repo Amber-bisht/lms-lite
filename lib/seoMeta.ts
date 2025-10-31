@@ -49,6 +49,8 @@ export function generateSEOMeta({
 }
 
 export function generateCourseStructuredData(course: any, categoryName: string, courseName: string) {
+  const instructorDisplayName = course.instructorDisplayName || course.instructorname || 'Instructor';
+  const teacherSlug = course.instructorSlug || course.teacherId || course.instructorname;
   return {
     "@context": "https://schema.org",
     "@type": "Course",
@@ -61,13 +63,13 @@ export function generateCourseStructuredData(course: any, categoryName: string, 
     },
     "instructor": {
       "@type": "Person",
-      "name": course.instructorname || "Instructor"
+      "name": instructorDisplayName
     },
     "courseMode": "online",
     "educationalLevel": course.level || "Beginner",
     "inLanguage": course.language || "English",
     "timeRequired": course.duration || "N/A",
-    "url": `https://unlockedcoding.com/r/${encodeURIComponent(categoryName.toLowerCase())}/${encodeURIComponent(courseName)}`,
+    "url": `https://unlockedcoding.com/teacher/${encodeURIComponent(teacherSlug)}/${encodeURIComponent(courseName)}`,
     "image": course.imageofcourse,
     "offers": {
       "@type": "Offer",
@@ -79,7 +81,7 @@ export function generateCourseStructuredData(course: any, categoryName: string, 
       "courseMode": "online",
       "instructor": {
         "@type": "Person",
-        "name": course.instructorname || "Instructor"
+        "name": instructorDisplayName
       }
     }
   };
@@ -102,7 +104,7 @@ export function generateCategoryStructuredData(categoryName: string, courses: an
           "@type": "Course",
           "name": course.courseName,
           "description": course.des,
-          "url": `https://unlockedcoding.com/r/${course.coursecategory.toLowerCase()}/${encodeURIComponent(course.courseName)}`
+          "url": `https://unlockedcoding.com/teacher/${encodeURIComponent(course.instructorSlug || course.teacherId || course.instructorname)}/${encodeURIComponent(course.courseName)}`
         }
       }))
     }
@@ -126,7 +128,7 @@ export function generateInstructorStructuredData(instructorName: string, courses
       "@type": "Course",
       "name": course.courseName,
       "description": course.des,
-      "url": `https://unlockedcoding.com/r/${course.coursecategory.toLowerCase()}/${encodeURIComponent(course.courseName)}`
+      "url": `https://unlockedcoding.com/teacher/${encodeURIComponent(course.instructorSlug || course.teacherId || instructorName)}/${encodeURIComponent(course.courseName)}`
     }))
   };
 }

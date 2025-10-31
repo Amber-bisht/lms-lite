@@ -49,10 +49,8 @@ export default function HybridCourseList({
           key={`${course.coursecategory}-${course.courseName}`}
           className="bg-card rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden border border-border group"
         >
-          <a
-            href={course.redirecturl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href={`/teacher/${encodeURIComponent(course.instructorSlug)}/${encodeURIComponent(course.courseName)}`}
             className="block"
           >
             <div className="relative">
@@ -68,8 +66,11 @@ export default function HybridCourseList({
                   <span>({course.rating.count})</span>
                 </div>
               )}
+              <span className="absolute top-2 right-2 bg-amber-500 text-white text-xs px-2 py-1 rounded shadow">
+                External
+              </span>
             </div>
-          </a>
+          </Link>
           <div className="p-4 sm:p-6">
             <div className="flex justify-between items-start mb-2">
               <span className="text-xs sm:text-sm text-primary font-medium capitalize bg-primary/10 px-2 py-1 rounded">
@@ -82,7 +83,7 @@ export default function HybridCourseList({
                   </span>
                 )}
                 <span className="text-xs sm:text-sm text-green-600 font-semibold">
-                  ${course.cost || '0'}
+                  ₹{course.cost?.toLocaleString?.() ?? course.cost ?? '0'}
                 </span>
               </div>
             </div>
@@ -92,7 +93,7 @@ export default function HybridCourseList({
             <div className="flex items-center mb-3">
               <img
                 src={course.imageofinstructur}
-                alt={course.instructorname}
+                alt={course.instructorDisplayName}
                 className="w-4 h-4 sm:w-5 sm:h-5 rounded-full mr-2 flex-shrink-0 object-cover"
                 onError={(e) => {
                   e.currentTarget.style.display = 'none';
@@ -101,14 +102,13 @@ export default function HybridCourseList({
               />
               <div className="w-4 h-4 sm:w-5 sm:h-5 bg-muted rounded-full mr-2 flex-shrink-0 hidden"></div>
               <span className="text-xs sm:text-sm text-muted-foreground truncate">
-                {course.instructorname}
+                {course.instructorDisplayName}
               </span>
             </div>
             <p className="text-xs sm:text-sm text-muted-foreground mb-4 line-clamp-3">
               {course.des}
             </p>
-            
-            {/* What You'll Learn Preview */}
+
             {course.whatYouWillLearn && course.whatYouWillLearn.length > 0 && (
               <div className="mb-4">
                 <h4 className="text-xs font-semibold text-foreground mb-2">What you'll learn:</h4>
@@ -130,7 +130,6 @@ export default function HybridCourseList({
               </div>
             )}
 
-            {/* Enhanced course details */}
             <div className="space-y-2 mb-4">
               <div className="grid grid-cols-2 gap-2">
                 {course.duration && (
@@ -150,7 +149,7 @@ export default function HybridCourseList({
                   </div>
                 )}
               </div>
-              
+
               {course.studentsEnrolled && (
                 <div className="flex items-center text-xs text-muted-foreground">
                   <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -159,7 +158,7 @@ export default function HybridCourseList({
                   <span>{typeof course.studentsEnrolled === 'number' ? course.studentsEnrolled.toLocaleString() : course.studentsEnrolled} students enrolled</span>
                 </div>
               )}
-              
+
               {course.lastUpdated && (
                 <div className="flex items-center text-xs text-muted-foreground">
                   <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -170,7 +169,6 @@ export default function HybridCourseList({
               )}
             </div>
 
-            {/* Requirements */}
             {course.requirements && course.requirements.length > 0 && (
               <div className="mb-4">
                 <h4 className="text-xs font-semibold text-foreground mb-2">Requirements:</h4>
@@ -192,7 +190,6 @@ export default function HybridCourseList({
               </div>
             )}
 
-            {/* Features */}
             {course.features && course.features.length > 0 && (
               <div className="mb-4">
                 <h4 className="text-xs font-semibold text-foreground mb-2">Course Features:</h4>
@@ -216,7 +213,7 @@ export default function HybridCourseList({
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
-                External Link
+                Access course
               </span>
               <span className="flex items-center gap-1">
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -236,7 +233,7 @@ export default function HybridCourseList({
         className="bg-card rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden border border-border group"
       >
         <Link
-          href={`/r/${course.coursecategory.toLowerCase()}/${encodeURIComponent(course.courseName)}`}
+          href={`/teacher/${encodeURIComponent(course.instructorSlug)}/${encodeURIComponent(course.courseName)}`}
           className="block"
         >
           <div className="relative">
@@ -276,7 +273,7 @@ export default function HybridCourseList({
           <div className="flex items-center mb-3">
             <img
               src={course.imageofinstructur}
-              alt={course.instructorname}
+              alt={course.instructorDisplayName}
               className="w-4 h-4 sm:w-5 sm:h-5 rounded-full mr-2 flex-shrink-0 object-cover"
               onError={(e) => {
                 e.currentTarget.style.display = 'none';
@@ -285,7 +282,7 @@ export default function HybridCourseList({
             />
             <div className="w-4 h-4 sm:w-5 sm:h-5 bg-muted rounded-full mr-2 flex-shrink-0 hidden"></div>
             <span className="text-xs sm:text-sm text-muted-foreground truncate">
-              {course.instructorname}
+              {course.instructorDisplayName}
             </span>
           </div>
           <p className="text-xs sm:text-sm text-muted-foreground mb-4 line-clamp-3">

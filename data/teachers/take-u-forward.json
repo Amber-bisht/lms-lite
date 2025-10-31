@@ -1,0 +1,19 @@
+{
+  "id": "take-u-forward",
+  "name": "Take U Forward",
+  "displayName": "take-U-forward",
+  "bio": "Take U Forward by Striver provides structured DSA roadmaps and interview-focused coaching for software roles.",
+  "expertise": [
+    "Data Structures",
+    "Algorithms",
+    "Interview Preparation"
+  ],
+  "experience": "7+ years",
+  "studentsHelped": "300000+",
+  "specialization": "DSA & Interview Prep",
+  "teachingStyle": "Step-by-step problem solving with curated playlists",
+  "achievements": [],
+  "image": "https://static.takeuforward.org/content/_striver.png",
+  "socialLinks": {}
+}
+
