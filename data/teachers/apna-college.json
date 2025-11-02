@@ -2,7 +2,7 @@
   "id": "apna-college",
   "name": "Apna College",
   "displayName": "Apna-College",
-  "bio": "Apna College is a leading educational platform founded by Aman Dhattarwal, focusing on making quality programming education accessible to everyone. They offer comprehensive courses in Java, C++, MERN stack development, and aptitude preparation, helping students build successful careers in technology.",
+  "bio": "Apna College stands as one of India's most influential and accessible programming education platforms, founded by the visionary educator Aman Dhattarwal. With a mission to democratize quality coding education, Apna College has transformed the lives of hundreds of thousands of students through their comprehensive, career-oriented curriculum. The platform's signature Sigma series courses cover everything from foundational programming in Java and C++ to advanced MERN stack development and aptitude preparation. Apna College is renowned for breaking down complex technical concepts into simple, engaging lessons that students can follow regardless of their prior experience. Their unique teaching approach combines practical projects, real-world applications, and industry insights, ensuring students are well-prepared for both academic excellence and professional success in the competitive tech industry.",
   "expertise": [
     "Java Programming",
     "C++ Programming",
@@ -13,12 +13,13 @@
   "experience": "5+ years",
   "studentsHelped": "200000+",
   "specialization": "Complete Programming Education",
-  "teachingStyle": "Comprehensive curriculum with career focus",
+  "teachingStyle": "Comprehensive curriculum designed with career focus, emphasizing hands-on learning, project-based assignments, and industry-relevant skills",
   "achievements": [
-    "Founded by Aman Dhattarwal",
-    "Sigma 9.0 course series",
-    "Java and C++ specialization",
-    "MERN stack development courses"
+    "Founded by renowned educator Aman Dhattarwal, creating one of India's most popular programming channels",
+    "Launched the highly successful Sigma 9.0 course series covering complete programming education",
+    "Specialized in Java and C++ programming fundamentals with comprehensive practice materials",
+    "Developed industry-leading MERN stack development courses for full-stack web development",
+    "Helped hundreds of thousands of students achieve their coding and career goals"
   ],
   "image": "https://yt3.googleusercontent.com/FEcjRtez5od8UowDo6tTt9WlE-MrIFEmcwPMTORmK9Swk6KCklOmA3xfIG9WuLWfNYfNThQE=s900-c-k-c0x00ffffff-no-rj",
   "socialLinks": {

@@ -2,7 +2,7 @@
     "id": "akshay-saini",
     "name": "Akshay Saini",
     "displayName": "Akshay-Saini",
-    "bio": "Akshay Saini is a software engineer, educator, and the founder of NamasteDev. He is best known for his YouTube series 'Namaste JavaScript' and for creating detailed, beginner-friendly courses on React, Node.js, DSA, and Frontend System Design. Before founding NamasteDev, he worked as a Software Engineer at Uber.",
+    "bio": "Akshay Saini is an exceptional software engineer, educator, and the visionary founder of NamasteDev, a platform that has transformed how thousands of developers learn modern web technologies. Best known for his groundbreaking YouTube series 'Namaste JavaScript', Akshay has created one of the most comprehensive and beginner-friendly resources for mastering JavaScript, React, Node.js, DSA, and Frontend System Design. His unique teaching methodology combines real-world analogies, storytelling techniques, and in-depth coding examples to make complex frontend concepts intuitive and memorable. With prior experience as a Software Engineer at Uber, Akshay brings industry expertise and best practices directly from the world's leading tech companies to his students, ensuring they learn not just how to code, but how to build scalable, production-ready applications.",
     "expertise": [
       "JavaScript",
       "React.js",
@@ -13,12 +13,13 @@
     "experience": "8+ years",
     "studentsHelped": "300000+",
     "specialization": "Frontend Development & JavaScript",
-    "teachingStyle": "Explains complex frontend concepts through real-world analogies, storytelling, and in-depth coding examples",
+    "teachingStyle": "Revolutionary teaching approach using real-world analogies, storytelling, in-depth coding examples, and building complete applications from scratch",
     "achievements": [
-      "Founder of NamasteDev and creator of popular online tech courses",
-      "Ex-Software Engineer at Uber",
-      "Creator of the viral YouTube series 'Namaste JavaScript'",
-      "Helped hundreds of thousands of students strengthen core web development skills"
+      "Founded NamasteDev and created highly acclaimed online tech courses for modern web development",
+      "Former Software Engineer at Uber with extensive experience in building scalable applications",
+      "Creator of the viral and industry-renowned YouTube series 'Namaste JavaScript' used by developers worldwide",
+      "Helped hundreds of thousands of students master core web development, React, and Node.js skills",
+      "Recognized as one of India's top frontend educators and most effective programming instructors"
     ],
     "image": "https://i.ytimg.com/vi/VIJxU2NYG-Y/hqdefault.jpg",
     "socialLinks": {

@@ -2,7 +2,7 @@
     "id": "genie-ashwani",
     "name": "Ashwani-Kumar-Upadhyay",
     "displayName": "Genie Ashwani",
-    "bio": "Ashwani Kumar Upadhyay is a software engineer and educator, known for his role at the institute Code For Success, where he leads Java Full Stack and Spring Boot courses aimed at job-ready learners. He combines deep core Java & back-end fundamentals with placement-oriented teaching style.",
+    "bio": "Ashwani Kumar Upadhyay, popularly known as Genie Ashwani, is a distinguished software engineer and educator with a passion for shaping the careers of aspiring Java developers. As a leading instructor at Code For Success, Genie Ashwani has established himself as one of the most effective Java educators in the industry, specializing in comprehensive Java Full Stack and Spring Boot training programs. His courses are meticulously designed to transform students into job-ready professionals capable of thriving in competitive tech environments. With his deep understanding of core Java fundamentals, enterprise applications, and modern backend technologies, Genie Ashwani brings years of industry experience to the classroom. His teaching methodology emphasizes building strong foundational knowledge while simultaneously preparing students for real-world job requirements and technical interviews.",
     "expertise": [
       "Core Java",
       "Spring Framework & Spring Boot",
@@ -11,13 +11,14 @@
       "Placement & Interview Preparation"
     ],
     "experience": "5+ years",
-    "studentsHelped": "Thousands",
+    "studentsHelped": "20,000+",
     "specialization": "Java Full Stack & Spring Boot",
-    "teachingStyle": "Beginner-friendly, concept-from-scratch with rich examples and doubt-clearing sessions",
+    "teachingStyle": "Beginner-friendly concept-from-scratch approach with comprehensive examples, interactive doubt-clearing sessions, and placement-oriented curriculum",
     "achievements": [
-      "Instructor of multiple batches of Java Full Stack programmes at Code For Success",
-      "Recognised by students for breaking down complex topics clearly",
-      "Led dedicated placement-oriented Java training tracks"
+      "Lead instructor at Code For Success, successfully running multiple batches of Java Full Stack programs",
+      "Recognized by thousands of students for breaking down complex Java concepts into easily digestible lessons",
+      "Created dedicated placement-oriented Java training tracks with exceptional job placement success rates",
+      "Expert in Spring Framework, Spring Boot, and enterprise Java development practices"
     ],
     "image": "https://www.youtube.com/%40GenieAshwani/about", 
     "socialLinks": {
@@ -26,4 +27,3 @@
       "website": "https://codeforsuccess.in"
     }
   }
-  
