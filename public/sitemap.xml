@@ -2,339 +2,345 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://unlockedcoding.com/</loc>
-    <lastmod>2025-10-31T22:29:51.257Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.969Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/all</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/r</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/about</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/privacy</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/terms</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/contact</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/faq</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/cookie-policy</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/blog</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/blog/aws-educate-program</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://unlockedcoding.com/blog/notion-student-plan</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/blog/github-student-pack-guide</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/blog/jetbrains-student-license</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://unlockedcoding.com/harkirat</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://unlockedcoding.com/harkirat-Singh</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://unlockedcoding.com/100xdevs</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://unlockedcoding.com/blog/notion-student-plan</loc>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/keertipurswani</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/educosys</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/keerti</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://unlockedcoding.com/harkirat</loc>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://unlockedcoding.com/harkirat-Singh</loc>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://unlockedcoding.com/100xdevs</loc>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/amit-khurana</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/gate</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/computer-science</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://unlockedcoding.com/CodeWithHarry</loc>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://unlockedcoding.com/cwh</loc>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://unlockedcoding.com/namastedev</loc>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/sigma</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/apna-college</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://unlockedcoding.com/shradha%20khapra</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <loc>https://unlockedcoding.com/shradha-khapra</loc>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://unlockedcoding.com/teacher/harkirat-singh</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <loc>https://unlockedcoding.com/codeforsuccess</loc>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/teacher/keertipurswani</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/teacher/harnoor</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://unlockedcoding.com/teacher/harkirat-singh</loc>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/teacher/amit-khurana</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://unlockedcoding.com/teacher/codewithharry</loc>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/teacher/coding-seekhho</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/teacher/pathfinders</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/teacher/rbr</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/teacher/codingwallahsir</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/teacher/ayush</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://unlockedcoding.com/teacher/akshay-saini</loc>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/teacher/rohit-negi</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/teacher/apna-college</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://unlockedcoding.com/teacher/genie-ashwani</loc>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/teacher/take-u-forward</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/teacher/anurag-singh-procodrr</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/r/ai-ml-ds</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/r/app-development</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/r/aptitude</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://unlockedcoding.com/r/cyber-security</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/r/data-analytics</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/r/data-engineering</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://unlockedcoding.com/r/defence-exam</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/r/devops</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/r/dsa</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/r/gate</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://unlockedcoding.com/r/government-exam</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://unlockedcoding.com/r/networking</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/r/programming</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://unlockedcoding.com/r/skills</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/r/system-design</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/r/web-development</loc>
-    <lastmod>2025-10-31T22:29:51.258Z</lastmod>
+    <lastmod>2025-11-02T15:19:36.971Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://unlockedcoding.com/teacher/harkirat-singh/harkirat-Cohort-3</loc>
-    <lastmod>2025-10-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://unlockedcoding.com/teacher/keertipurswani/keertiadvcpp</loc>
@@ -349,8 +355,20 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://unlockedcoding.com/teacher/harkirat-singh/harkirat-Cohort-3</loc>
+    <lastmod>2025-10-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://unlockedcoding.com/teacher/amit-khurana/Amit-Computer-Networks</loc>
     <lastmod>2025-10-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://unlockedcoding.com/teacher/codewithharry/Ultimate-Job-Ready-Data-Science</loc>
+    <lastmod>2025-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -415,6 +433,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://unlockedcoding.com/teacher/keertipurswani/Hands-On%20Generative%20AI%20Course</loc>
+    <lastmod>2025-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://unlockedcoding.com/teacher/harkirat-singh/harkirat-Cohort-2</loc>
     <lastmod>2025-10-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -441,6 +465,30 @@
   <url>
     <loc>https://unlockedcoding.com/teacher/coding-seekhho/CodingSeekhho-MERN-Stack-Developer</loc>
     <lastmod>2025-10-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://unlockedcoding.com/teacher/akshay-saini/Namaste%20Frontend%20System%20Design</loc>
+    <lastmod>2025-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://unlockedcoding.com/teacher/akshay-saini/Namaste%20DSA</loc>
+    <lastmod>2025-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://unlockedcoding.com/teacher/akshay-saini/Namaste%20Node.js</loc>
+    <lastmod>2025-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://unlockedcoding.com/teacher/akshay-saini/Namaste%20React</loc>
+    <lastmod>2025-10-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -501,6 +549,12 @@
   <url>
     <loc>https://unlockedcoding.com/teacher/apna-college/SIGMA-9-MERN-PROJECTS</loc>
     <lastmod>2025-10-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://unlockedcoding.com/teacher/genie-ashwani/SPARK-Batch-4-Java-Full-Stack</loc>
+    <lastmod>2025-08-xx</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
