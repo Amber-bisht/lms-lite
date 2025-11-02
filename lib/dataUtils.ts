@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { normalizeKey } from './utils';
 
 function parseJsonFragments<T>(rawContent: string): T[] {
   const trimmed = rawContent.trim();
@@ -33,14 +34,6 @@ function parseJsonFragments<T>(rawContent: string): T[] {
   return [];
 }
 
-function normalizeKey(value: string): string {
-  return value
-    .toLowerCase()
-    .replace(/[@&]/g, 'and')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '');
-}
-
 // Define interfaces for video data
 export interface IVideo {
   title: string;
@@ -64,6 +57,7 @@ export interface ICourse {
   cost: number;
   videoType: 'hls' | 'wistia' | 'youtube' | 'internetarchive' | 'redirect';
   redirecturl?: string;
+  redirectsyllabus?: string[];
   subsection?: string | string[] | null;
   videos: IVideo[];
   rank: 'high' | 'mid' | 'medium' | 'low';
@@ -127,6 +121,7 @@ interface JsonCourse {
   cost?: number;
   videoType: 'hls' | 'wistia' | 'youtube' | 'internetarchive' | 'redirect';
   redirecturl?: string;
+  redirectsyllabus?: string[];
   subsection?: string | string[];
   videos: IVideo[];
   rank?: 'high' | 'mid' | 'medium' | 'low';
@@ -301,6 +296,7 @@ export function getAllCourses(): ICourse[] {
             cost: jsonData.cost || 0,
             videoType: jsonData.videoType,
             redirecturl: jsonData.redirecturl,
+            redirectsyllabus: jsonData.redirectsyllabus || [],
             subsection: jsonData.subsection || null,
             videos: jsonData.videos || [],
             rank: jsonData.rank || 'mid',
@@ -436,6 +432,7 @@ export interface ILightCourse {
   cost: number;
   videoType: 'hls' | 'wistia' | 'youtube' | 'internetarchive' | 'redirect';
   redirecturl?: string;
+  redirectsyllabus?: string[];
   subsection?: string | string[] | null;
   videos: { length: number }; // Only store length, not full video data
   rank: 'high' | 'mid' | 'medium' | 'low';
@@ -469,6 +466,7 @@ export function getLightweightCourses(): ILightCourse[] {
     cost: course.cost,
     videoType: course.videoType,
     redirecturl: course.redirecturl,
+    redirectsyllabus: course.redirectsyllabus,
     subsection: course.subsection,
     videos: { length: course.videos.length }, // Only store length
     rank: course.rank,

@@ -1,29 +1,30 @@
 {
-  "id": "keertipurswani",
-  "name": "Keerti Purswani",
-  "displayName": "Keerti-Purswani",
-  "bio": "Keerti Purswani is a software engineer and system design expert with extensive experience in building scalable applications. She specializes in high-level and low-level system design, helping students understand complex architectural patterns and design principles used in top tech companies.",
+  "id": "codewithharry",
+  "name": "Haris Ali Khan",
+  "displayName": "CodeWithHarry",
+  "bio": "Haris Ali Khan, widely known as CodeWithHarry, is a software engineer, educator, and YouTuber who simplifies programming for millions of learners. He creates practical, beginner-friendly tutorials that focus on building real-world coding skills across multiple domains.",
   "expertise": [
-    "System Design",
-    "High-Level Design",
-    "Low-Level Design",
-    "C++ Programming",
-    "Data Structures"
+    "Python",
+    "Web Development",
+    "Data Science",
+    "Machine Learning",
+    "Programming Fundamentals"
   ],
-  "experience": "6+ years",
-  "studentsHelped": "25000+",
-  "specialization": "System Design & C++",
-  "teachingStyle": "Architecture-focused learning with real-world examples",
+  "experience": "8+ years",
+  "studentsHelped": "4,000,000+",
+  "specialization": "Full-Stack Development & Data Science Education",
+  "teachingStyle": "Project-based, beginner-friendly explanations with a focus on real-world applications",
   "achievements": [
-    "System design expert at top tech companies",
-    "Specialized in HLD and LLD concepts",
-    "C++ programming instructor",
-    "Helped students crack FAANG interviews"
+    "Top educator and content creator in the Indian programming community",
+    "Founder of the CodeWithHarry YouTube channel with millions of subscribers",
+    "Created multiple popular coding courses covering Python, Web Development, and Data Science",
+    "Known for simplifying complex programming topics into easy, step-by-step tutorials"
   ],
-  "image": "https://media.licdn.com/dms/image/v2/D5622AQFJ-IvDtc3rTA/feedshare-shrink_800/feedshare-shrink_800/0/1698045285581?e=2147483647&v=beta&t=GG5cRP-cWWkqQfbPnQIA1Olmp3PTnytdukG3QXKCXyM",
+  "image": "https://www.codewithharry.com/_next/image?url=%2Fharis.webp&w=256&q=75",
   "socialLinks": {
-    "linkedin": "https://linkedin.com/in/keertipurswani",
-    "github": "https://github.com/keertipurswani"
+    "youtube": "https://www.youtube.com/@CodeWithHarry",
+    "website": "https://www.codewithharry.com",
+    "linkedin": "https://www.linkedin.com/in/codewithharry/",
+    "github": "https://github.com/CodeWithHarry"
   }
 }
-

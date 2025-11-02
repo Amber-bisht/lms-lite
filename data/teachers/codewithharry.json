@@ -1,0 +1,31 @@
+{
+    "id": "codewithharry",
+    "name": "Haris Ali Khan",
+    "displayName": "CodeWithHarry",
+    "bio": "Haris Ali Khan, widely known as CodeWithHarry, is a software engineer, educator, and YouTuber who simplifies programming for millions of learners. He creates practical, beginner-friendly tutorials that focus on building real-world coding skills across multiple domains.",
+    "expertise": [
+      "Python",
+      "Web Development",
+      "Data Science",
+      "Machine Learning",
+      "Programming Fundamentals"
+    ],
+    "experience": "8+ years",
+    "studentsHelped": "4,000,000+",
+    "specialization": "Full-Stack Development & Data Science Education",
+    "teachingStyle": "Project-based, beginner-friendly explanations with a focus on real-world applications",
+    "achievements": [
+      "Top educator and content creator in the Indian programming community",
+      "Founder of the CodeWithHarry YouTube channel with millions of subscribers",
+      "Created multiple popular coding courses covering Python, Web Development, and Data Science",
+      "Known for simplifying complex programming topics into easy, step-by-step tutorials"
+    ],
+    "image": "https://yt3.googleusercontent.com/ytc/AIdro_kX3sdbuu3KFmRPsmlu0R5Rx_BhpxwupjtvJmkEdNfla7w=s900-c-k-c0x00ffffff-no-rj",
+    "socialLinks": {
+      "youtube": "https://www.youtube.com/@CodeWithHarry",
+      "website": "https://www.codewithharry.com",
+      "linkedin": "https://www.linkedin.com/in/codewithharry/",
+      "github": "https://github.com/CodeWithHarry"
+    }
+  }
+  

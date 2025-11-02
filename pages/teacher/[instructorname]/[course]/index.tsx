@@ -277,6 +277,29 @@ export default function TeacherCoursePage({
                 </div>
               )}
 
+              {course.videoType === 'redirect' && course.redirectsyllabus && course.redirectsyllabus.length > 0 && (
+                <div className="mb-8">
+                  <h2 className="mb-4 text-2xl font-bold text-foreground">Course Syllabus</h2>
+                  <div className="rounded-lg border bg-card">
+                    {course.redirectsyllabus.map((topic, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center justify-between border-b p-4 last:border-b-0"
+                      >
+                        <div className="flex items-center">
+                          <div className="mr-3 flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-medium text-primary">
+                            {index + 1}
+                          </div>
+                          <div>
+                            <h3 className="font-medium text-foreground">{topic}</h3>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {course.videos && course.videos.length > 0 && (
                 <div className="mb-8">
                   <h2 className="mb-4 text-2xl font-bold text-foreground">Course Content</h2>

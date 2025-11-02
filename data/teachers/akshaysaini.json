@@ -1,0 +1,31 @@
+{
+    "id": "akshay-saini",
+    "name": "Akshay Saini",
+    "displayName": "Akshay-Saini",
+    "bio": "Akshay Saini is a software engineer, educator, and the founder of NamasteDev. He is best known for his YouTube series 'Namaste JavaScript' and for creating detailed, beginner-friendly courses on React, Node.js, DSA, and Frontend System Design. Before founding NamasteDev, he worked as a Software Engineer at Uber.",
+    "expertise": [
+      "JavaScript",
+      "React.js",
+      "Node.js",
+      "Frontend System Design",
+      "Data Structures and Algorithms"
+    ],
+    "experience": "8+ years",
+    "studentsHelped": "300000+",
+    "specialization": "Frontend Development & JavaScript",
+    "teachingStyle": "Explains complex frontend concepts through real-world analogies, storytelling, and in-depth coding examples",
+    "achievements": [
+      "Founder of NamasteDev and creator of popular online tech courses",
+      "Ex-Software Engineer at Uber",
+      "Creator of the viral YouTube series 'Namaste JavaScript'",
+      "Helped hundreds of thousands of students strengthen core web development skills"
+    ],
+    "image": "https://i.ytimg.com/vi/VIJxU2NYG-Y/hqdefault.jpg",
+    "socialLinks": {
+      "youtube": "https://www.youtube.com/@AkshaySaini",
+      "linkedin": "https://www.linkedin.com/in/akshaymarch7/",
+      "twitter": "https://twitter.com/akshaymarch7",
+      "website": "https://namastedev.com"
+    }
+  }
+  
