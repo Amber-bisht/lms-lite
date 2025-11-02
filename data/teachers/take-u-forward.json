@@ -1,19 +1,28 @@
 {
   "id": "take-u-forward",
   "name": "Take U Forward",
-  "displayName": "take-U-forward",
-  "bio": "Take U Forward by Striver provides structured DSA roadmaps and interview-focused coaching for software roles.",
+  "displayName": "Take-U-Forward",
+  "bio": "Take U Forward, led by Striver (Raj Vikramaditya), is a premier platform dedicated to mastering data structures, algorithms, and interview preparation. With a proven track record of helping hundreds of thousands of students land dream jobs at top tech companies, Take U Forward provides comprehensive, well-structured courses that cover everything from basic problem-solving to advanced algorithmic techniques. The platform's signature A2Z DSA Course offers a complete roadmap from fundamentals to expert-level problem solving, making it one of the most trusted resources in the Indian tech community.",
   "expertise": [
-    "Data Structures",
-    "Algorithms",
-    "Interview Preparation"
+    "Data Structures and Algorithms",
+    "Competitive Programming",
+    "Technical Interview Preparation",
+    "Problem-Solving Patterns",
+    "System Design Basics"
   ],
   "experience": "7+ years",
-  "studentsHelped": "300000+",
-  "specialization": "DSA & Interview Prep",
-  "teachingStyle": "Step-by-step problem solving with curated playlists",
-  "achievements": [],
+  "studentsHelped": "300,000+",
+  "specialization": "DSA & Interview Prep for Tech Careers",
+  "teachingStyle": "Comprehensive roadmap-based learning with step-by-step problem-solving, curated playlists, and structured progression from basics to advanced concepts",
+  "achievements": [
+    "Creator of the highly acclaimed 'A2Z DSA Course' used by hundreds of thousands of students",
+    "Helped thousands of students secure placements at FAANG and top tech companies",
+    "Built a comprehensive roadmap covering all important DSA topics for interview preparation",
+    "Recognized as one of the most trusted DSA resources in the Indian programming community"
+  ],
   "image": "https://static.takeuforward.org/content/_striver.png",
-  "socialLinks": {}
+  "socialLinks": {
+    "website": "https://www.takeuforward.org"
+  }
 }
 

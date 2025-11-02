@@ -2,18 +2,27 @@
   "id": "codingwallahsir",
   "name": "Coding Wallah Sir",
   "displayName": "Codingwallahsir",
-  "bio": "Coding Wallah Sir teaches full-stack development with a focus on job-ready skills in Java and modern web technologies.",
+  "bio": "Coding Wallah Sir is a dedicated full-stack development instructor specializing in Java and modern web technologies. With a focus on making students job-ready, Coding Wallah provides comprehensive training in Java fundamentals, Spring Boot, microservices, and full-stack application development. His courses are designed to bridge the gap between academic learning and industry requirements, preparing students for successful careers in software development. The teaching methodology emphasizes building real-world projects, understanding best practices, and developing skills that are directly applicable in professional settings.",
   "expertise": [
-    "Java",
-    "Spring Boot",
-    "Full-Stack Development"
+    "Core Java & Advanced Java",
+    "Spring Framework & Spring Boot",
+    "Full-Stack Web Development",
+    "Microservices Architecture",
+    "RESTful API Development"
   ],
   "experience": "7+ years",
-  "studentsHelped": "30000+",
-  "specialization": "Java Full-Stack Development",
-  "teachingStyle": "Detailed explanations with career-aligned roadmap",
-  "achievements": [],
+  "studentsHelped": "30,000+",
+  "specialization": "Java Full-Stack Development & Backend Engineering",
+  "teachingStyle": "Detailed explanations with career-focused curriculum, emphasis on building job-ready skills through real projects",
+  "achievements": [
+    "Created comprehensive Java full-stack development courses for career preparation",
+    "Helped thousands of students land jobs in Java development roles",
+    "Expert in Spring Boot and modern backend development practices",
+    "Known for providing industry-aligned curriculum and hands-on project training"
+  ],
   "image": "https://framerusercontent.com/images/y7CcMBX2K5B9Uekni4arlrfBsE.png",
-  "socialLinks": {}
+  "socialLinks": {
+    "youtube": "https://www.youtube.com/@CodingWallah"
+  }
 }
 

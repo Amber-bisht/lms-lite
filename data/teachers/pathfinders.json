@@ -1,18 +1,29 @@
 {
-  "id": "pathfinders",
-  "name": "The Pathfinders",
-  "displayName": "Pathfinders",
-  "bio": "The Pathfinders team delivers comprehensive preparation programs for competitive exams with a focus on ECE and electrical subjects.",
+  "id": "pathfinder",
+  "name": "Pathfinder Educational Centre",
+  "displayName": "Pathfinder-Educational-Centre",
+  "bio": "Pathfinder Educational Centre stands as one of Eastern India's most prestigious and trusted coaching institutes, established over three decades ago with a mission to help students excel in competitive exams. With a legacy of excellence, Pathfinder has consistently produced top rankers in JEE, NEET, WBJEE, and various Olympiads. The institute combines rigorous academic training with innovative teaching methodologies, personalized mentorship, and comprehensive test series. Pathfinder's experienced faculty, state-of-the-art infrastructure, and proven track record make it the go-to destination for serious engineering and medical aspirants in Eastern India.",
   "expertise": [
-    "GATE ECE",
-    "Competitive Exam Prep"
+    "Engineering Entrance Preparation",
+    "Medical Entrance Preparation",
+    "Board Exam Training",
+    "Olympiad Preparation"
   ],
-  "experience": "8+ years",
-  "studentsHelped": "50000+",
-  "specialization": "GATE & ESE Preparation",
-  "teachingStyle": "Collaborative teaching with structured curricula",
-  "achievements": [],
-  "image": "https://appx-content-v2.classx.co.in/paid_course3/2025-03-30-0.9186901032589612.png",
-  "socialLinks": {}
+  "experience": "30+ years",
+  "studentsHelped": "500000+",
+  "specialization": "JEE, NEET & Foundation Education",
+  "teachingStyle": "Concept-focused teaching with detailed notes, test series, and personalized mentorship.",
+  "achievements": [
+    "30+ years of excellence as Eastern India's top-ranked institute for JEE and NEET preparation",
+    "Produced thousands of successful alumni across IITs, NITs, and top medical colleges across India",
+    "Consistently achieving top ranks and exceptional success rates in competitive examinations",
+    "Recognized for comprehensive curriculum, expert faculty, and proven teaching methodology"
+  ],
+  "image": "https://pathfinder.edu.in/wp-content/uploads/2023/07/Pathfinder-Logo-1.png",
+  "socialLinks": {
+    "youtube": "https://www.youtube.com/channel/UCfi5HAZ_rEcnVnXmrB2kcXg",
+    "linkedin": "",
+    "twitter": "",
+    "website": "https://pathfinder.edu.in/"
+  }
 }
-

@@ -1,19 +1,26 @@
 {
-  "id": "harnoor",
+  "id": "harnoor-singh",
   "name": "Harnoor Singh",
-  "displayName": "Harnoor",
-  "bio": "Harnoor is an app development instructor focused on helping beginners build their first production-ready mobile applications.",
+  "displayName": "Harnoor-Singh",
+  "bio": "Harnoor Singh is a dedicated app-development instructor and mobile technology expert specializing in helping students of all levels build production-ready mobile applications using Android and modern mobile technologies. With extensive industry experience in mobile app development, Harnoor brings practical insights and real-world expertise to his teaching. His comprehensive courses cover everything from Android fundamentals to advanced app architectures, ensuring students learn both the theoretical concepts and hands-on skills needed to excel as mobile developers. Harnoor's teaching approach emphasizes building complete, industry-standard applications while understanding best practices, design patterns, and modern mobile development workflows.",
   "expertise": [
-    "App Development",
-    "Flutter",
-    "Career Guidance"
+    "Mobile App Development",
+    "Android",
+    "App Architecture",
+    "Beginner to Advanced App Building"
   ],
-  "experience": "5+ years",
-  "studentsHelped": "20000+",
-  "specialization": "Mobile App Development",
-  "teachingStyle": "Beginner-friendly explanations with practical demos",
-  "achievements": [],
+  "experience": "5+ years", 
+  "studentsHelped": "20,000+", 
+  "specialization": "Mobile App Development for Beginners to Advanced",
+  "teachingStyle": "Step-by-step project-based learning, real-world apps, beginner-friendly explanations",  
+  "achievements": [
+    "Created comprehensive app development courses covering Android fundamentals to advanced topics",
+    "Developed 6 industry-level projects and hackathon preparation materials for students",
+    "Helped thousands of students build production-ready mobile applications",
+    "Expert in modern Android development, app architecture, and mobile design patterns"
+  ],
   "image": "https://media.licdn.com/dms/image/v2/C5603AQEljChnRuwxLw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1657074127193?e=2147483647&v=beta&t=KpHplrhf0UmSNzsRHP7oA80ni5J4_t3x-jvJU-bPoo4",
-  "socialLinks": {}
+  "socialLinks": {
+    "linkedin": "https://www.linkedin.com/in/iharnoor"
+  }
 }
-

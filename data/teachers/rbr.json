@@ -1,18 +1,28 @@
 {
   "id": "rbr",
-  "name": "RBR",
-  "displayName": "RBR",
-  "bio": "RBR provides specialized guidance for data analytics and related career tracks through structured online programs.",
+  "name": "Ravindrababu-Ravula",
+  "displayName": "Ravindrababu-Ravula",
+  "bio": "Ravindrababu Ravula, affectionately known as RBR Sir, is a distinguished computer science educator with over 15 years of experience in teaching and mentoring students. With a prestigious Master's degree in Computer Science from the Indian Institute of Science (IISc) Bangalore, RBR Sir brings academic excellence and industry insights to his teaching. As the founder of RAUDRA Eduservices, he has helped countless students excel in DSA, GATE preparation, web development, data science, and study abroad consulting. His comprehensive approach combines strong fundamentals, problem-solving strategies, and real-world applications, making him one of the most respected educators in the Indian computer science community.",
   "expertise": [
-    "Data Analytics",
-    "Career Mentorship"
+    "Computer Science",
+    "Data Structures and Algorithms (DSA)",
+    "GATE CS & DA preparation",
+    "Study Abroad & Consultancy"
   ],
-  "experience": "6+ years",
-  "studentsHelped": "15000+",
-  "specialization": "Data Analytics Coaching",
-  "teachingStyle": "Mentorship-driven with industry projects",
-  "achievements": [],
-  "image": "https://framerusercontent.com/images/MJkqLlSOsWzlPbyU2hYWFe6S4n0.png",
-  "socialLinks": {}
+  "experience": "15+ years",
+  "studentsHelped": "100,000",  
+  "specialization": "GATE & DSA for Computer Science",
+  "teachingStyle": "Structured, beginner-friendly lectures, real-world examples, test-series focus",
+  "achievements": [
+    "Master's degree in Computer Science from the prestigious IISc Bangalore",
+    "Founder of RAUDRA Eduservices, a leading platform for computer science education",
+    "YouTube educator with high viewership and recognition for CS topics across India",
+    "Helped thousands of students succeed in GATE, campus placements, and competitive programming"
+  ],
+  "image": "https://framerusercontent.com/images/MJkqLlSOsWzlPbyU2hYWFe6S4n0.png", 
+  "socialLinks": {
+    "youtube": "https://www.youtube.com/@ravindrababu_ravula",
+    "linkedin": "https://www.linkedin.com/in/ravindrababu-r-ravula",  
+    "website": "https://ravindrababuravula.in/"
+  }
 }
-

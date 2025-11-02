@@ -2,18 +2,27 @@
   "id": "ayush",
   "name": "Ayush",
   "displayName": "Ayush",
-  "bio": "Ayush is a machine learning instructor focused on practical ML workflows and real-world deployments.",
+  "bio": "Ayush is a skilled machine learning instructor and data scientist specializing in practical ML workflows, model deployment, and real-world AI applications. With extensive experience in developing production-ready machine learning solutions, Ayush brings industry expertise to his teaching. His courses focus on building end-to-end ML systems, from data preprocessing and model training to deployment and monitoring. Ayush emphasizes hands-on learning through real-world projects, helping students develop the practical skills needed to succeed as ML engineers in the industry.",
   "expertise": [
     "Machine Learning",
+    "Deep Learning",
     "Data Science",
-    "Python"
+    "Python for ML",
+    "Model Deployment"
   ],
   "experience": "5+ years",
-  "studentsHelped": "12000+",
-  "specialization": "Machine Learning",
-  "teachingStyle": "Application-oriented lessons with hands-on projects",
-  "achievements": [],
+  "studentsHelped": "12,000+",
+  "specialization": "Machine Learning & AI Application Development",
+  "teachingStyle": "Application-oriented learning with hands-on projects, real-world case studies, and focus on production-ready ML workflows",
+  "achievements": [
+    "Created comprehensive machine learning courses covering fundamentals to advanced topics",
+    "Helped thousands of students build practical ML skills through real-world projects",
+    "Expertise in deploying ML models in production environments",
+    "Known for making complex ML concepts accessible through practical examples and hands-on coding"
+  ],
   "image": "https://yt3.googleusercontent.com/h-ZXXbfsb_bp3XLCK8BoI_4NySEoz3CBlFvacIy9m4hqe4FODhy8k9zxcNqDfLyPQC9dX8-w=s900-c-k-c0x00ffffff-no-rj",
-  "socialLinks": {}
+  "socialLinks": {
+    "youtube": "https://www.youtube.com/@Ayush"
+  }
 }
 

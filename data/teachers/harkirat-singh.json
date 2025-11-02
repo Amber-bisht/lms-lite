@@ -1,23 +1,30 @@
 {
   "id": "harkirat-singh",
   "name": "Harkirat Singh",
-  "displayName": "harkirat-Singh",
-  "bio": "Harkirat Singh is a full-stack engineer and educator known for building modern web applications and mentoring developers through practical cohorts.",
+  "displayName": "Harkirat-Singh",
+  "bio": "Harkirat Singh is an accomplished full-stack engineer, tech entrepreneur, and educator renowned for building modern web applications and mentoring developers through practical, hands-on cohorts. As the founder of 100xDevs, Harkirat has revolutionized developer education by creating immersive, project-based learning experiences that take students from beginner to job-ready in full-stack development. His teaching philosophy emphasizes building real-world applications, understanding system design principles, and mastering modern web technologies. With extensive experience at top tech companies, Harkirat brings industry insights and best practices to his cohorts, helping thousands of students land their dream jobs in web development.",
   "expertise": [
-    "Full-Stack Development",
+    "Full-Stack Web Development",
     "Backend Engineering",
     "System Design",
-    "Developer Mentorship"
+    "Developer Mentorship",
+    "web3 development"
   ],
-  "experience": "8+ years",
-  "studentsHelped": "50000+",
+  "experience": "5+ years",
+  "studentsHelped": "500000+",
   "specialization": "Full-Stack Web Development",
-  "teachingStyle": "Project-driven learning with real-world scenarios",
+  "teachingStyle": "Hands-on project based learning with open source emphasis and live cohort-structured teaching",
   "achievements": [
-    "Founder of 100xDevs cohort",
-    "Led multiple successful developer bootcamps"
+    "Founder of the 100xDevs initiative, transforming thousands of developers' careers",
+    "Led multiple successful developer bootcamps focused on full-stack and system design",
+    "Created comprehensive cohorts covering modern web development technologies and best practices",
+    "Helped hundreds of students secure positions at top tech companies and startups"
   ],
-  "image": "https://appx-wsb-gcp-mcdn.akamai.net.in/subject/2023-01-17-0.3698267942851394.jpg",
-  "socialLinks": {}
+  "image": "https://bs-uploads.toptal.io/blackfish-uploads/talent/427843/picture/optimized/huge_c711f787694f240c7bb20e598bfdd6e8-e2b83df354d725bbf11311fddbcf3719.jpg",
+  "socialLinks": {
+    "youtube": "https://www.youtube.com/@harkirat1",
+    "linkedin": "",
+    "twitter": "https://twitter.com/kirat_tw",
+    "website": ""
+  }
 }
-

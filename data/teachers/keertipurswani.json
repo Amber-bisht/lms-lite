@@ -1,30 +1,29 @@
 {
-  "id": "codewithharry",
-  "name": "Haris Ali Khan",
-  "displayName": "CodeWithHarry",
-  "bio": "Haris Ali Khan, widely known as CodeWithHarry, is a software engineer, educator, and YouTuber who simplifies programming for millions of learners. He creates practical, beginner-friendly tutorials that focus on building real-world coding skills across multiple domains.",
+  "id": "keertipurswani",
+  "name": "Keerti Purswani",
+  "displayName": "Keerti-Purswani",
+  "bio": "Keerti Purswani is a dynamic computer science educator and founder of Educosys, specializing in data structures, algorithms, system design, and generative AI education. With a passion for making complex technical concepts accessible, Keerti has helped thousands of students excel in competitive programming, technical interviews, and real-world software engineering challenges. Her comprehensive approach combines hands-on practice with deep conceptual understanding, preparing students for careers at top tech companies.",
   "expertise": [
-    "Python",
-    "Web Development",
-    "Data Science",
-    "Machine Learning",
-    "Programming Fundamentals"
+    "Data Structures and Algorithms",
+    "System Design (HLD & LLD)",
+    "Generative AI & Machine Learning",
+    "Competitive Programming",
+    "Interview Preparation"
   ],
-  "experience": "8+ years",
-  "studentsHelped": "4,000,000+",
-  "specialization": "Full-Stack Development & Data Science Education",
-  "teachingStyle": "Project-based, beginner-friendly explanations with a focus on real-world applications",
+  "experience": "10+ years",
+  "studentsHelped": "50,000+",
+  "specialization": "DSA, System Design & AI Education",
+  "teachingStyle": "Hands-on project-based learning with live coding sessions, real-world case studies, and comprehensive doubt-clearing support",
   "achievements": [
-    "Top educator and content creator in the Indian programming community",
-    "Founder of the CodeWithHarry YouTube channel with millions of subscribers",
-    "Created multiple popular coding courses covering Python, Web Development, and Data Science",
-    "Known for simplifying complex programming topics into easy, step-by-step tutorials"
+    "Founder of Educosys, a leading platform for tech education",
+    "Created comprehensive courses on DSA, System Design (HLD, LLD, HHLD), and Generative AI",
+    "Helped thousands of students secure placements at top tech companies through rigorous interview preparation",
+    "Known for breaking down complex algorithms and system design concepts into digestible, practical lessons"
   ],
-  "image": "https://www.codewithharry.com/_next/image?url=%2Fharis.webp&w=256&q=75",
+  "image": "https://www.educosys.com/assets/images/about/keerti.webp",
   "socialLinks": {
-    "youtube": "https://www.youtube.com/@CodeWithHarry",
-    "website": "https://www.codewithharry.com",
-    "linkedin": "https://www.linkedin.com/in/codewithharry/",
-    "github": "https://github.com/CodeWithHarry"
+    "youtube": "https://www.youtube.com/@Educosys",
+    "website": "https://www.educosys.com",
+    "linkedin": "https://www.linkedin.com/in/keertipurswani"
   }
 }

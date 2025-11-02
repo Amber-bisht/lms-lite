@@ -2,18 +2,27 @@
   "id": "coding-seekhho",
   "name": "Coding Seekhho",
   "displayName": "Coding-Seekhho",
-  "bio": "Coding Seekhho creates beginner-friendly programming tutorials and bootcamps focused on practical coding skills.",
+  "bio": "Coding Seekhho is a comprehensive programming education platform designed to make coding accessible for beginners and intermediate learners. The platform offers practical, hands-on tutorials and bootcamps covering programming fundamentals, web development, and modern technologies. With a focus on real-world applications, Coding Seekhho helps students build practical coding skills through project-based learning. The courses emphasize understanding core concepts, writing clean code, and applying programming principles to solve actual problems.",
   "expertise": [
-    "C Programming",
-    "Python",
-    "Web Development"
+    "C/C++ Programming",
+    "Python Development",
+    "Web Development",
+    "Programming Fundamentals",
+    "Full-Stack Development"
   ],
   "experience": "4+ years",
-  "studentsHelped": "15000+",
-  "specialization": "Programming Foundations",
-  "teachingStyle": "Hands-on coding with real-world assignments",
-  "achievements": [],
+  "studentsHelped": "15,000+",
+  "specialization": "Programming Foundations & Full-Stack Development",
+  "teachingStyle": "Beginner-friendly tutorials with hands-on coding practice, real-world assignments, and emphasis on building practical skills",
+  "achievements": [
+    "Created beginner-friendly programming courses covering multiple languages and technologies",
+    "Helped thousands of students start their programming journey with confidence",
+    "Focus on practical, project-based learning for real-world application",
+    "Known for breaking down complex programming concepts into simple, understandable lessons"
+  ],
   "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3baEqD8xPD7tg8hJzHwo1A_owabzwrZsEIQ&s",
-  "socialLinks": {}
+  "socialLinks": {
+    "youtube": "https://www.youtube.com/@CodingSeekhho"
+  }
 }
 

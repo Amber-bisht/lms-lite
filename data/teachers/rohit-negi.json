@@ -2,18 +2,27 @@
   "id": "rohit-negi",
   "name": "Rohit Negi",
   "displayName": "Rohit-Negi",
-  "bio": "Rohit Negi mentors students in data structures and algorithms with an emphasis on interview preparation.",
+  "bio": "Rohit Negi is an experienced DSA mentor and educator specializing in data structures, algorithms, and technical interview preparation. With a deep understanding of problem-solving patterns and algorithmic thinking, Rohit helps students develop the critical skills needed to excel in competitive programming and technical interviews. His teaching methodology emphasizes pattern recognition, systematic problem-solving approaches, and building confidence through consistent practice. Rohit's comprehensive courses cover everything from fundamental data structures to advanced algorithmic techniques, preparing students for careers at top technology companies.",
   "expertise": [
-    "Data Structures",
-    "Algorithms",
-    "Interview Preparation"
+    "Data Structures and Algorithms",
+    "Problem-Solving Patterns",
+    "Interview Preparation",
+    "Competitive Programming",
+    "Algorithmic Thinking"
   ],
   "experience": "6+ years",
-  "studentsHelped": "25000+",
-  "specialization": "DSA Mentorship",
-  "teachingStyle": "Problem-solving based with pattern recognition",
-  "achievements": [],
+  "studentsHelped": "25,000+",
+  "specialization": "DSA & Interview Preparation",
+  "teachingStyle": "Pattern-based problem-solving with systematic approaches, emphasis on recognizing common patterns, and building strong algorithmic foundations",
+  "achievements": [
+    "Mentored thousands of students to success in DSA and technical interviews",
+    "Created comprehensive problem-solving courses covering all major DSA topics",
+    "Helped students develop strong problem-solving skills through pattern recognition techniques",
+    "Known for making complex algorithmic concepts accessible through clear explanations and examples"
+  ],
   "image": "https://yt3.googleusercontent.com/ytc/AIdro_kMl44oPi4fNs0L0DhQxsXWFhMWym0bfH3tagBnNeBkNyc=s900-c-k-c0x00ffffff-no-rj",
-  "socialLinks": {}
+  "socialLinks": {
+    "youtube": "https://www.youtube.com/@RohitNegi"
+  }
 }
 
