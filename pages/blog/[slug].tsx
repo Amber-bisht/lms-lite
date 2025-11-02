@@ -172,6 +172,20 @@ export default function BlogPostPage({ post }: BlogPostPageProps) {
             )}
 
             {/* Blog Content */}
+            {post.content && (
+              <article className="mb-8 sm:mb-12">
+                <div className="bg-card border border-border rounded-xl p-6 sm:p-8">
+                  <div className="text-muted-foreground leading-relaxed text-base sm:text-lg">
+                    {post.content.split('\n\n').map((paragraph, index) => (
+                      <p key={index} className="mb-4 last:mb-0">
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            )}
+
             <article className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Left Column */}
               <div className="space-y-8">
@@ -330,7 +344,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       props: {
         post,
       },
-      revalidate: 3600, // Revalidate every hour
     };
   } catch (error) {
     console.error('Error loading blog post:', error);
@@ -339,7 +352,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       props: {
         post: null,
       },
-      revalidate: 3600,
     };
   }
 };

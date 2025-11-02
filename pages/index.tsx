@@ -230,7 +230,6 @@ export const getStaticProps: GetStaticProps = async () => {
         reviewsData: safeReviewsData,
         teachers: safeTeachers,
       },
-      revalidate: 3600, // Revalidate every hour
     };
   } catch (error) {
     console.error('Error loading homepage data:', error);
@@ -241,7 +240,6 @@ export const getStaticProps: GetStaticProps = async () => {
         reviewsData: { reviews: [], averageRating: 0, totalReviews: 0 },
         teachers: [],
       },
-      revalidate: 3600,
     };
   }
 };

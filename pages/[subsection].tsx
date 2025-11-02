@@ -200,7 +200,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           courses: [],
           subsectionName: '',
         },
-        revalidate: 60,
       };
     }
 
@@ -211,7 +210,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         courses,
         subsectionName,
       },
-      revalidate: 60, // Revalidate every 60 seconds for ISR
     };
   } catch (error) {
     console.error('Error fetching subsection courses:', error);
@@ -220,7 +218,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         courses: [],
         subsectionName: params?.subsection as string || '',
       },
-      revalidate: 60,
     };
   }
 };

@@ -213,8 +213,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         courses,
         categoryName,
       },
-      // Revalidate every 60 seconds for ISR
-      revalidate: 60,
     };
   } catch (error) {
     console.error('Error fetching category courses:', error);
@@ -223,7 +221,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         courses: [],
         categoryName: params?.category as string || '',
       },
-      revalidate: 60,
     };
   }
 };

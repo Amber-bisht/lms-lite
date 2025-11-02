@@ -221,7 +221,6 @@ export async function getStaticProps() {
       props: {
         posts,
       },
-      revalidate: 3600, // Revalidate every hour
     };
   } catch (error) {
     console.error('Error loading blog data:', error);
@@ -230,7 +229,6 @@ export async function getStaticProps() {
       props: {
         posts: [],
       },
-      revalidate: 3600,
     };
   }
 }

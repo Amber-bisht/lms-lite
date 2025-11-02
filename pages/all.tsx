@@ -89,8 +89,6 @@ export const getStaticProps: GetStaticProps = async () => {
       props: {
         courses,
       },
-      // Revalidate every 60 seconds for ISR
-      revalidate: 60,
     };
   } catch (error) {
     console.error('Error fetching courses:', error);
@@ -98,7 +96,6 @@ export const getStaticProps: GetStaticProps = async () => {
       props: {
         courses: [],
       },
-      revalidate: 60,
     };
   }
 };

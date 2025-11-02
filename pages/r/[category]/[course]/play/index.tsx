@@ -67,7 +67,6 @@ export const getStaticProps: GetStaticProps<LegacyCoursePlayRedirectProps> = asy
     if (!course) {
       return {
         notFound: true,
-        revalidate: 60,
       };
     }
 
@@ -79,13 +78,11 @@ export const getStaticProps: GetStaticProps<LegacyCoursePlayRedirectProps> = asy
       props: {
         destination,
       },
-      revalidate: 60,
     };
   } catch (error) {
     console.error('Error handling legacy course play redirect:', error);
     return {
       notFound: true,
-      revalidate: 60,
     };
   }
 };

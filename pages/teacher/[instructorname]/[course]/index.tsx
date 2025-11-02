@@ -524,7 +524,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     if (!course) {
       return {
         notFound: true,
-        revalidate: 60,
       };
     }
 
@@ -540,7 +539,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         similarCourses,
         teacherDetails,
       },
-      revalidate: 60,
     };
   } catch (error) {
     console.error('Error fetching teacher course page:', error);
@@ -553,7 +551,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         similarCourses: [],
         teacherDetails: null,
       },
-      revalidate: 60,
     };
   }
 };

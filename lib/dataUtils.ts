@@ -652,6 +652,7 @@ export interface IBlogPost {
   name: string;
   description: string;
   image: string;
+  content?: string;
   requirements: string[];
   youtubeTutorialLink?: string;
   steps: string[];

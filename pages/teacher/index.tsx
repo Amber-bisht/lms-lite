@@ -329,7 +329,6 @@ export async function getStaticProps() {
       props: {
         teachers,
       },
-      revalidate: 3600,
     };
   } catch (error) {
     console.error('Error loading teacher list:', error);
@@ -337,7 +336,6 @@ export async function getStaticProps() {
       props: {
         teachers: [],
       },
-      revalidate: 3600,
     };
   }
 }

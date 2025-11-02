@@ -185,8 +185,6 @@ export const getStaticProps: GetStaticProps = async () => {
       props: {
         categories,
       },
-      // Revalidate every 60 seconds for ISR
-      revalidate: 60,
     };
   } catch (error) {
     console.error('Error fetching categories:', error);
@@ -194,7 +192,6 @@ export const getStaticProps: GetStaticProps = async () => {
       props: {
         categories: [],
       },
-      revalidate: 60,
     };
   }
 };

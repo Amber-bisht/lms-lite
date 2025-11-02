@@ -463,6 +463,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       teacherDetails,
       similarTeachers
     },
-    revalidate: 3600 // Revalidate every hour
   };
 };

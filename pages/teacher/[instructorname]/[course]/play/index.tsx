@@ -278,7 +278,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     if (!course) {
       return {
         notFound: true,
-        revalidate: 60,
       };
     }
 
@@ -289,7 +288,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         courseName,
         teacherSlug: course.instructorSlug || teacherSlug,
       },
-      revalidate: 60,
     };
   } catch (error) {
     console.error('Error fetching teacher course play page:', error);
@@ -300,7 +298,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         courseName: params?.course as string,
         teacherSlug: params?.instructorname as string,
       },
-      revalidate: 60,
     };
   }
 };
