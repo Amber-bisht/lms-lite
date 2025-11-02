@@ -2,7 +2,7 @@
 
 const { setTimeout: sleep } = require('node:timers/promises');
 
-const SITEMAP_URL = 'https://system32.in/sitemap.xml';
+const SITEMAP_URL = 'https://unlockedcoding.com/sitemap.xml';
 const CONCURRENCY = 4;
 const REQUEST_DELAY_MS = 250;
 
