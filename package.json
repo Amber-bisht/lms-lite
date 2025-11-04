@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "build:fast": "rm -rf .next && next build",
+    "build:cloudflare": "next build && @cloudflare/next-on-pages",
     "start": "next start",
     "lint": "next lint",
     "ping": "node scripts/ping.js",
@@ -28,6 +29,7 @@
     "react-icons": "^5.5.0"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.13.16",
     "@types/hls.js": "^0.13.3",
     "@types/node": "^20.17.10",
     "@types/react": "^18.3.17",
