@@ -46,13 +46,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     return {
       paths,
-      fallback: 'blocking',
+      fallback: false,
     };
   } catch (error) {
     console.error('Error generating static paths for legacy course play redirects:', error);
     return {
       paths: [],
-      fallback: 'blocking',
+      fallback: false,
     };
   }
 };

@@ -8,6 +8,7 @@ import { ILightCourse } from '../../lib/dataUtils';
 import { getAllCategories, getLightweightCoursesByCategory } from '../../lib/dataUtils';
 import { trackCategoryView } from '../../lib/gtag';
 
+
 // Dynamic import for better code splitting
 const HybridCourseList = dynamic(() => import('../../components/HybridCourseList'), {
   loading: () => <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -190,13 +191,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     return {
       paths,
-      fallback: 'blocking', // Enable ISR (Incremental Static Regeneration)
+      fallback: false, // All pages are pre-rendered for Cloudflare Pages
     };
   } catch (error) {
     console.error('Error generating static paths:', error);
     return {
       paths: [],
-      fallback: 'blocking',
+      fallback: false,
     };
   }
 };

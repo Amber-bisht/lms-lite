@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { getAllCourses, getCourseByName } from '../../../lib/dataUtils';
 
+
 interface LegacyCourseRedirectProps {
   destination: string | null;
 }
@@ -46,13 +47,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     return {
       paths,
-      fallback: 'blocking',
+      fallback: false,
     };
   } catch (error) {
     console.error('Error generating static paths for legacy course redirects:', error);
     return {
       paths: [],
-      fallback: 'blocking',
+      fallback: false,
     };
   }
 };

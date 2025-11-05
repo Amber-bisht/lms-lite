@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Layout from '../../components/Layout';
 import { getAllCourses, ICourse, ITeacherDetail, getTeacherDetails, loadTeacherData } from '../../lib/dataUtils';
 
+
 interface InstructorPageProps {
   instructorName: string;
   courses: ICourse[];

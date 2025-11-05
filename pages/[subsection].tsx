@@ -5,6 +5,7 @@ import Layout from '../components/Layout';
 import { ILightCourse, getLightweightCoursesBySubsection, getAllSubsections, ITeacherDetail, getTeacherDetails, loadTeacherData } from '../lib/dataUtils';
 import { normalizeKey } from '../lib/utils';
 
+
 interface SubsectionPageProps {
   courses: ILightCourse[];
   subsectionName: string;
@@ -334,7 +335,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: 'blocking', // Enable ISR (Incremental Static Regeneration)
+    fallback: false, // All pages are pre-rendered for Cloudflare Pages
   };
 };
 

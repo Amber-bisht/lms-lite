@@ -6,6 +6,7 @@ import Layout from '../../components/Layout';
 import { event } from '../../lib/gtag';
 import { IBlogPost, getBlogPostById, loadBlogPosts } from '../../lib/dataUtils';
 
+
 interface BlogPostPageProps {
   post: IBlogPost | null;
 }
@@ -324,13 +325,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     return {
       paths,
-      fallback: 'blocking',
+      fallback: false,
     };
   } catch (error) {
     console.error('Error generating blog post paths:', error);
     return {
       paths: [],
-      fallback: 'blocking',
+      fallback: false,
     };
   }
 };

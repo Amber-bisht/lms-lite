@@ -14,6 +14,7 @@ import {
 } from '../../../../lib/dataUtils';
 import { trackCourseView, event } from '../../../../lib/gtag';
 
+
 interface TeacherCoursePageProps {
   course: ICourse | null;
   categoryName: string;
@@ -526,13 +527,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     return {
       paths,
-      fallback: 'blocking',
+      fallback: false,
     };
   } catch (error) {
     console.error('Error generating static paths for teacher course pages:', error);
     return {
       paths: [],
-      fallback: 'blocking',
+      fallback: false,
     };
   }
 };
