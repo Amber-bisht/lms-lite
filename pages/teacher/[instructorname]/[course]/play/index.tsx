@@ -10,6 +10,7 @@ import { ICourse, getAllCourses, getCourseByTeacherAndName } from '../../../../.
 import { trackCourseView } from '../../../../../lib/gtag';
 import { generateOptimizedCourseStructuredData } from '../../../../../lib/structuredData';
 
+
 const VideoPlayer = dynamic(() => import('../../../../../components/VideoPlayer'), {
   loading: () => (
     <div className="flex h-64 items-center justify-center rounded-lg bg-muted">
