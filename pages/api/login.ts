@@ -1,48 +1,15 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { OAuth2Client } from 'google-auth-library';
-import { TLSSocket } from 'tls';
-import clientPromise from '../../lib/mongodb';
+// Edge Runtime compatible - uses Supabase Auth
+export const config = {
+  runtime: 'edge',
+};
+
+import type { NextRequest } from 'next/server';
 
 const STORAGE_KEY = 'lite-lms-user';
 
-const getEnv = () => {
-  const clientId = process.env.GOOGLE_CLIENT_ID;
-  const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
-  if (!clientId || !clientSecret) {
-    throw new Error('Missing Google OAuth credentials. Set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET.');
-  }
-  return { clientId, clientSecret };
-};
-
-const getOrigin = (req: NextApiRequest) => {
-  if (process.env.GOOGLE_REDIRECT_URI) {
-    const provided = new URL(process.env.GOOGLE_REDIRECT_URI);
-    return `${provided.protocol}//${provided.host}`;
-  }
-
-  const protoHeader = (req.headers['x-forwarded-proto'] || req.headers['x-forwarded-protocol']) as string | undefined;
-  const protocolHeader = protoHeader?.split(',')[0]?.toLowerCase();
-  const isTlsSocket = req.socket instanceof TLSSocket && req.socket.encrypted === true;
-  const protocol = protocolHeader || (isTlsSocket ? 'https' : 'http');
-  const host = req.headers['x-forwarded-host'] || req.headers.host;
-
-  if (!host) {
-    throw new Error('Cannot determine request host. Provide GOOGLE_REDIRECT_URI.');
-  }
-
-  return `${protocol}://${host}`;
-};
-
-const encodeState = (state: object) => Buffer.from(JSON.stringify(state)).toString('base64url');
-
-const decodeState = <T,>(value: string | string[] | undefined): T | null => {
-  if (!value || Array.isArray(value)) return null;
-  try {
-    return JSON.parse(Buffer.from(value, 'base64url').toString('utf8')) as T;
-  } catch (error) {
-    console.error('Failed to decode OAuth state', error);
-    return null;
-  }
+const getOrigin = (request: NextRequest) => {
+  const url = new URL(request.url);
+  return `${url.protocol}//${url.host}`;
 };
 
 const sanitizeRedirect = (redirect: unknown) => {
@@ -61,7 +28,10 @@ const sanitizeRedirect = (redirect: unknown) => {
   return redirect;
 };
 
-const buildCallbackHtml = (userPayload: { name: string; email: string; picture?: string | null; sub: string }, redirectTo: string) => {
+const buildCallbackHtml = (
+  userPayload: { name: string; email: string; picture?: string | null; sub: string },
+  redirectTo: string
+) => {
   const safeRedirect = redirectTo || '/';
   const script = `
     (function(){
@@ -102,119 +72,96 @@ const buildCallbackHtml = (userPayload: { name: string; email: string; picture?:
   </html>`;
 };
 
-type OAuthState = {
-  redirect?: string;
-};
-
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+// Pages Router Edge Runtime API route handler
+export default async function handler(request: NextRequest) {
   try {
-    const { clientId, clientSecret } = getEnv();
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-    const origin = getOrigin(req);
-    const redirectUri = process.env.GOOGLE_REDIRECT_URI || `${origin}/api/login`;
-
-    const oauthClient = new OAuth2Client({ clientId, clientSecret, redirectUri });
-
-    if (req.method !== 'GET') {
-      res.setHeader('Allow', 'GET');
-      return res.status(405).json({ error: 'Method not allowed' });
+    if (!supabaseUrl || !supabaseAnonKey) {
+      return new Response('Missing Supabase configuration', { status: 500 });
     }
 
-    const { code, state, error, redirect } = req.query;
+    const { searchParams } = new URL(request.url);
+    const code = searchParams.get('code');
+    const error = searchParams.get('error');
+    const errorDescription = searchParams.get('error_description');
+    const redirect = searchParams.get('redirect');
 
-    if (error) {
-      console.error('Google OAuth error', error);
-      return res.status(400).send('Authentication failed. Please try again.');
-    }
+    // Handle OAuth callback from Supabase
+    if (code) {
+      const origin = getOrigin(request);
+      const redirectTo = sanitizeRedirect(redirect || '/');
+      const callbackUrl = `${origin}/api/login?redirect=${encodeURIComponent(redirectTo)}`;
 
-    if (!code) {
-      const redirectTarget = sanitizeRedirect(typeof redirect === 'string' ? redirect : req.headers.referer || '/');
-      const statePayload: OAuthState = { redirect: redirectTarget };
-      const authUrl = oauthClient.generateAuthUrl({
-        access_type: 'offline',
-        scope: ['openid', 'profile', 'email'],
-        prompt: 'consent',
-        state: encodeState(statePayload),
+      // Exchange authorization code for session
+      const tokenResponse = await fetch(`${supabaseUrl}/auth/v1/token?grant_type=authorization_code`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'apikey': supabaseAnonKey,
+        },
+        body: new URLSearchParams({
+          code,
+          redirect_to: callbackUrl,
+        }),
       });
-      return res.redirect(authUrl);
-    }
 
-    if (Array.isArray(code)) {
-      return res.status(400).send('Invalid authorization code.');
-    }
+      if (!tokenResponse.ok) {
+        const errorText = await tokenResponse.text();
+        console.error('Token exchange failed:', errorText);
+        return new Response('Authentication failed. Please try again.', { status: 400 });
+      }
 
-    const decodedState = decodeState<OAuthState>(state);
-    const redirectTarget = sanitizeRedirect(decodedState?.redirect);
+      const sessionData = await tokenResponse.json();
 
-    const { tokens } = await oauthClient.getToken(code);
-    oauthClient.setCredentials(tokens);
-
-    if (!tokens.access_token) {
-      return res.status(400).send('Unable to retrieve access token.');
-    }
-
-    const profileResponse = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
-      headers: { Authorization: `Bearer ${tokens.access_token}` },
-    });
-
-    if (!profileResponse.ok) {
-      console.error('Failed to fetch Google user info', await profileResponse.text());
-      return res.status(502).send('Failed to fetch user profile from Google.');
-    }
-
-    const profile = await profileResponse.json() as {
-      sub: string;
-      email: string;
-      name: string;
-      picture?: string;
-      given_name?: string;
-      family_name?: string;
-    };
-
-    if (!profile?.sub || !profile?.email) {
-      return res.status(500).send('Unable to retrieve user profile.');
-    }
-
-    const client = await clientPromise;
-    const dbName = process.env.MONGODB_DB || process.env.MONGODB_DB_NAME;
-    const db = dbName ? client.db(dbName) : client.db();
-    const usersCollection = db.collection('users');
-
-    const now = new Date();
-    await usersCollection.updateOne(
-      { sub: profile.sub },
-      {
-        $set: {
-          sub: profile.sub,
-          email: profile.email,
-          name: profile.name,
-          picture: profile.picture ?? null,
-          givenName: profile.given_name ?? null,
-          familyName: profile.family_name ?? null,
-          updatedAt: now,
+      // Get user information
+      const userResponse = await fetch(`${supabaseUrl}/auth/v1/user`, {
+        headers: {
+          'Authorization': `Bearer ${sessionData.access_token}`,
+          'apikey': supabaseAnonKey,
         },
-        $setOnInsert: {
-          createdAt: now,
-        },
-      },
-      { upsert: true }
-    );
+      });
 
-    const responseHtml = buildCallbackHtml(
-      {
-        name: profile.name,
-        email: profile.email,
-        picture: profile.picture ?? null,
-        sub: profile.sub,
-      },
-      redirectTarget
-    );
+      if (!userResponse.ok) {
+        return new Response('Failed to fetch user profile.', { status: 500 });
+      }
 
-    res.setHeader('Content-Type', 'text/html; charset=utf-8');
-    return res.status(200).send(responseHtml);
+      const user = await userResponse.json();
+
+      // Extract user data
+      const userPayload = {
+        name: user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split('@')[0] || 'User',
+        email: user.email || '',
+        picture: user.user_metadata?.avatar_url || user.user_metadata?.picture || null,
+        sub: user.id || '',
+      };
+
+      const responseHtml = buildCallbackHtml(userPayload, redirectTo);
+      return new Response(responseHtml, {
+        headers: { 'Content-Type': 'text/html; charset=utf-8' },
+      });
+    }
+
+    // Handle OAuth errors
+    if (error) {
+      console.error('OAuth error:', error, errorDescription);
+      return new Response(`Authentication failed: ${errorDescription || error}. Please try again.`, { status: 400 });
+    }
+
+    // Initiate OAuth flow - redirect to Supabase Google OAuth
+    const origin = getOrigin(request);
+    const redirectTarget = sanitizeRedirect(redirect || request.headers.get('referer') || '/');
+    const callbackUrl = `${origin}/api/login?redirect=${encodeURIComponent(redirectTarget)}`;
+
+    // Redirect to Supabase Google OAuth
+    const authUrl = new URL(`${supabaseUrl}/auth/v1/authorize`);
+    authUrl.searchParams.set('provider', 'google');
+    authUrl.searchParams.set('redirect_to', callbackUrl);
+    
+    return Response.redirect(authUrl.toString());
   } catch (err) {
     console.error('Unexpected error during login', err);
-    return res.status(500).send('Unexpected error during login.');
+    return new Response('Unexpected error during login.', { status: 500 });
   }
 }
-
