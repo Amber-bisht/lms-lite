@@ -110,7 +110,13 @@ export default async function handler(request: NextRequest) {
       if (!tokenResponse.ok) {
         const errorText = await tokenResponse.text();
         console.error('Token exchange failed:', errorText);
-        return new Response('Authentication failed. Please try again.', { status: 400 });
+        return new Response(
+          `Authentication failed: ${errorText}. Please try again.`,
+          { 
+            status: 400,
+            headers: { 'Content-Type': 'text/html; charset=utf-8' },
+          }
+        );
       }
 
       const sessionData = await tokenResponse.json();
@@ -124,7 +130,15 @@ export default async function handler(request: NextRequest) {
       });
 
       if (!userResponse.ok) {
-        return new Response('Failed to fetch user profile.', { status: 500 });
+        const errorText = await userResponse.text();
+        console.error('Failed to fetch user:', errorText);
+        return new Response(
+          `Failed to fetch user profile: ${errorText}`,
+          { 
+            status: 500,
+            headers: { 'Content-Type': 'text/html; charset=utf-8' },
+          }
+        );
       }
 
       const user = await userResponse.json();
@@ -152,7 +166,8 @@ export default async function handler(request: NextRequest) {
     // Initiate OAuth flow - redirect to Supabase Google OAuth
     const origin = getOrigin(request);
     const redirectTarget = sanitizeRedirect(redirect || request.headers.get('referer') || '/');
-    const callbackUrl = `${origin}/api/login?redirect=${encodeURIComponent(redirectTarget)}`;
+    // Use client-side callback page to handle hash fragments
+    const callbackUrl = `${origin}/auth/callback?redirect=${encodeURIComponent(redirectTarget)}`;
 
     // Redirect to Supabase Google OAuth
     const authUrl = new URL(`${supabaseUrl}/auth/v1/authorize`);
