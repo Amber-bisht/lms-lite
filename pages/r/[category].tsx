@@ -8,7 +8,7 @@ import { ILightCourse } from '../../lib/dataUtils';
 import { getAllCategories, getLightweightCoursesByCategory } from '../../lib/dataUtils';
 import { trackCategoryView } from '../../lib/gtag';
 
-export const runtime = 'edge';
+export const runtime = 'experimental-edge';
 
 // Dynamic import for better code splitting
 const HybridCourseList = dynamic(() => import('../../components/HybridCourseList'), {

@@ -5,7 +5,7 @@ import Layout from '../components/Layout';
 import { ILightCourse, getLightweightCoursesBySubsection, getAllSubsections, ITeacherDetail, getTeacherDetails, loadTeacherData } from '../lib/dataUtils';
 import { normalizeKey } from '../lib/utils';
 
-export const runtime = 'edge';
+export const runtime = 'experimental-edge';
 
 interface SubsectionPageProps {
   courses: ILightCourse[];

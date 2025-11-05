@@ -6,7 +6,7 @@ import Layout from '../../components/Layout';
 import { event } from '../../lib/gtag';
 import { IBlogPost, getBlogPostById, loadBlogPosts } from '../../lib/dataUtils';
 
-export const runtime = 'edge';
+export const runtime = 'experimental-edge';
 
 interface BlogPostPageProps {
   post: IBlogPost | null;

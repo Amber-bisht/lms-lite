@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Layout from '../../components/Layout';
 import { getAllCourses, ICourse, ITeacherDetail, getTeacherDetails, loadTeacherData } from '../../lib/dataUtils';
 
-export const runtime = 'edge';
+export const runtime = 'experimental-edge';
 
 interface InstructorPageProps {
   instructorName: string;
