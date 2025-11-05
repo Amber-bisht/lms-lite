@@ -10,6 +10,7 @@ import { ICourse, getAllCourses, getCourseByTeacherAndName } from '../../../../.
 import { trackCourseView } from '../../../../../lib/gtag';
 import { generateOptimizedCourseStructuredData } from '../../../../../lib/structuredData';
 
+export const runtime = 'edge';
 
 const VideoPlayer = dynamic(() => import('../../../../../components/VideoPlayer'), {
   loading: () => (

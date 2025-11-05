@@ -14,6 +14,7 @@ import {
 } from '../../../../lib/dataUtils';
 import { trackCourseView, event } from '../../../../lib/gtag';
 
+export const runtime = 'edge';
 
 interface TeacherCoursePageProps {
   course: ICourse | null;
