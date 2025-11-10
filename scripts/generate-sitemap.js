@@ -77,7 +77,10 @@ function getAllCourses() {
         try {
           const data = JSON.parse(fileContent);
           const teacherRaw = data.teacherId || data.instructorSlug || data.instructorname || '';
+          // Normalize instructor name to match routing logic
+          // The routes use instructorname which is set to instructorSlug (normalized)
           const teacherSlug = slugify(teacherRaw);
+          const instructorname = teacherSlug; // Match the logic in dataUtils.ts line 290
           courses.push({
             courseName: data.courseName,
             category: data.coursecategory,
@@ -86,7 +89,8 @@ function getAllCourses() {
             homepage: data.homepage || false,
             lastUpdated: data.lastUpdated || new Date().toISOString().split('T')[0],
             teacherId: teacherSlug || null,
-            teacherSlug
+            teacherSlug,
+            instructorname // Add this to match routing
           });
         } catch (err) {
           console.error(`Error parsing ${file}:`, err.message);
@@ -185,20 +189,53 @@ function getAllBlogs() {
 }
 
 // Get all unique subsections
+// Filter out instructor names that might have been incorrectly added as subsections
 function getAllSubsections() {
   const courses = getAllCourses();
   const subsections = new Set();
+  const instructorNames = new Set();
   
+  // First, collect all instructor names to filter them out
+  courses.forEach(course => {
+    const instructorName = course.instructorname || course.teacherSlug || course.teacherId;
+    if (instructorName) {
+      const normalized = slugify(instructorName);
+      if (normalized) {
+        instructorNames.add(normalized.toLowerCase());
+        // Also add common variations
+        instructorNames.add(instructorName.toLowerCase());
+        instructorNames.add(instructorName);
+      }
+    }
+  });
+  
+  // Then collect subsections, filtering out instructor names
   courses.forEach(course => {
     if (course.subsection) {
       if (Array.isArray(course.subsection)) {
         course.subsection.forEach(sub => {
           if (sub && typeof sub === 'string') {
-            subsections.add(sub);
+            const subLower = sub.toLowerCase();
+            const subSlug = slugify(sub);
+            // Skip if it matches an instructor name (check both original and normalized forms)
+            const isInstructorName = instructorNames.has(subLower) || 
+                                     instructorNames.has(subSlug.toLowerCase()) || 
+                                     instructorNames.has(sub);
+            if (!isInstructorName) {
+              subsections.add(sub);
+            }
           }
         });
       } else if (typeof course.subsection === 'string') {
-        subsections.add(course.subsection);
+        const subLower = course.subsection.toLowerCase();
+        const subSlug = slugify(course.subsection);
+        // Skip if it matches an instructor name (check both original and normalized forms)
+        const isInstructorName = instructorNames.has(subLower) || 
+                                 instructorNames.has(subSlug.toLowerCase()) || 
+                                 instructorNames.has(course.subsection);
+        if (!isInstructorName) {
+          subsections.add(course.subsection);
+        }
       }
     }
   });
@@ -207,13 +244,21 @@ function getAllSubsections() {
 }
 
 // Get all unique instructor names
+// This should match the logic in pages/teacher/[instructorname].tsx
 function getAllInstructors() {
   const courses = getAllCourses();
   const instructors = new Set();
   
   courses.forEach(course => {
-    if (course.teacherSlug) {
-      instructors.add(course.teacherSlug);
+    // Use the same logic as the routes: use instructorname field
+    // which should be normalized to instructorSlug format
+    const instructorName = course.instructorname || course.teacherSlug || course.teacherId;
+    if (instructorName) {
+      // Normalize to match routing (lowercase, hyphenated)
+      const normalized = slugify(instructorName);
+      if (normalized) {
+        instructors.add(normalized);
+      }
     }
   });
   
