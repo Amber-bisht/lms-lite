@@ -334,7 +334,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false, // All pages are pre-rendered for Cloudflare Pages
+    fallback: false, // All pages are pre-rendered at build time
   };
 };
 

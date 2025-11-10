@@ -40,8 +40,7 @@ const nextConfig = {
     return config;
   },
   
-  // Allow edge runtime for Cloudflare Pages adapter
-  // Note: getStaticProps pages are pre-rendered, so runtime only affects adapter
+  // TypeScript configuration
   typescript: {
     ignoreBuildErrors: false,
   },
