@@ -55,23 +55,26 @@ export async function createOrUpdateUser(userData: {
     }
   );
 
-  if (!result.value) {
-    // If upsert didn't return a value, try to find the user
-    const foundUser = await usersCollection.findOne({
-      $or: [
-        { email: userData.email },
-        { googleId: userData.googleId },
-      ],
-    });
-    if (foundUser) {
-      return foundUser as User;
-    }
-    // If still not found, create a new one
-    const insertResult = await usersCollection.insertOne(user);
-    return { ...user, _id: insertResult.insertedId.toString() } as User;
+  // findOneAndUpdate returns the document directly when returnDocument is 'after'
+  if (result) {
+    return result as User;
   }
 
-  return result.value as User;
+  // Fallback: If result is null, try to find or create the user
+  const foundUser = await usersCollection.findOne({
+    $or: [
+      { email: userData.email },
+      { googleId: userData.googleId },
+    ],
+  });
+
+  if (foundUser) {
+    return foundUser as User;
+  }
+
+  // If still not found, create a new one
+  const insertResult = await usersCollection.insertOne(user);
+  return { ...user, _id: insertResult.insertedId.toString() } as User;
 }
 
 export async function getUserByEmail(email: string): Promise<User | null> {
