@@ -14,8 +14,6 @@ import {
 } from '../../../../lib/dataUtils';
 import { trackCourseView, event } from '../../../../lib/gtag';
 
-export const runtime = 'experimental-edge';
-
 interface TeacherCoursePageProps {
   course: ICourse | null;
   categoryName: string;

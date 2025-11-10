@@ -4,8 +4,6 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { getAllCourses, getCourseByName } from '../../../lib/dataUtils';
 
-export const runtime = 'experimental-edge';
-
 interface LegacyCourseRedirectProps {
   destination: string | null;
 }

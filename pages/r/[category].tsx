@@ -8,8 +8,6 @@ import { ILightCourse } from '../../lib/dataUtils';
 import { getAllCategories, getLightweightCoursesByCategory } from '../../lib/dataUtils';
 import { trackCategoryView } from '../../lib/gtag';
 
-export const runtime = 'experimental-edge';
-
 // Dynamic import for better code splitting
 const HybridCourseList = dynamic(() => import('../../components/HybridCourseList'), {
   loading: () => <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">

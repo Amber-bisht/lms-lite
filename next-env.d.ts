@@ -1,9 +1,6 @@
 /// <reference types="next" />
 /// <reference types="next/image-types/global" />
+/// <reference path="./.next/types/routes.d.ts" />
 
-// Extend Next.js types for Cloudflare Pages adapter
-declare module 'next' {
-  export interface PageConfig {
-    runtime?: 'nodejs' | 'edge' | 'experimental-edge';
-  }
-}
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/pages/api-reference/config/typescript for more information.
