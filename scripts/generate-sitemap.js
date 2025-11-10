@@ -265,6 +265,48 @@ function getAllInstructors() {
   return Array.from(instructors);
 }
 
+// Helper function to validate and format lastmod date
+// Returns W3C Datetime format (subset of ISO 8601) - accepts both date-only and full datetime
+function validateLastModDate(dateString) {
+  if (!dateString || typeof dateString !== 'string') {
+    return new Date().toISOString();
+  }
+  
+  // Remove whitespace
+  const trimmed = dateString.trim();
+  
+  // Check for invalid patterns like "2025-08-xx", "2025-08-XX", or any placeholder
+  if (trimmed.includes('xx') || trimmed.includes('XX') || trimmed.includes('xxx') || trimmed.toLowerCase().includes('placeholder')) {
+    return new Date().toISOString();
+  }
+  
+  // Validate date format - should start with YYYY-MM-DD
+  const dateOnlyPattern = /^\d{4}-\d{2}-\d{2}$/;
+  const isoPattern = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/;
+  
+  if (!dateOnlyPattern.test(trimmed) && !isoPattern.test(trimmed)) {
+    return new Date().toISOString();
+  }
+  
+  // Try to parse the date
+  try {
+    const date = new Date(trimmed);
+    // Check if date is valid
+    if (isNaN(date.getTime())) {
+      return new Date().toISOString();
+    }
+    // Check if date is not in the future (sitemaps shouldn't have future dates)
+    const now = new Date();
+    if (date > now) {
+      return now.toISOString();
+    }
+    // Return ISO string format (W3C Datetime format)
+    return date.toISOString();
+  } catch (e) {
+    return new Date().toISOString();
+  }
+}
+
 // Generate sitemap XML
 function generateSitemap() {
   const categories = getAllCategories();
@@ -381,7 +423,7 @@ function generateSitemap() {
     if (!addedUrls.has(courseUrlLower)) {
       addedUrls.add(courseUrlLower);
       const priority = course.homepage ? '0.8' : '0.7';
-      const lastmod = course.lastUpdated || new Date().toISOString();
+      const lastmod = validateLastModDate(course.lastUpdated);
       
       sitemap += `  <url>
     <loc>${courseUrl}</loc>
@@ -396,7 +438,19 @@ function generateSitemap() {
 
   sitemap += `</urlset>`;
   
-  return sitemap;
+  // Validate and sanitize XML - remove any invalid tags like <script/>
+  // This ensures no rogue tags that could break XML parsers
+  let sanitizedSitemap = sitemap;
+  
+  // Remove any script tags that might have been accidentally added
+  sanitizedSitemap = sanitizedSitemap.replace(/<script[^>]*>.*?<\/script>/gi, '');
+  sanitizedSitemap = sanitizedSitemap.replace(/<script[^>]*\/>/gi, '');
+  
+  // Ensure all URLs are properly encoded and valid
+  // Check for any malformed XML entities
+  sanitizedSitemap = sanitizedSitemap.replace(/&(?!amp;|lt;|gt;|quot;|apos;)/g, '&amp;');
+  
+  return sanitizedSitemap;
 }
 
 // Ping search engines about sitemap update
