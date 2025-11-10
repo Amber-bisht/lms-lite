@@ -26,7 +26,7 @@ export default function Header() {
               alt="UnlockedCoding Logo" 
               className="w-8 h-8 rounded-lg"
             />
-            <span>{siteName}</span>
+            <span>{(siteName || 'Unlocked Coding').toUpperCase()}</span>
           </Link>
           
           {/* Desktop Navigation */}

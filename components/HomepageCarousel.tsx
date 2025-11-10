@@ -157,19 +157,6 @@ export default function HomepageCarousel({ courses }: HomepageCarouselProps) {
 
   return (
     <div className="w-full">
-      {/* Header */}
-      <div className="text-center mb-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-          Choose Your Path To{' '}
-          <span className="bg-gradient-to-r from-purple-500 to-blue-600 bg-clip-text text-transparent">
-            Success
-          </span>
-        </h2>
-        <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-          Transform your career with mentor-led coding courses, crafted by industry experts who've built products used by millions.
-        </p>
-      </div>
-
       {/* Carousel Container */}
       <div className="relative">
         {/* Spotlight gradient overlays */}

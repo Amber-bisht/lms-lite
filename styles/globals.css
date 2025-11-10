@@ -245,6 +245,10 @@
   .text-primary-foreground {
     color: rgb(var(--primary-foreground));
   }
+
+  .text-background {
+    color: rgb(var(--background));
+  }
 }
 
 * {
