@@ -307,9 +307,9 @@ function generateSitemap() {
 `;
   });
 
-  // 6. Category Pages
-  categories.forEach(category => {
-    const categorySlug = (category.name || category.slug).toLowerCase();
+  // 6. Category Pages (Only specific categories)
+  const allowedCategories = ['dsa', 'web-development', 'gate'];
+  allowedCategories.forEach(categorySlug => {
     sitemap += `  <url>
     <loc>${DOMAIN}/r/${encodeURIComponent(categorySlug)}</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
@@ -411,7 +411,7 @@ try {
   console.log(`📚 Total Courses: ${courses.length}`);
   console.log(`⭐ Featured Courses: ${featuredCourses.length}`);
   console.log(`📝 Blog Posts: ${blogs.length}`);
-  console.log(`📁 Categories: ${getAllCategories().length}`);
+  console.log(`📁 Category Pages in Sitemap: 3 (dsa, web-development, gate)`);
   console.log(`📄 Subsections: ${getAllSubsections().length}`);
   console.log(`👨‍🏫 Instructors: ${getAllInstructors().length}`);
   console.log(`🔗 Static Pages: ${8 + 1} (homepage + static)`);

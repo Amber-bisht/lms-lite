@@ -18,6 +18,14 @@ export default function CategoriesPage({ categories }: CategoriesPageProps) {
     return b.totalcourse - a.totalcourse;
   });
 
+  // Calculate statistics
+  const totalCourses = categories.reduce((sum, cat) => sum + cat.totalcourse, 0);
+  const categoriesWithCourses = categories.filter(cat => cat.totalcourse > 0).length;
+  const topCategory = sortedCategories.find(cat => cat.totalcourse > 0);
+  const averageCoursesPerCategory = categoriesWithCourses > 0 
+    ? Math.round(totalCourses / categoriesWithCourses) 
+    : 0;
+
   return (
     <>
       <Head>
@@ -65,10 +73,30 @@ export default function CategoriesPage({ categories }: CategoriesPageProps) {
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 sm:mb-6">
               Course Categories
             </h1>
-            <p className="text-lg sm:text-xl text-muted-foreground mb-6 max-w-4xl mx-auto">
+            <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-4xl mx-auto">
               Explore {categories.length} specialized categories of free programming courses. 
               From web development to machine learning, find the perfect learning path for your career goals.
             </p>
+
+            {/* Statistics */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-8">
+              <div className="bg-card border border-border rounded-xl p-4 sm:p-6">
+                <div className="text-2xl sm:text-3xl font-bold text-primary mb-2">{totalCourses}+</div>
+                <div className="text-sm text-muted-foreground">Total Courses</div>
+              </div>
+              <div className="bg-card border border-border rounded-xl p-4 sm:p-6">
+                <div className="text-2xl sm:text-3xl font-bold text-primary mb-2">{categories.length}</div>
+                <div className="text-sm text-muted-foreground">Categories</div>
+              </div>
+              <div className="bg-card border border-border rounded-xl p-4 sm:p-6">
+                <div className="text-2xl sm:text-3xl font-bold text-primary mb-2">{categoriesWithCourses}</div>
+                <div className="text-sm text-muted-foreground">Active Categories</div>
+              </div>
+              <div className="bg-card border border-border rounded-xl p-4 sm:p-6">
+                <div className="text-2xl sm:text-3xl font-bold text-primary mb-2">{averageCoursesPerCategory}</div>
+                <div className="text-sm text-muted-foreground">Avg per Category</div>
+              </div>
+            </div>
           </div>
 
           {/* Categories Grid */}
@@ -101,11 +129,18 @@ export default function CategoriesPage({ categories }: CategoriesPageProps) {
                     
                     {/* Category-specific information */}
                     <div className="space-y-2 mb-4">
-                      <div className="flex items-center text-xs text-muted-foreground">
-                        <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                        </svg>
-                        <span>{category.totalcourse} courses available</span>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center text-xs text-muted-foreground">
+                          <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                          </svg>
+                          <span>{category.totalcourse} {category.totalcourse === 1 ? 'course' : 'courses'} available</span>
+                        </div>
+                        {category.totalcourse > 0 && (
+                          <span className="text-xs bg-green-500/10 text-green-600 dark:text-green-400 px-2 py-1 rounded-full">
+                            Active
+                          </span>
+                        )}
                       </div>
                       <div className="flex items-center text-xs text-muted-foreground">
                         <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -118,6 +153,12 @@ export default function CategoriesPage({ categories }: CategoriesPageProps) {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <span>Industry-relevant skills</span>
+                      </div>
+                      <div className="flex items-center text-xs text-muted-foreground">
+                        <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        <span>Free access forever</span>
                       </div>
                     </div>
 
@@ -141,25 +182,73 @@ export default function CategoriesPage({ categories }: CategoriesPageProps) {
             </div>
           </div>
 
+          {/* Top Categories Section */}
+          {topCategory && (
+            <div className="mb-8 sm:mb-12 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-white/10 rounded-2xl p-6 sm:p-8 border border-border/50">
+              <div className="text-center mb-6">
+                <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
+                  Most Popular Category
+                </h2>
+                <p className="text-muted-foreground">
+                  Start with our most comprehensive category
+                </p>
+              </div>
+              <div className="max-w-2xl mx-auto">
+                <Link 
+                  href={`/r/${topCategory.category.toLowerCase()}`}
+                  className="block bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-all"
+                >
+                  <div className="flex items-center gap-4">
+                    <img 
+                      src={topCategory.imageofcategory} 
+                      alt={topCategory.category}
+                      className="w-20 h-20 rounded-lg object-cover"
+                    />
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-foreground mb-2 capitalize">
+                        {topCategory.category.replace(/-/g, ' ')}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+                        {topCategory.des}
+                      </p>
+                      <div className="flex items-center gap-4 text-sm">
+                        <span className="text-primary font-semibold">
+                          {topCategory.totalcourse} courses
+                        </span>
+                        <span className="text-muted-foreground">→ Explore</span>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            </div>
+          )}
+
           {/* Call to Action */}
-          <div className="bg-card p-6 rounded-lg border border-border text-center">
-            <h3 className="text-lg font-semibold text-foreground mb-2">
+          <div className="bg-card p-6 sm:p-8 rounded-lg border border-border text-center">
+            <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-3">
               Ready to Start Your Learning Journey?
             </h3>
-            <p className="text-muted-foreground mb-4">
+            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
               Choose any category above to explore courses tailored to your learning goals. 
               All courses are completely free and designed by industry experts.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
                 href="/all" 
-                className="bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors font-medium"
+                className="bg-primary text-primary-foreground px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors font-medium"
               >
                 View All Courses
               </a>
               <a 
+                href="/blog" 
+                className="bg-card border border-primary text-primary px-8 py-3 rounded-lg hover:bg-primary hover:text-primary-foreground transition-colors font-medium"
+              >
+                Read Our Blog
+              </a>
+              <a 
                 href="/" 
-                className="bg-card border border-primary text-primary px-6 py-3 rounded-lg hover:bg-primary hover:text-primary-foreground transition-colors font-medium"
+                className="bg-card border border-border text-foreground px-8 py-3 rounded-lg hover:bg-muted transition-colors font-medium"
               >
                 Back to Home
               </a>

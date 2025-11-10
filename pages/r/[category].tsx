@@ -32,11 +32,181 @@ interface CategoryPageProps {
   categoryName: string;
 }
 
+// Helper function to render a course card
+const renderCourseCard = (course: ILightCourse) => {
+  if (course.videoType === 'redirect' && course.redirecturl) {
+    return (
+      <div
+        key={`${course.coursecategory}-${course.courseName}`}
+        className="bg-card rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden border border-border group"
+      >
+        <Link
+          href={`/teacher/${encodeURIComponent(course.instructorSlug)}/${encodeURIComponent(course.courseName)}`}
+          className="block"
+        >
+          <div className="relative">
+            <img 
+              src={course.imageofcourse} 
+              alt={course.courseName}
+              className="w-full h-32 sm:h-40 md:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+            {course.rating && (
+              <div className="absolute bottom-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
+                <span>★</span>
+                <span>{course.rating.average}</span>
+                <span>({course.rating.count})</span>
+              </div>
+            )}
+            <span className="absolute top-2 right-2 bg-amber-500 text-white text-xs px-2 py-1 rounded shadow">
+              External
+            </span>
+          </div>
+        </Link>
+        <div className="p-4 sm:p-6">
+          <div className="flex justify-between items-start mb-2">
+            <span className="text-xs sm:text-sm text-primary font-medium capitalize bg-primary/10 px-2 py-1 rounded">
+              {course.coursecategory}
+            </span>
+            <div className="flex items-center gap-2">
+              {course.level && (
+                <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                  {course.level}
+                </span>
+              )}
+              <span className="text-xs sm:text-sm text-green-600 font-semibold">
+                ₹{course.cost?.toLocaleString?.() ?? course.cost ?? '0'}
+              </span>
+            </div>
+          </div>
+          <h3 className="text-sm sm:text-base font-bold text-card-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+            {course.courseName}
+          </h3>
+          <div className="flex items-center mb-3">
+            <img
+              src={course.imageofinstructur}
+              alt={course.instructorDisplayName}
+              className="w-4 h-4 sm:w-5 sm:h-5 rounded-full mr-2 flex-shrink-0 object-cover"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+                e.currentTarget.nextElementSibling?.classList.remove('hidden');
+              }}
+            />
+            <div className="w-4 h-4 sm:w-5 sm:h-5 bg-muted rounded-full mr-2 flex-shrink-0 hidden"></div>
+            <span className="text-xs sm:text-sm text-muted-foreground truncate">
+              {course.instructorDisplayName}
+            </span>
+          </div>
+          <p className="text-xs sm:text-sm text-muted-foreground mb-4 line-clamp-3">
+            {course.des}
+          </p>
+          <div className="flex justify-between items-center text-xs text-muted-foreground">
+            <span className="text-primary font-medium flex items-center gap-1">
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+              Access course
+            </span>
+            <span className="flex items-center gap-1">
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+              </svg>
+              {course.audio || 'English'}
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      key={`${course.coursecategory}-${course.courseName}`}
+      className="bg-card rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden border border-border group"
+    >
+      <Link
+        href={`/teacher/${encodeURIComponent(course.instructorSlug)}/${encodeURIComponent(course.courseName)}`}
+        className="block"
+      >
+        <div className="relative">
+          <img 
+            src={course.imageofcourse} 
+            alt={course.courseName}
+            className="w-full h-32 sm:h-40 md:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+          {course.rating && (
+            <div className="absolute bottom-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
+              <span>★</span>
+              <span>{course.rating.average}</span>
+              <span>({course.rating.count})</span>
+            </div>
+          )}
+        </div>
+      </Link>
+      <div className="p-4 sm:p-6">
+        <div className="flex justify-between items-start mb-2">
+          <span className="text-xs sm:text-sm text-primary font-medium capitalize bg-primary/10 px-2 py-1 rounded">
+            {course.coursecategory}
+          </span>
+          <div className="flex items-center gap-2">
+            {course.level && (
+              <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                {course.level}
+              </span>
+            )}
+            <span className="text-xs sm:text-sm text-green-600 font-semibold">
+              ${course.cost || '0'}
+            </span>
+          </div>
+        </div>
+        <h3 className="text-sm sm:text-base font-bold text-card-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+          {course.courseName}
+        </h3>
+        <div className="flex items-center mb-3">
+          <img
+            src={course.imageofinstructur}
+            alt={course.instructorDisplayName}
+            className="w-4 h-4 sm:w-5 sm:h-5 rounded-full mr-2 flex-shrink-0 object-cover"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+              e.currentTarget.nextElementSibling?.classList.remove('hidden');
+            }}
+          />
+          <div className="w-4 h-4 sm:w-5 sm:h-5 bg-muted rounded-full mr-2 flex-shrink-0 hidden"></div>
+          <span className="text-xs sm:text-sm text-muted-foreground truncate">
+            {course.instructorDisplayName}
+          </span>
+        </div>
+        <p className="text-xs sm:text-sm text-muted-foreground mb-4 line-clamp-3">
+          {course.des}
+        </p>
+        <div className="flex justify-between items-center text-xs text-muted-foreground">
+          <span className="flex items-center gap-1">
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+            {'length' in course.videos ? course.videos.length : (course.videos as any)?.length || 0} videos
+          </span>
+          <span className="flex items-center gap-1">
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+            </svg>
+            {course.audio || 'English'}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function CategoryPage({ courses, categoryName }: CategoryPageProps) {
   const canonicalUrl = `https://unlockedcoding.com/r/${encodeURIComponent(categoryName.toLowerCase())}`;
   const pageTitle = `${categoryName.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Courses | Unlocked Coding`;
   const pageDescription = `Browse ${courses.length} free ${categoryName} courses. Learn with high-quality video tutorials from top instructors.`;
 
+  // Split courses into initial display and remaining courses
+  const INITIAL_COURSES_COUNT = 6;
+  const initialCourses = courses.slice(0, INITIAL_COURSES_COUNT);
+  const remainingCourses = courses.slice(INITIAL_COURSES_COUNT);
 
   // Track category view on mount
   useEffect(() => {
@@ -100,6 +270,15 @@ export default function CategoryPage({ courses, categoryName }: CategoryPageProp
             </p>
           </div>
 
+          {/* Initial Course Cards */}
+          {initialCourses.length > 0 && (
+            <div className="mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                {initialCourses.map(renderCourseCard)}
+              </div>
+            </div>
+          )}
+
           {/* Category Overview */}
           <div className="bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-white/5 rounded-2xl p-6 sm:p-8 mb-8 border border-border/50">
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
@@ -136,6 +315,16 @@ export default function CategoryPage({ courses, categoryName }: CategoryPageProp
             </div>
           </div>
 
+          {/* Remaining Courses */}
+          {remainingCourses.length > 0 && (
+            <div className="mb-8">
+              <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-6">
+                All {categoryName.replace(/-/g, ' ')} Courses
+              </h2>
+              <HybridCourseList courses={remainingCourses} coursesPerPage={9} />
+            </div>
+          )}
+
           {/* Learning Path */}
           <div className="bg-card rounded-2xl p-6 sm:p-8 mb-8 border border-border">
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-6">
@@ -171,9 +360,6 @@ export default function CategoryPage({ courses, categoryName }: CategoryPageProp
               </div>
             </div>
           </div>
-
-
-          <HybridCourseList courses={courses} coursesPerPage={9} />
         </div>
       </Layout>
     </>

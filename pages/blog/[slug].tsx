@@ -188,6 +188,7 @@ export default function BlogPostPage({ post }: BlogPostPageProps) {
               </article>
             )}
 
+            {/* Enhanced Information Grid */}
             <article className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Left Column */}
               <div className="space-y-8">
@@ -208,6 +209,23 @@ export default function BlogPostPage({ post }: BlogPostPageProps) {
                   </div>
                 )}
 
+                {/* Benefits Section */}
+                {post.benefits && post.benefits.length > 0 && (
+                  <div className="bg-card border border-border rounded-xl p-6">
+                    <h2 className="text-2xl font-bold text-foreground mb-4">Benefits</h2>
+                    <ul className="space-y-3">
+                      {post.benefits.map((benefit, index) => (
+                        <li key={index} className="flex items-start gap-3">
+                          <svg className="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          <span className="text-muted-foreground">{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
                 {/* Steps Section */}
                 {post.steps && post.steps.length > 0 && (
                   <div className="bg-card border border-border rounded-xl p-6">
@@ -222,6 +240,23 @@ export default function BlogPostPage({ post }: BlogPostPageProps) {
                         </li>
                       ))}
                     </ol>
+                  </div>
+                )}
+
+                {/* Use Cases Section */}
+                {post.useCases && post.useCases.length > 0 && (
+                  <div className="bg-card border border-border rounded-xl p-6">
+                    <h2 className="text-2xl font-bold text-foreground mb-4">Use Cases</h2>
+                    <ul className="space-y-3">
+                      {post.useCases.map((useCase, index) => (
+                        <li key={index} className="flex items-start gap-3">
+                          <svg className="w-5 h-5 text-blue-500 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                          </svg>
+                          <span className="text-muted-foreground">{useCase}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 )}
               </div>
@@ -269,8 +304,113 @@ export default function BlogPostPage({ post }: BlogPostPageProps) {
                     </div>
                   </div>
                 )}
+
+                {/* Related Resources Section */}
+                {post.relatedResources && post.relatedResources.length > 0 && (
+                  <div className="bg-card border border-border rounded-xl p-6">
+                    <h2 className="text-2xl font-bold text-foreground mb-4">Related Resources</h2>
+                    <div className="space-y-3">
+                      {post.relatedResources.map((resource, index) => (
+                        <a
+                          key={index}
+                          href={resource.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg hover:bg-muted transition-colors"
+                          onClick={() => event({
+                            action: 'click',
+                            category: 'Blog',
+                            label: `Related Resource - ${resource.name}`
+                          })}
+                        >
+                          <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                          </svg>
+                          <span className="font-medium text-foreground">{resource.name}</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Meta Information */}
+                <div className="bg-card border border-border rounded-xl p-6">
+                  <h2 className="text-2xl font-bold text-foreground mb-4">Article Information</h2>
+                  <div className="space-y-3">
+                    {post.difficulty && (
+                      <div className="flex items-center gap-3">
+                        <svg className="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                        </svg>
+                        <span className="text-muted-foreground"><strong className="text-foreground">Difficulty:</strong> {post.difficulty}</span>
+                      </div>
+                    )}
+                    {post.estimatedTime && (
+                      <div className="flex items-center gap-3">
+                        <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span className="text-muted-foreground"><strong className="text-foreground">Estimated Time:</strong> {post.estimatedTime}</span>
+                      </div>
+                    )}
+                    {post.readingTime && (
+                      <div className="flex items-center gap-3">
+                        <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        <span className="text-muted-foreground"><strong className="text-foreground">Reading Time:</strong> {post.readingTime}</span>
+                      </div>
+                    )}
+                    {post.lastUpdated && (
+                      <div className="flex items-center gap-3">
+                        <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                        <span className="text-muted-foreground"><strong className="text-foreground">Last Updated:</strong> {post.lastUpdated}</span>
+                      </div>
+                    )}
+                    {post.author && (
+                      <div className="flex items-center gap-3">
+                        <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                        <span className="text-muted-foreground"><strong className="text-foreground">Author:</strong> {post.author}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
             </article>
+
+            {/* Troubleshooting Section */}
+            {post.troubleshooting && post.troubleshooting.length > 0 && (
+              <div className="mt-8 bg-card border border-border rounded-xl p-6 sm:p-8">
+                <h2 className="text-2xl font-bold text-foreground mb-6">Troubleshooting</h2>
+                <div className="space-y-6">
+                  {post.troubleshooting.map((item, index) => (
+                    <div key={index} className="border-l-4 border-yellow-500 pl-4">
+                      <h3 className="font-semibold text-foreground mb-2">{item.issue}</h3>
+                      <p className="text-muted-foreground">{item.solution}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* FAQs Section */}
+            {post.faqs && post.faqs.length > 0 && (
+              <div className="mt-8 bg-card border border-border rounded-xl p-6 sm:p-8">
+                <h2 className="text-2xl font-bold text-foreground mb-6">Frequently Asked Questions</h2>
+                <div className="space-y-4">
+                  {post.faqs.map((faq, index) => (
+                    <div key={index} className="border-b border-border pb-4 last:border-b-0 last:pb-0">
+                      <h3 className="font-semibold text-foreground mb-2">{faq.question}</h3>
+                      <p className="text-muted-foreground">{faq.answer}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Call to Action */}
             <div className="mt-8 sm:mt-12 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-white/10 rounded-2xl p-6 sm:p-8 border border-border/50">

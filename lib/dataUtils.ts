@@ -645,6 +645,11 @@ export interface IBlogLink {
   url: string;
 }
 
+export interface IBlogFAQ {
+  question: string;
+  answer: string;
+}
+
 export interface IBlogPost {
   id: string;
   name: string;
@@ -658,6 +663,17 @@ export interface IBlogPost {
   category: string;
   tags: string[];
   featured?: boolean;
+  // Enhanced fields
+  benefits?: string[];
+  useCases?: string[];
+  troubleshooting?: { issue: string; solution: string }[];
+  faqs?: IBlogFAQ[];
+  relatedResources?: IBlogLink[];
+  estimatedTime?: string;
+  difficulty?: 'Beginner' | 'Intermediate' | 'Advanced';
+  lastUpdated?: string;
+  author?: string;
+  readingTime?: string;
 }
 
 // Load teacher data from JSON file
@@ -755,6 +771,16 @@ export function loadBlogPosts(): IBlogPost[] {
               steps: entry.steps || [],
               links: entry.links || [],
               tags: entry.tags || [],
+              benefits: entry.benefits || [],
+              useCases: entry.useCases || [],
+              troubleshooting: entry.troubleshooting || [],
+              faqs: entry.faqs || [],
+              relatedResources: entry.relatedResources || [],
+              estimatedTime: entry.estimatedTime,
+              difficulty: entry.difficulty,
+              lastUpdated: entry.lastUpdated,
+              author: entry.author,
+              readingTime: entry.readingTime,
             });
             seenIds.add(entry.id);
           });
