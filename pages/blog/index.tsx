@@ -84,7 +84,7 @@ export default function Blog({ posts }: BlogProps) {
               {posts.map((post) => (
                 <div 
                   key={post.id}
-                  className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg transition-shadow"
+                  className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col"
                 >
                   <Link 
                     href={`/blog/${post.id}`}
@@ -99,36 +99,137 @@ export default function Blog({ posts }: BlogProps) {
                       <img 
                         src={post.image} 
                         alt={post.name}
-                        className="w-full h-40 object-cover"
+                        className="w-full h-48 object-cover"
                       />
-                      <div className="absolute top-3 left-3">
-                        <span className="bg-primary/10 text-primary px-2 py-1 rounded-full text-xs font-medium">
+                      <div className="absolute top-3 left-3 flex flex-wrap gap-2">
+                        <span className="bg-primary/90 text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">
                           {post.category}
                         </span>
+                        {post.difficulty && (
+                          <span className="bg-yellow-500/90 text-white px-3 py-1 rounded-full text-xs font-medium">
+                            {post.difficulty}
+                          </span>
+                        )}
+                        {post.featured && (
+                          <span className="bg-purple-500/90 text-white px-3 py-1 rounded-full text-xs font-medium">
+                            Featured
+                          </span>
+                        )}
                       </div>
                     </div>
                   </Link>
-                  <div className="p-6">
-                    <h3 className="text-lg sm:text-xl font-bold text-foreground mb-3 line-clamp-2">
-                      {post.name}
-                    </h3>
-                    <p className="text-muted-foreground mb-4 line-clamp-3 text-sm">
+                  <div className="p-6 flex-1 flex flex-col">
+                    <Link 
+                      href={`/blog/${post.id}`}
+                      onClick={() => event({
+                        action: 'click',
+                        category: 'Blog',
+                        label: `Blog Post - ${post.name}`
+                      })}
+                    >
+                      <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2 line-clamp-2 hover:text-primary transition-colors">
+                        {post.name}
+                      </h3>
+                    </Link>
+                    <p className="text-muted-foreground mb-4 line-clamp-3 text-sm leading-relaxed">
                       {post.description}
                     </p>
+                    
+                    {/* Meta Information */}
+                    <div className="flex flex-wrap items-center gap-3 mb-4 text-xs text-muted-foreground">
+                      {post.readingTime && (
+                        <div className="flex items-center gap-1">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                          </svg>
+                          {post.readingTime}
+                        </div>
+                      )}
+                      {post.estimatedTime && (
+                        <div className="flex items-center gap-1">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          {post.estimatedTime}
+                        </div>
+                      )}
+                      {post.lastUpdated && (
+                        <div className="flex items-center gap-1">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                          </svg>
+                          {new Date(post.lastUpdated).toLocaleDateString()}
+                        </div>
+                      )}
+                    </div>
                     
                     {/* Requirements Preview */}
                     {post.requirements && post.requirements.length > 0 && (
                       <div className="mb-4">
-                        <h4 className="text-xs font-semibold text-foreground mb-2">Requirements:</h4>
-                        <div className="flex flex-wrap gap-1">
-                          {post.requirements.slice(0, 2).map((req, index) => (
-                            <span key={index} className="bg-muted text-muted-foreground px-2 py-1 rounded text-xs">
+                        <h4 className="text-xs font-semibold text-foreground mb-2 flex items-center gap-1">
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          Requirements:
+                        </h4>
+                        <div className="flex flex-wrap gap-1.5">
+                          {post.requirements.slice(0, 3).map((req, index) => (
+                            <span key={index} className="bg-muted/80 text-muted-foreground px-2 py-1 rounded-md text-xs">
                               {req}
                             </span>
                           ))}
-                          {post.requirements.length > 2 && (
-                            <span className="bg-muted text-muted-foreground px-2 py-1 rounded text-xs">
-                              +{post.requirements.length - 2}
+                          {post.requirements.length > 3 && (
+                            <span className="bg-primary/10 text-primary px-2 py-1 rounded-md text-xs font-medium">
+                              +{post.requirements.length - 3} more
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Benefits Preview */}
+                    {post.benefits && post.benefits.length > 0 && (
+                      <div className="mb-4">
+                        <h4 className="text-xs font-semibold text-foreground mb-2 flex items-center gap-1">
+                          <svg className="w-3 h-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          Key Benefits:
+                        </h4>
+                        <ul className="space-y-1">
+                          {post.benefits.slice(0, 2).map((benefit, index) => (
+                            <li key={index} className="text-xs text-muted-foreground line-clamp-1 flex items-start gap-1.5">
+                              <span className="text-green-500 mt-0.5">•</span>
+                              {benefit}
+                            </li>
+                          ))}
+                          {post.benefits.length > 2 && (
+                            <li className="text-xs text-primary font-medium">
+                              +{post.benefits.length - 2} more benefits
+                            </li>
+                          )}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* Use Cases Preview */}
+                    {post.useCases && post.useCases.length > 0 && (
+                      <div className="mb-4">
+                        <h4 className="text-xs font-semibold text-foreground mb-2 flex items-center gap-1">
+                          <svg className="w-3 h-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                          </svg>
+                          Use Cases:
+                        </h4>
+                        <div className="flex flex-wrap gap-1.5">
+                          {post.useCases.slice(0, 2).map((useCase, index) => (
+                            <span key={index} className="bg-blue-500/10 text-blue-600 dark:text-blue-400 px-2 py-1 rounded-md text-xs line-clamp-1">
+                              {useCase}
+                            </span>
+                          ))}
+                          {post.useCases.length > 2 && (
+                            <span className="bg-primary/10 text-primary px-2 py-1 rounded-md text-xs font-medium">
+                              +{post.useCases.length - 2} more
                             </span>
                           )}
                         </div>
@@ -142,7 +243,7 @@ export default function Blog({ posts }: BlogProps) {
                           href={post.youtubeTutorialLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition-colors text-xs"
+                          className="inline-flex items-center gap-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors text-xs font-medium w-full justify-center"
                           onClick={(e) => {
                             e.stopPropagation();
                             event({
@@ -152,24 +253,91 @@ export default function Blog({ posts }: BlogProps) {
                             });
                           }}
                         >
-                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                           </svg>
-                          Tutorial
+                          Watch Tutorial Video
                         </a>
+                      </div>
+                    )}
+
+                    {/* Links Preview */}
+                    {post.links && post.links.length > 0 && (
+                      <div className="mb-4">
+                        <h4 className="text-xs font-semibold text-foreground mb-2">Quick Links:</h4>
+                        <div className="flex flex-wrap gap-1.5">
+                          {post.links.slice(0, 2).map((link, index) => (
+                            <a
+                              key={index}
+                              href={link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-xs text-primary hover:underline flex items-center gap-1"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                event({
+                                  action: 'click',
+                                  category: 'Blog',
+                                  label: `External Link - ${link.name}`
+                                });
+                              }}
+                            >
+                              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                              </svg>
+                              {link.name.length > 20 ? link.name.substring(0, 20) + '...' : link.name}
+                            </a>
+                          ))}
+                          {post.links.length > 2 && (
+                            <span className="text-xs text-muted-foreground">
+                              +{post.links.length - 2} more links
+                            </span>
+                          )}
+                        </div>
                       </div>
                     )}
 
                     {/* Tags */}
                     {post.tags && post.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-2">
-                        {post.tags.slice(0, 3).map((tag) => (
-                          <span key={tag} className="bg-primary/10 text-primary px-2 py-1 rounded text-xs">
+                      <div className="mb-4 flex flex-wrap gap-1.5">
+                        {post.tags.slice(0, 4).map((tag) => (
+                          <span key={tag} className="bg-primary/10 text-primary px-2 py-1 rounded-md text-xs font-medium">
                             #{tag}
                           </span>
                         ))}
+                        {post.tags.length > 4 && (
+                          <span className="bg-muted text-muted-foreground px-2 py-1 rounded-md text-xs">
+                            +{post.tags.length - 4}
+                          </span>
+                        )}
                       </div>
                     )}
+
+                    {/* Author */}
+                    {post.author && (
+                      <div className="mt-auto pt-4 border-t border-border flex items-center gap-2">
+                        <svg className="w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                        <span className="text-xs text-muted-foreground">By {post.author}</span>
+                      </div>
+                    )}
+
+                    {/* Read More Button */}
+                    <Link
+                      href={`/blog/${post.id}`}
+                      className="mt-4 inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:opacity-90 transition-opacity text-sm font-semibold w-full"
+                      onClick={() => event({
+                        action: 'click',
+                        category: 'Blog',
+                        label: `Read More - ${post.name}`
+                      })}
+                    >
+                      Read Full Article
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
               ))}
