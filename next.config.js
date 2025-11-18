@@ -11,6 +11,11 @@ const nextConfig = {
     optimizePackageImports: ['react-icons'],
   },
   
+  // Use modern JS output for better performance
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  
   // Image optimization
   images: {
     formats: ['image/webp', 'image/avif'],

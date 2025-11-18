@@ -73,7 +73,8 @@ export default function Home({ homepageCourses, reviewsData, teachers }: HomePro
                 src={heroImageUrl} 
                 alt="Hero illustration" 
                 width={350}
-                height={350}
+                height={397}
+                sizes="(max-width: 640px) 200px, (max-width: 768px) 250px, (max-width: 1024px) 300px, 350px"
                 className="max-w-[200px] sm:max-w-[250px] md:max-w-[300px] lg:max-w-[350px] h-auto rounded-lg"
                 priority
                 fetchPriority="high"
