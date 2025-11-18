@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import ThemeToggle from './ThemeToggle';
 import { useAuth } from '../contexts/AuthContext';
@@ -21,10 +22,13 @@ export default function Header() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-3 text-2xl font-bold text-black dark:text-white hover:underline hover:decoration-blue-500 hover:decoration-2 transition-all duration-200">
-            <img 
+            <Image 
               src="/images.png" 
               alt="UnlockedCoding Logo" 
+              width={32}
+              height={32}
               className="w-8 h-8 rounded-lg"
+              priority
             />
             <span>{(siteName || 'Unlocked Coding').toUpperCase()}</span>
           </Link>
@@ -50,9 +54,11 @@ export default function Header() {
               user ? (
                 <div className="flex items-center space-x-3">
                   {user.picture ? (
-                    <img
+                    <Image
                       src={user.picture}
                       alt={user.name}
+                      width={36}
+                      height={36}
                       className="w-9 h-9 rounded-full border border-gray-200 dark:border-gray-700"
                       referrerPolicy="no-referrer"
                     />
@@ -158,9 +164,11 @@ export default function Header() {
                   <div className="flex items-center justify-between bg-gray-100 dark:bg-gray-900 px-4 py-3 rounded-lg">
                     <div className="flex items-center space-x-3">
                       {user.picture ? (
-                        <img
+                        <Image
                           src={user.picture}
                           alt={user.name}
+                          width={40}
+                          height={40}
                           className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700"
                           referrerPolicy="no-referrer"
                         />

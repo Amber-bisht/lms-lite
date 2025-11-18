@@ -136,9 +136,7 @@ export default function TeacherCoursePlayPage({
   return (
     <>
       <Head>
-        <title>
-          {course.courseName} - {instructorDisplayName || 'Free Course'} | Unlocked Coding
-        </title>
+        <title>{`${course.courseName} - ${instructorDisplayName || 'Free Course'} | Unlocked Coding`}</title>
         <meta name="description" content={course.des} />
         <link
           rel="canonical"

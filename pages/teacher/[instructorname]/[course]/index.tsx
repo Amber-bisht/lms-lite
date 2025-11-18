@@ -1,5 +1,6 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import Head from 'next/head';
 import { useEffect } from 'react';
 import Layout from '../../../../components/Layout';
@@ -86,9 +87,7 @@ export default function TeacherCoursePage({
   return (
     <>
       <Head>
-        <title>
-          {course.courseName} - {instructorDisplayName || 'Free Course'} | Unlocked Coding
-        </title>
+        <title>{`${course.courseName} - ${instructorDisplayName || 'Free Course'} | Unlocked Coding`}</title>
         <meta name="description" content={course.des} />
         <link rel="canonical" href={canonicalUrl} />
         <meta name="robots" content="index, follow" />
@@ -172,9 +171,11 @@ export default function TeacherCoursePage({
 
                 <div className="mb-6 rounded-lg border bg-card p-6">
                   <div className="flex items-start space-x-4">
-                    <img
+                    <Image
                       src={teacherDetails?.image || course.imageofinstructur}
                       alt={teacherDetails?.name || instructorDisplayName}
+                      width={64}
+                      height={64}
                       className="h-16 w-16 rounded-full"
                     />
                     <div className="flex-1">
@@ -361,9 +362,11 @@ export default function TeacherCoursePage({
             <div className="order-1 lg:order-2">
               <div className="sticky top-6 space-y-6">
                 <div>
-                  <img
+                  <Image
                     src={course.imageofcourse}
                     alt={course.courseName}
+                    width={400}
+                    height={192}
                     className="h-48 w-full rounded-lg object-cover shadow-lg"
                   />
                 </div>
@@ -446,9 +449,11 @@ export default function TeacherCoursePage({
                           className="group block rounded-lg p-3 transition-colors hover:bg-muted/50"
                         >
                           <div className="flex items-start space-x-3">
-                            <img
+                            <Image
                               src={similarCourse.imageofcourse}
                               alt={similarCourse.courseName}
+                              width={64}
+                              height={48}
                               className="h-12 w-16 flex-shrink-0 rounded-md object-cover"
                             />
                             <div className="min-w-0 flex-1">
@@ -459,9 +464,11 @@ export default function TeacherCoursePage({
                                 {similarCourse.des}
                               </p>
                               <div className="mt-2 flex items-center space-x-2">
-                                <img
+                                <Image
                                   src={similarCourse.imageofinstructur}
                                   alt={similarCourse.instructorDisplayName || similarCourse.instructorSlug}
+                                  width={16}
+                                  height={16}
                                   className="h-4 w-4 rounded-full"
                                 />
                                 <span className="text-xs text-muted-foreground">

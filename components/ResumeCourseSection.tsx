@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { getAllCourseProgress, CourseProgress } from '../lib/utils';
+import { getAllCourseProgress, CourseProgress, clearAllCourseProgress } from '../lib/utils';
 
 interface CourseWithProgress {
   courseName: string;
@@ -12,7 +12,7 @@ interface CourseWithProgress {
 export default function ResumeCourseSection() {
   const [coursesToShow, setCoursesToShow] = useState<CourseWithProgress[]>([]);
 
-  useEffect(() => {
+  const loadCourses = () => {
     // Only run on client side
     if (typeof window !== 'undefined') {
       const progressList = getAllCourseProgress();
@@ -47,7 +47,20 @@ export default function ResumeCourseSection() {
       
       setCoursesToShow(sortedCourses);
     }
+  };
+
+  useEffect(() => {
+    loadCourses();
   }, []);
+
+  const handleClearResume = () => {
+    if (typeof window !== 'undefined') {
+      if (confirm('Are you sure you want to clear all your resume progress? This action cannot be undone.')) {
+        clearAllCourseProgress();
+        setCoursesToShow([]);
+      }
+    }
+  };
 
   if (coursesToShow.length === 0) {
     return null;
@@ -57,9 +70,18 @@ export default function ResumeCourseSection() {
     <div className="w-full py-12 sm:py-16 border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-8 sm:mb-12">
-            Resume Your Learning
-          </h2>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 sm:mb-12 gap-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground">
+              Resume Your Learning
+            </h2>
+            <button
+              onClick={handleClearResume}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors px-4 py-2 rounded-md hover:bg-muted border border-border hover:border-foreground/20 self-start sm:self-auto"
+              title="Clear all resume progress"
+            >
+              Clear Resume
+            </button>
+          </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {coursesToShow.map(({ courseName, progress, completedVideos }) => {

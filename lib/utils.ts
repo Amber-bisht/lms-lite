@@ -97,3 +97,18 @@ export function getLatestProgressForCourse(courseName: string): CourseProgress |
   return courseProgress[0];
 }
 
+export function clearAllCourseProgress(): void {
+  if (typeof window === 'undefined') return;
+  
+  const keysToRemove: string[] = [];
+  
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key && key.startsWith(PROGRESS_STORAGE_KEY + '_')) {
+      keysToRemove.push(key);
+    }
+  }
+  
+  keysToRemove.forEach(key => localStorage.removeItem(key));
+}
+

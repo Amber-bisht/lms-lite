@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ICourse } from '../lib/dataUtils';
 
 interface HomepageCarouselProps {
@@ -45,18 +46,22 @@ export default function HomepageCarousel({ courses }: HomepageCarouselProps) {
           className="bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-border flex-shrink-0 w-80 hover:scale-102"
         >
           <div className="relative">
-            <img 
+            <Image 
               src={course.imageofcourse} 
               alt={course.courseName}
+              width={320}
+              height={192}
               className="w-full h-48 object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
             <div className="absolute bottom-4 left-4 right-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
-                  <img 
+                  <Image 
                     src={course.imageofinstructur} 
                     alt={course.instructorDisplayName}
+                    width={32}
+                    height={32}
                     className="w-8 h-8 rounded-full object-cover border-2 border-white/30"
                   />
                   <span className="text-white text-sm font-medium">
@@ -103,18 +108,22 @@ export default function HomepageCarousel({ courses }: HomepageCarouselProps) {
         className="bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-border flex-shrink-0 w-80 hover:scale-102"
       >
         <div className="relative">
-          <img 
+          <Image 
             src={course.imageofcourse} 
             alt={course.courseName}
+            width={320}
+            height={192}
             className="w-full h-48 object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
           <div className="absolute bottom-4 left-4 right-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
-                <img 
+                <Image 
                   src={course.imageofinstructur} 
                   alt={course.instructorDisplayName}
+                  width={32}
+                  height={32}
                   className="w-8 h-8 rounded-full object-cover border-2 border-white/30"
                 />
                 <span className="text-white text-sm font-medium">

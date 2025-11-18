@@ -1,5 +1,6 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import Head from 'next/head';
 import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
@@ -43,9 +44,11 @@ const renderCourseCard = (course: ILightCourse) => {
           className="block"
         >
           <div className="relative">
-            <img 
+            <Image 
               src={course.imageofcourse} 
               alt={course.courseName}
+              width={400}
+              height={192}
               className="w-full h-32 sm:h-40 md:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
             />
             {course.rating && (
@@ -80,14 +83,12 @@ const renderCourseCard = (course: ILightCourse) => {
             {course.courseName}
           </h3>
           <div className="flex items-center mb-3">
-            <img
+            <Image
               src={course.imageofinstructur}
               alt={course.instructorDisplayName}
+              width={20}
+              height={20}
               className="w-4 h-4 sm:w-5 sm:h-5 rounded-full mr-2 flex-shrink-0 object-cover"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-                e.currentTarget.nextElementSibling?.classList.remove('hidden');
-              }}
             />
             <div className="w-4 h-4 sm:w-5 sm:h-5 bg-muted rounded-full mr-2 flex-shrink-0 hidden"></div>
             <span className="text-xs sm:text-sm text-muted-foreground truncate">
@@ -124,11 +125,14 @@ const renderCourseCard = (course: ILightCourse) => {
       <Link
         href={`/teacher/${encodeURIComponent(course.instructorSlug)}/${encodeURIComponent(course.courseName)}`}
         className="block"
+        aria-label={`View ${course.courseName} course`}
       >
         <div className="relative">
-          <img 
+          <Image 
             src={course.imageofcourse} 
             alt={course.courseName}
+            width={400}
+            height={192}
             className="w-full h-32 sm:h-40 md:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
           />
           {course.rating && (
@@ -160,14 +164,12 @@ const renderCourseCard = (course: ILightCourse) => {
           {course.courseName}
         </h3>
         <div className="flex items-center mb-3">
-          <img
+          <Image
             src={course.imageofinstructur}
             alt={course.instructorDisplayName}
+            width={20}
+            height={20}
             className="w-4 h-4 sm:w-5 sm:h-5 rounded-full mr-2 flex-shrink-0 object-cover"
-            onError={(e) => {
-              e.currentTarget.style.display = 'none';
-              e.currentTarget.nextElementSibling?.classList.remove('hidden');
-            }}
           />
           <div className="w-4 h-4 sm:w-5 sm:h-5 bg-muted rounded-full mr-2 flex-shrink-0 hidden"></div>
           <span className="text-xs sm:text-sm text-muted-foreground truncate">

@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function Footer() {
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'Unlocked Coding';
   
@@ -6,10 +8,13 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-8">
         <div className="text-center">
           <div className="flex items-center justify-center space-x-3 mb-6">
-            <img 
+            <Image 
               src="/images.png" 
               alt="UnlockedCoding Logo" 
+              width={32}
+              height={32}
               className="w-8 h-8 rounded-lg"
+              priority
             />
             <h3 className="text-2xl font-bold text-black dark:text-white">
               {siteName}

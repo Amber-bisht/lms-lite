@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface Teacher {
   name: string;
@@ -70,15 +71,12 @@ const MeetYourTeachers: React.FC<MeetYourTeachersProps> = ({ teachers }) => {
                 <div className="flex-shrink-0">
                   <div className="w-16 h-16 rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-purple-500/20 flex items-center justify-center">
                     {teacher.image ? (
-                      <img
+                      <Image
                         src={teacher.image}
                         alt={formatTeacherName(teacher.name)}
+                        width={64}
+                        height={64}
                         className="w-full h-full object-cover"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                          target.nextElementSibling?.classList.remove('hidden');
-                        }}
                       />
                     ) : null}
                     <div className={`w-full h-full flex items-center justify-center text-xl font-bold text-primary ${teacher.image ? 'hidden' : ''}`}>

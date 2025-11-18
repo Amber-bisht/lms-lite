@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { useEffect } from 'react';
 import Layout from '../../components/Layout';
@@ -80,7 +81,7 @@ export default function BlogPostPage({ post }: BlogPostPageProps) {
   return (
     <>
       <Head>
-        <title>{post.name} | {siteName}</title>
+        <title>{`${post.name} | ${siteName}`}</title>
         <meta name="description" content={post.description} />
         <link rel="canonical" href={canonicalUrl} />
         <meta name="robots" content="index, follow" />
@@ -163,10 +164,13 @@ export default function BlogPostPage({ post }: BlogPostPageProps) {
             {/* Blog Image */}
             {post.image && (
               <div className="mb-8 sm:mb-12">
-                <img 
+                <Image 
                   src={post.image} 
                   alt={post.name}
+                  width={1200}
+                  height={320}
                   className="w-full h-64 sm:h-80 object-cover rounded-xl shadow-lg"
+                  priority
                 />
               </div>
             )}

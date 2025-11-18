@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 import Layout from '../../components/Layout';
 import { getAllCourses, ICourse, ITeacherDetail, getTeacherDetails, loadTeacherData } from '../../lib/dataUtils';
 
@@ -18,7 +19,7 @@ export default function InstructorPage({ instructorName, courses, instructorImag
   return (
     <>
       <Head>
-        <title>{instructorName} - Courses by {instructorName} | {siteName}</title>
+        <title>{`${instructorName} - Courses by ${instructorName} | ${siteName}`}</title>
         <meta name="description" content={`Explore all programming courses by ${instructorName}. Learn from industry experts with hands-on projects and real-world applications.`} />
         <meta name="keywords" content={`${instructorName}, programming courses, coding tutorials, web development, software engineering`} />
         <link rel="canonical" href={`https://unlockedcoding.com/teacher/${encodeURIComponent(instructorName)}`} />
@@ -66,10 +67,13 @@ export default function InstructorPage({ instructorName, courses, instructorImag
           <div className="flex flex-col lg:flex-row items-start gap-8 mb-12">
             {/* Left Side - Teacher Image */}
             <div className="flex-shrink-0 mx-auto lg:mx-0">
-              <img
+              <Image
                 src={teacherDetails?.image || instructorImage}
                 alt={teacherDetails?.name || instructorName}
+                width={224}
+                height={224}
                 className="w-48 h-48 lg:w-56 lg:h-56 rounded-2xl object-cover shadow-xl border-4 border-primary"
+                priority
               />
             </div>
             
@@ -147,17 +151,21 @@ export default function InstructorPage({ instructorName, courses, instructorImag
                       className="block bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-border hover:scale-102"
                     >
                       <div className="relative">
-                        <img 
+                        <Image 
                           src={course.imageofcourse} 
                           alt={course.courseName}
+                          width={400}
+                          height={192}
                           className="w-full h-48 object-cover"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                         <div className="absolute bottom-4 left-4 right-4">
                           <div className="flex items-center space-x-2">
-                            <img 
+                            <Image 
                               src={course.imageofinstructur} 
                               alt={teacherDetails?.displayName || teacherDetails?.name || course.instructorDisplayName || course.instructorSlug}
+                              width={32}
+                              height={32}
                               className="w-8 h-8 rounded-full object-cover border-2 border-white/30"
                             />
                             <span className="text-white text-sm font-medium">
@@ -355,9 +363,11 @@ export default function InstructorPage({ instructorName, courses, instructorImag
                     className="bg-card rounded-xl p-6 border border-border hover:border-primary/20 transition-all duration-300 group"
                   >
                     <div className="flex items-center space-x-4 mb-4">
-                      <img
+                      <Image
                         src={teacher.image}
                         alt={teacher.name}
+                        width={64}
+                        height={64}
                         className="w-16 h-16 rounded-full object-cover"
                       />
                       <div>

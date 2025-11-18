@@ -1,5 +1,6 @@
 import Layout from '../components/Layout';
 import Head from 'next/head';
+import Image from 'next/image';
 import HomepageCarousel from '../components/HomepageCarousel';
 import ReviewsSection from '../components/ReviewsSection';
 import MeetYourTeachers from '../components/MeetYourTeachers';
@@ -18,16 +19,13 @@ export default function Home({ homepageCourses, reviewsData, teachers }: HomePro
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'Unlocked Coding';
   const { theme } = useTheme();
   
-  // Debug logging
-  console.log('Homepage courses in component:', homepageCourses);
-  
   // Ensure homepageCourses is always an array
   const safeHomepageCourses = Array.isArray(homepageCourses) ? homepageCourses : [];
   
-  // Theme-based image URLs
+  // Theme-based image URLs from public folder
   const heroImageUrl = theme === 'dark' 
-    ? 'https://i.ibb.co/3y9jvc9d/Gemini-Generated-Image-eftvryeftvryeftv.png'
-    : 'https://i.ibb.co/Z1LRRrFP/Gemini-Generated-Image-83ewuf83ewuf83ew.png';
+    ? '/darktheme.webp'
+    : '/whitetheme.webp';
   
   return (
     <>
@@ -54,11 +52,8 @@ export default function Home({ homepageCourses, reviewsData, teachers }: HomePro
               {/* Branding */}
               <div className="text-left mb-6 lg:mb-8">
                 <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-foreground leading-tight mb-2">
-                  UNLOCKED
+                  UNLOCKED CODING
                 </h1>
-                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight">
-                  CODING
-                </h2>
               </div>
 
               {/* Message Section - Wide, starts from left */}
@@ -74,10 +69,13 @@ export default function Home({ homepageCourses, reviewsData, teachers }: HomePro
 
             {/* Middle - Hero Image */}
             <div className="flex justify-center items-center w-full lg:w-auto">
-              <img 
+              <Image 
                 src={heroImageUrl} 
                 alt="Hero illustration" 
+                width={350}
+                height={350}
                 className="max-w-[200px] sm:max-w-[250px] md:max-w-[300px] lg:max-w-[350px] h-auto rounded-lg"
+                priority
               />
             </div>
 
@@ -207,10 +205,6 @@ export const getStaticProps: GetStaticProps = async () => {
     const reviewsData = getReviewsData();
     const teachers = getUniqueTeachers();
     
-    console.log('Homepage courses loaded:', homepageCourses?.length || 0);
-    console.log('Reviews data loaded:', reviewsData.reviews?.length || 0);
-    console.log('Teachers loaded:', teachers?.length || 0);
-    
     // Ensure we always return valid data
     const safeHomepageCourses = Array.isArray(homepageCourses) ? homepageCourses : [];
     const safeReviewsData = reviewsData || { reviews: [], averageRating: 0, totalReviews: 0 };
@@ -224,8 +218,6 @@ export const getStaticProps: GetStaticProps = async () => {
       },
     };
   } catch (error) {
-    console.error('Error loading homepage data:', error);
-    
     return {
       props: {
         homepageCourses: [],
