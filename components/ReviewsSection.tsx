@@ -82,7 +82,7 @@ const ReviewsSection: React.FC<ReviewsSectionProps> = ({ reviewsData }) => {
               <div className="border-t border-border pt-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="font-semibold text-foreground">{review.name}</h4>
+                    <h3 className="font-semibold text-foreground">{review.name}</h3>
                     <p className="text-sm text-muted-foreground">{review.location}</p>
                   </div>
                   <div className="text-right">

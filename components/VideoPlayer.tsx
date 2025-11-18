@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Hls, { HlsConfig, ErrorData } from 'hls.js';
+import type Hls from 'hls.js';
 import { ICourse } from '../lib/dataUtils';
 import { markVideoAsDone, isVideoDone } from '../lib/utils';
 
@@ -117,44 +117,52 @@ export default function VideoPlayer({ course, useVideoLinks = false, baseUrl }: 
       hlsRef.current = null;
     }
 
-    if (Hls.isSupported()) {
-      const hls = new Hls({
-        enableWorker: true,
-        lowLatencyMode: false,
-        backBufferLength: 90
-      } as HlsConfig);
-      
-      hlsRef.current = hls;
-      
-      hls.loadSource(videoSrc);
-      hls.attachMedia(video);
-      
-      hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        console.log('HLS manifest parsed successfully');
-      });
-      
-      hls.on(Hls.Events.ERROR, (event: string, data: ErrorData) => {
-        console.error('HLS error:', data);
-        if (data.fatal) {
-          switch (data.type) {
-            case Hls.ErrorTypes.NETWORK_ERROR:
-              setError('Network error: Unable to load video');
-              break;
-            case Hls.ErrorTypes.MEDIA_ERROR:
-              setError('Media error: Video format not supported');
-              break;
-            default:
-              setError('Fatal error: Unable to play video');
-              break;
+    // Dynamically import hls.js only when needed
+    const loadHls = async () => {
+      const HlsModule = await import('hls.js');
+      const Hls = HlsModule.default;
+
+      if (Hls.isSupported()) {
+        const hls = new Hls({
+          enableWorker: true,
+          lowLatencyMode: false,
+          backBufferLength: 90
+        });
+        
+        hlsRef.current = hls;
+        
+        hls.loadSource(videoSrc);
+        hls.attachMedia(video);
+        
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          console.log('HLS manifest parsed successfully');
+        });
+        
+        hls.on(Hls.Events.ERROR, (event: string, data: any) => {
+          console.error('HLS error:', data);
+          if (data.fatal) {
+            switch (data.type) {
+              case Hls.ErrorTypes.NETWORK_ERROR:
+                setError('Network error: Unable to load video');
+                break;
+              case Hls.ErrorTypes.MEDIA_ERROR:
+                setError('Media error: Video format not supported');
+                break;
+              default:
+                setError('Fatal error: Unable to play video');
+                break;
+            }
           }
-        }
-      });
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      // Native HLS support (Safari)
-      video.src = videoSrc;
-    } else {
-      setError('HLS is not supported in this browser');
-    }
+        });
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        // Native HLS support (Safari)
+        video.src = videoSrc;
+      } else {
+        setError('HLS is not supported in this browser');
+      }
+    };
+
+    loadHls();
 
     return () => {
       if (hlsRef.current) {

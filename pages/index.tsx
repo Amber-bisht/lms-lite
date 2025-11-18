@@ -76,6 +76,7 @@ export default function Home({ homepageCourses, reviewsData, teachers }: HomePro
                 height={350}
                 className="max-w-[200px] sm:max-w-[250px] md:max-w-[300px] lg:max-w-[350px] h-auto rounded-lg"
                 priority
+                fetchPriority="high"
               />
             </div>
 
