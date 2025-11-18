@@ -32,15 +32,15 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       {/* AdSense script removed - no ad units currently on site */}
       
-      {/* Google Analytics */}
+      {/* Google Analytics - Delayed loading for better mobile performance */}
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-N90CFT21QV"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
       <Script
         id="google-analytics"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
@@ -51,10 +51,10 @@ export default function App({ Component, pageProps }: AppProps) {
         }}
       />
       
-      {/* Microsoft Clarity */}
+      {/* Microsoft Clarity - Delayed loading for better mobile performance */}
       <Script
         id="microsoft-clarity"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
             (function(c,l,a,r,i,t,y){
