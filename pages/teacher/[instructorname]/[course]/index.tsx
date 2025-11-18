@@ -189,14 +189,14 @@ export default function TeacherCoursePage({
                           expertiseChips.map((skill, index) => (
                             <span
                               key={index}
-                              className="rounded-full bg-blue-500/10 px-3 py-1 text-sm text-blue-500"
+                              className="rounded-full bg-gray-500/10 dark:bg-gray-400/10 px-3 py-1 text-sm text-foreground"
                             >
                               {skill}
                             </span>
                           ))
                         ) : (
                           <>
-                            <span className="rounded-full bg-blue-500/10 px-3 py-1 text-sm text-blue-500">
+                            <span className="rounded-full bg-gray-500/10 dark:bg-gray-400/10 px-3 py-1 text-sm text-foreground">
                               Industry Expert
                             </span>
                             <span className="rounded-full bg-green-500/10 px-3 py-1 text-sm text-green-500">
@@ -240,7 +240,7 @@ export default function TeacherCoursePage({
                   </div>
                 </div>
 
-                <div className="mb-6 rounded-lg border border-border/50 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-white/5 p-6">
+                <div className="mb-6 rounded-lg border border-border/50 bg-gradient-to-r from-gray-500/5 via-purple-500/5 to-white/5 p-6">
                   <h3 className="mb-4 text-xl font-semibold text-foreground">Course Overview</h3>
                   <p className="mb-4 leading-relaxed text-muted-foreground">
                     {teacherDetails
@@ -260,7 +260,7 @@ export default function TeacherCoursePage({
                     {course.whatYouWillLearn.map((item, index) => (
                       <div key={index} className="flex items-start">
                         <svg
-                          className="mr-3 mt-0.5 h-5 w-5 flex-shrink-0 text-blue-500"
+                          className="mr-3 mt-0.5 h-5 w-5 flex-shrink-0 text-foreground"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >

@@ -57,7 +57,7 @@ export default function Header() {
                       referrerPolicy="no-referrer"
                     />
                   ) : (
-                    <div className="w-9 h-9 rounded-full bg-blue-500 text-white flex items-center justify-center text-sm font-semibold">
+                    <div className="w-9 h-9 rounded-full bg-foreground text-background flex items-center justify-center text-sm font-semibold">
                       {user.name.charAt(0).toUpperCase()}
                     </div>
                   )}
@@ -67,7 +67,7 @@ export default function Header() {
                     </span>
                     <button
                       onClick={logout}
-                      className="text-xs text-blue-500 hover:underline text-left"
+                      className="text-xs text-foreground hover:underline text-left"
                     >
                       Logout
                     </button>
@@ -76,7 +76,7 @@ export default function Header() {
               ) : (
                 <button
                   onClick={() => login()}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 shadow-sm"
+                  className="bg-foreground hover:opacity-90 text-background px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 shadow-sm"
                 >
                   Login with Google
                 </button>
@@ -89,7 +89,7 @@ export default function Header() {
             <ThemeToggle />
             <button
               onClick={toggleMobileMenu}
-              className="text-black dark:text-white hover:text-blue-500 transition-colors duration-200 p-2"
+              className="text-black dark:text-white hover:opacity-70 transition-colors duration-200 p-2"
               aria-label="Toggle mobile menu"
             >
               <svg
@@ -165,7 +165,7 @@ export default function Header() {
                           referrerPolicy="no-referrer"
                         />
                       ) : (
-                        <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center text-base font-semibold">
+                        <div className="w-10 h-10 rounded-full bg-foreground text-background flex items-center justify-center text-base font-semibold">
                           {user.name.charAt(0).toUpperCase()}
                         </div>
                       )}
@@ -179,7 +179,7 @@ export default function Header() {
                         logout();
                         closeMobileMenu();
                       }}
-                      className="text-sm text-blue-500 hover:underline"
+                      className="text-sm text-foreground hover:underline"
                     >
                       Logout
                     </button>
@@ -190,7 +190,7 @@ export default function Header() {
                       login();
                       closeMobileMenu();
                     }}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg text-sm font-semibold transition-colors duration-200 shadow-sm"
+                    className="w-full bg-foreground hover:opacity-90 text-background px-4 py-3 rounded-lg text-sm font-semibold transition-colors duration-200 shadow-sm"
                   >
                     Login with Google
                   </button>

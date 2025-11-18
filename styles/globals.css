@@ -6,7 +6,7 @@
   :root {
     --background: 255 255 255; /* white */
     --foreground: 0 0 0; /* black */
-    --primary: 37 99 235; /* blue-600 */
+    --primary: 0 0 0; /* black */
     --primary-foreground: 255 255 255; /* white */
     --secondary: 243 244 246; /* gray-100 */
     --secondary-foreground: 17 24 39; /* gray-900 */
@@ -20,8 +20,8 @@
   .dark {
     --background: 0 0 0; /* black */
     --foreground: 255 255 255; /* white */
-    --primary: 37 99 235; /* blue-600 */
-    --primary-foreground: 255 255 255; /* white */
+    --primary: 255 255 255; /* white */
+    --primary-foreground: 0 0 0; /* black */
     --secondary: 31 41 55; /* gray-800 */
     --secondary-foreground: 243 244 246; /* gray-100 */
     --muted: 17 24 39; /* gray-900 */

@@ -45,32 +45,28 @@ export default function HybridCourseList({
   const renderCourseCard = (course: ICourse | ILightCourse) => {
     if (course.videoType === 'redirect' && course.redirecturl) {
       return (
-        <div
+        <Link
           key={`${course.coursecategory}-${course.courseName}`}
-          className="bg-card rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden border border-border group"
+          href={`/teacher/${encodeURIComponent(course.instructorSlug)}/${encodeURIComponent(course.courseName)}`}
+          className="bg-card rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden border border-border group block"
         >
-          <Link
-            href={`/teacher/${encodeURIComponent(course.instructorSlug)}/${encodeURIComponent(course.courseName)}`}
-            className="block"
-          >
-            <div className="relative">
-              <img 
-                src={course.imageofcourse} 
-                alt={course.courseName}
-                className="w-full h-32 sm:h-40 md:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              {course.rating && (
-                <div className="absolute bottom-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
-                  <span>★</span>
-                  <span>{course.rating.average}</span>
-                  <span>({course.rating.count})</span>
-                </div>
-              )}
-              <span className="absolute top-2 right-2 bg-amber-500 text-white text-xs px-2 py-1 rounded shadow">
-                External
-              </span>
-            </div>
-          </Link>
+          <div className="relative">
+            <img 
+              src={course.imageofcourse} 
+              alt={course.courseName}
+              className="w-full h-32 sm:h-40 md:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+            {course.rating && (
+              <div className="absolute bottom-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
+                <span>★</span>
+                <span>{course.rating.average}</span>
+                <span>({course.rating.count})</span>
+              </div>
+            )}
+            <span className="absolute top-2 right-2 bg-amber-500 text-white text-xs px-2 py-1 rounded shadow">
+              External
+            </span>
+          </div>
           <div className="p-4 sm:p-6">
             <div className="flex justify-between items-start mb-2">
               <span className="text-xs sm:text-sm text-primary font-medium capitalize bg-primary/10 px-2 py-1 rounded">
@@ -78,7 +74,7 @@ export default function HybridCourseList({
               </span>
               <div className="flex items-center gap-2">
                 {course.level && (
-                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                  <span className="text-xs bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100 px-2 py-1 rounded">
                     {course.level}
                   </span>
                 )}
@@ -195,7 +191,7 @@ export default function HybridCourseList({
                 <h4 className="text-xs font-semibold text-foreground mb-2">Course Features:</h4>
                 <div className="flex flex-wrap gap-1">
                   {course.features.slice(0, 3).map((feature: string, index: number) => (
-                    <span key={index} className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                    <span key={index} className="text-xs bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100 px-2 py-1 rounded">
                       {feature}
                     </span>
                   ))}
@@ -223,34 +219,30 @@ export default function HybridCourseList({
               </span>
             </div>
           </div>
-        </div>
+        </Link>
       );
     }
 
     return (
-      <div
+      <Link
         key={`${course.coursecategory}-${course.courseName}`}
-        className="bg-card rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden border border-border group"
+        href={`/teacher/${encodeURIComponent(course.instructorSlug)}/${encodeURIComponent(course.courseName)}`}
+        className="bg-card rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden border border-border group block"
       >
-        <Link
-          href={`/teacher/${encodeURIComponent(course.instructorSlug)}/${encodeURIComponent(course.courseName)}`}
-          className="block"
-        >
-          <div className="relative">
-            <img 
-              src={course.imageofcourse} 
-              alt={course.courseName}
-              className="w-full h-32 sm:h-40 md:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-            {course.rating && (
-              <div className="absolute bottom-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
-                <span>★</span>
-                <span>{course.rating.average}</span>
-                <span>({course.rating.count})</span>
-              </div>
-            )}
-          </div>
-        </Link>
+        <div className="relative">
+          <img 
+            src={course.imageofcourse} 
+            alt={course.courseName}
+            className="w-full h-32 sm:h-40 md:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+          {course.rating && (
+            <div className="absolute bottom-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
+              <span>★</span>
+              <span>{course.rating.average}</span>
+              <span>({course.rating.count})</span>
+            </div>
+          )}
+        </div>
         <div className="p-4 sm:p-6">
           <div className="flex justify-between items-start mb-2">
             <span className="text-xs sm:text-sm text-primary font-medium capitalize bg-primary/10 px-2 py-1 rounded">
@@ -258,7 +250,7 @@ export default function HybridCourseList({
             </span>
             <div className="flex items-center gap-2">
               {course.level && (
-                <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                <span className="text-xs bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100 px-2 py-1 rounded">
                   {course.level}
                 </span>
               )}
@@ -379,7 +371,7 @@ export default function HybridCourseList({
               <h4 className="text-xs font-semibold text-foreground mb-2">Course Features:</h4>
               <div className="flex flex-wrap gap-1">
                 {course.features.slice(0, 3).map((feature: string, index: number) => (
-                  <span key={index} className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                  <span key={index} className="text-xs bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100 px-2 py-1 rounded">
                     {feature}
                   </span>
                 ))}
@@ -407,7 +399,7 @@ export default function HybridCourseList({
             </span>
           </div>
         </div>
-      </div>
+      </Link>
     );
   };
 

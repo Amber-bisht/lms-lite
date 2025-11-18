@@ -67,7 +67,7 @@ const renderCourseCard = (course: ILightCourse) => {
             </span>
             <div className="flex items-center gap-2">
               {course.level && (
-                <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                <span className="text-xs bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100 px-2 py-1 rounded">
                   {course.level}
                 </span>
               )}
@@ -147,7 +147,7 @@ const renderCourseCard = (course: ILightCourse) => {
           </span>
           <div className="flex items-center gap-2">
             {course.level && (
-              <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+              <span className="text-xs bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100 px-2 py-1 rounded">
                 {course.level}
               </span>
             )}
@@ -278,7 +278,7 @@ export default function CategoryPage({ courses, categoryName }: CategoryPageProp
           )}
 
           {/* Category Overview */}
-          <div className="bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-white/5 rounded-2xl p-6 sm:p-8 mb-8 border border-border/50">
+          <div className="bg-gradient-to-r from-gray-500/5 via-purple-500/5 to-white/5 rounded-2xl p-6 sm:p-8 mb-8 border border-border/50">
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
               About {categoryName.replace(/-/g, ' ')} Development
             </h2>
@@ -330,8 +330,8 @@ export default function CategoryPage({ courses, categoryName }: CategoryPageProp
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center">
-                <div className="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-blue-500 font-bold text-lg">1</span>
+                <div className="w-12 h-12 bg-gray-500/10 dark:bg-gray-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-foreground font-bold text-lg">1</span>
                 </div>
                 <h3 className="font-semibold text-foreground mb-2">Foundation</h3>
                 <p className="text-sm text-muted-foreground">

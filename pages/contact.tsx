@@ -83,10 +83,10 @@ export default function Contact() {
           {/* Contact Methods */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 sm:mb-16">
             {/* Primary Contact - Telegram */}
-            <div className="bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-white/5 rounded-2xl p-8 sm:p-12 border border-border/50">
+            <div className="bg-gradient-to-br from-gray-500/5 via-purple-500/5 to-white/5 rounded-2xl p-8 sm:p-12 border border-border/50">
               <div className="text-center">
-                <div className="w-16 h-16 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-8 h-8 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+                <div className="w-16 h-16 bg-gray-500/10 dark:bg-gray-400/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-8 h-8 text-foreground" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.568 8.16l-1.61 7.59c-.121.57-.44.71-.89.44l-2.46-1.81-1.19 1.15c-.13.13-.24.24-.49.24l.18-2.56 4.57-4.13c.2-.18-.04-.28-.31-.1l-5.64 3.55-2.43-.76c-.53-.16-.54-.53.11-.79l9.52-3.67c.44-.16.83.1.69.79z"/>
                   </svg>
                 </div>
@@ -101,7 +101,7 @@ export default function Contact() {
                     href="https://t.me/un_devs"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block bg-blue-500 text-white px-8 py-4 rounded-lg hover:bg-blue-600 transition-colors font-semibold text-lg"
+                    className="block bg-foreground text-background px-8 py-4 rounded-lg hover:opacity-90 transition-colors font-semibold text-lg"
                     onClick={() => event({
                       action: 'click',
                       category: 'Contact',
@@ -300,8 +300,8 @@ export default function Contact() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="text-center p-4 bg-muted/30 rounded-lg">
-                <div className="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center mx-auto mb-3">
-                  <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-10 h-10 bg-gray-500/10 dark:bg-gray-400/10 rounded-lg flex items-center justify-center mx-auto mb-3">
+                  <svg className="w-5 h-5 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                   </svg>
                 </div>
@@ -342,7 +342,7 @@ export default function Contact() {
           </div>
 
           {/* Additional Information */}
-          <div className="bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-white/10 rounded-2xl p-8 sm:p-12 border border-border/50">
+          <div className="bg-gradient-to-r from-gray-500/10 via-purple-500/10 to-white/10 rounded-2xl p-8 sm:p-12 border border-border/50">
             <div className="text-center">
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
                 About Our Support
@@ -355,8 +355,8 @@ export default function Contact() {
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-12 h-12 bg-gray-500/10 dark:bg-gray-400/10 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <svg className="w-6 h-6 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                   </div>

@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Hls, { HlsConfig, ErrorData } from 'hls.js';
 import { ICourse } from '../lib/dataUtils';
+import { markVideoAsDone, isVideoDone } from '../lib/utils';
 
 interface VideoPlayerProps {
   course: ICourse & { currentVideoIndex?: number };
@@ -10,13 +12,44 @@ interface VideoPlayerProps {
 }
 
 export default function VideoPlayer({ course, useVideoLinks = false, baseUrl }: VideoPlayerProps) {
+  const router = useRouter();
   const [currentVideoIndex, setCurrentVideoIndex] = useState(course.currentVideoIndex || 0);
   const [error, setError] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const hlsRef = useRef<Hls | null>(null);
   const [wistiaLoaded, setWistiaLoaded] = useState(false);
+  const [videoDone, setVideoDone] = useState(false);
 
   const currentVideo = course.videos[currentVideoIndex];
+  
+  // Get page name from router path
+  const pageName = router.asPath || router.pathname;
+  
+  // Check if current video is marked as done
+  useEffect(() => {
+    if (currentVideo) {
+      const done = isVideoDone(pageName, currentVideo.title);
+      setVideoDone(done);
+    }
+  }, [currentVideo, pageName]);
+  
+  const handleMarkAsDone = () => {
+    if (!currentVideo) return;
+    
+    const courseUrl = router.asPath || '';
+    const teacherSlug = course.instructorSlug || course.teacherId || course.instructorname || '';
+    markVideoAsDone(
+      pageName,
+      currentVideo.title,
+      course.courseName,
+      courseUrl,
+      currentVideoIndex,
+      course.imageofcourse,
+      course.des,
+      teacherSlug
+    );
+    setVideoDone(true);
+  };
 
   // Extract Wistia video ID from URL
   const getWistiaVideoId = (url: string) => {
@@ -44,6 +77,11 @@ export default function VideoPlayer({ course, useVideoLinks = false, baseUrl }: 
   const handleVideoSelect = (index: number) => {
     setCurrentVideoIndex(index);
     setError(null);
+    // Check if new video is done
+    if (course.videos[index]) {
+      const done = isVideoDone(pageName, course.videos[index].title);
+      setVideoDone(done);
+    }
   };
 
   // Load Wistia SDK when component mounts or when videoType is wistia
@@ -274,6 +312,35 @@ export default function VideoPlayer({ course, useVideoLinks = false, baseUrl }: 
               {course.des}
             </p>
             
+            {/* Mark as Done Button */}
+            <div className="mb-3 sm:mb-4">
+              <button
+                onClick={handleMarkAsDone}
+                disabled={videoDone}
+                className={`w-full px-4 py-2 rounded-lg font-semibold text-sm transition-colors ${
+                  videoDone
+                    ? 'bg-green-500/20 text-green-600 dark:text-green-400 cursor-not-allowed'
+                    : 'bg-primary text-primary-foreground hover:opacity-90'
+                }`}
+              >
+                {videoDone ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Marked as Done
+                  </span>
+                ) : (
+                  <span className="flex items-center justify-center gap-2">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Mark as Done
+                  </span>
+                )}
+              </button>
+            </div>
+            
             <div className="space-y-1 sm:space-y-2">
               <h3 className="text-base sm:text-lg font-semibold text-card-foreground mb-2 sm:mb-3">
                 Course Videos ({course.videos.length})
@@ -281,14 +348,22 @@ export default function VideoPlayer({ course, useVideoLinks = false, baseUrl }: 
               <div className="max-h-48 lg:max-h-none overflow-y-auto">
                 {course.videos.map((video, index) => {
                   const isActive = index === currentVideoIndex;
+                  const isDone = isVideoDone(pageName, video.title);
                   const content = (
-                    <div className="flex items-center">
-                      <div className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full mr-2 sm:mr-3 flex-shrink-0 ${
-                        isActive ? 'bg-primary' : 'bg-muted-foreground'
-                      }`} />
-                      <span className="font-medium text-card-foreground text-xs sm:text-sm leading-tight">
-                        {video.title}
-                      </span>
+                    <div className="flex items-center justify-between w-full">
+                      <div className="flex items-center flex-1 min-w-0">
+                        <div className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full mr-2 sm:mr-3 flex-shrink-0 ${
+                          isActive ? 'bg-primary' : 'bg-muted-foreground'
+                        }`} />
+                        <span className="font-medium text-card-foreground text-xs sm:text-sm leading-tight truncate">
+                          {video.title}
+                        </span>
+                      </div>
+                      {isDone && (
+                        <svg className="w-4 h-4 text-green-500 flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      )}
                     </div>
                   );
 

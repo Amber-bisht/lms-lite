@@ -193,9 +193,9 @@ export default function TeacherCoursePlayPage({
               </p>
               <button
                 onClick={handleLogin}
-                className="inline-flex w-full items-center justify-center gap-3 rounded-lg bg-blue-600 px-7 py-3 text-base font-semibold text-white transition-colors duration-200 shadow-md hover:bg-blue-700 sm:w-auto"
+                className="inline-flex w-full items-center justify-center gap-3 rounded-lg bg-foreground px-7 py-3 text-base font-semibold text-background transition-colors duration-200 shadow-md hover:opacity-90 sm:w-auto"
               >
-                <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white font-bold text-blue-600">
+                <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-background font-bold text-foreground">
                   G
                 </span>
                 <span>Continue with Google</span>
@@ -218,9 +218,9 @@ export default function TeacherCoursePlayPage({
                 <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
                   <button
                     onClick={handleLogin}
-                    className="inline-flex items-center justify-center gap-2 rounded-md bg-blue-600 px-5 py-2 text-sm font-semibold text-white transition-colors duration-200 shadow hover:bg-blue-700"
+                    className="inline-flex items-center justify-center gap-2 rounded-md bg-foreground px-5 py-2 text-sm font-semibold text-background transition-colors duration-200 shadow hover:opacity-90"
                   >
-                    <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white text-xs font-bold text-blue-600">
+                    <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-background text-xs font-bold text-foreground">
                       G
                     </span>
                     <span>Sign in with Google</span>

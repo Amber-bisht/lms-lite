@@ -3,6 +3,7 @@ import Head from 'next/head';
 import HomepageCarousel from '../components/HomepageCarousel';
 import ReviewsSection from '../components/ReviewsSection';
 import MeetYourTeachers from '../components/MeetYourTeachers';
+import ResumeCourseSection from '../components/ResumeCourseSection';
 import { getHomepageCourses, getReviewsData, getUniqueTeachers, ICourse, IReviewsData, ITeacher } from '../lib/dataUtils';
 import { GetStaticProps } from 'next';
 import { useTheme } from '../contexts/ThemeContext';
@@ -118,6 +119,9 @@ export default function Home({ homepageCourses, reviewsData, teachers }: HomePro
             </div>
           </div>
         </div>
+
+        {/* Resume Course Section */}
+        <ResumeCourseSection />
 
         {/* Featured Courses Carousel - Mobile Optimized */}
         {safeHomepageCourses && safeHomepageCourses.length > 0 && (
