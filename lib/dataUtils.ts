@@ -46,6 +46,7 @@ export interface ICourse {
   coursecategory: string;
   viewtype: 'mobile' | 'laptop' | 'both';
   des: string;
+  copyright?: boolean;
   teacherId: string;
   instructorSlug: string;
   instructorname: string;
@@ -113,6 +114,7 @@ interface JsonCourse {
   coursecategory: string;
   viewtype?: 'mobile' | 'laptop' | 'both';
   des: string;
+  copyright?: boolean;
   teacherId?: string;
   instructorname?: string;
   imageofinstructur?: string;
@@ -285,6 +287,7 @@ export function getAllCourses(): ICourse[] {
             coursecategory: jsonData.coursecategory.toLowerCase(),
             viewtype: jsonData.viewtype || 'both',
             des: jsonData.des,
+            copyright: jsonData.copyright || false,
             teacherId,
             instructorSlug,
             instructorname: instructorSlug,

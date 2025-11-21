@@ -37,11 +37,14 @@ export default function TeacherCoursePlayPage({
   const encodedTeacherSlug = encodeURIComponent(teacherSlug);
   const encodedCourseName = encodeURIComponent(courseName);
 
+  const isRestrictedCourse = Boolean(course?.copyright);
+
   useEffect(() => {
-    if (course && course.videoType === 'redirect' && course.redirecturl) {
+    if (!course || isRestrictedCourse) return;
+    if (course.videoType === 'redirect' && course.redirecturl) {
       window.location.href = course.redirecturl;
     }
-  }, [course]);
+  }, [course, isRestrictedCourse]);
 
   useEffect(() => {
     if (course && course.courseName) {
@@ -76,7 +79,7 @@ export default function TeacherCoursePlayPage({
     );
   }
 
-  if (course.videoType === 'redirect' && course.redirecturl) {
+  if (!isRestrictedCourse && course.videoType === 'redirect' && course.redirecturl) {
     return (
       <>
         <Head>
@@ -132,6 +135,42 @@ export default function TeacherCoursePlayPage({
   const handleGuestMode = () => {
     setGuestMode(true);
   };
+
+  if (isRestrictedCourse) {
+    return (
+      <>
+        <Head>
+          <title>{`${course.courseName} | Unavailable`}</title>
+          <meta name="robots" content="noindex, nofollow" />
+        </Head>
+        <Layout>
+          <div className="container mx-auto px-4 py-10 sm:px-6 lg:px-8">
+            <div className="rounded-2xl border border-amber-400 bg-amber-50 p-8 text-center text-amber-900 shadow">
+              <h1 className="mb-3 text-3xl font-bold">This course is not available anymore.</h1>
+              <p className="mx-auto mb-6 max-w-2xl text-sm sm:text-base opacity-90">
+                Due to copyright restrictions we can no longer stream this content. Please explore other material from the
+                instructor instead.
+              </p>
+              <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <Link
+                  href={`/teacher/${encodedTeacherSlug}/${encodedCourseName}`}
+                  className="inline-flex items-center justify-center rounded-lg bg-amber-500 px-6 py-3 text-base font-semibold text-white shadow hover:bg-amber-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-600"
+                >
+                  Back to course info
+                </Link>
+                <Link
+                  href={`/teacher/${encodedTeacherSlug}`}
+                  className="inline-flex items-center justify-center rounded-lg border border-amber-400 px-6 py-3 text-base font-semibold text-amber-900 hover:bg-amber-100"
+                >
+                  More from this teacher
+                </Link>
+              </div>
+            </div>
+          </div>
+        </Layout>
+      </>
+    );
+  }
 
   return (
     <>

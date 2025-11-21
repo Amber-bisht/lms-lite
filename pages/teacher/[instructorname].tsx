@@ -15,6 +15,7 @@ interface InstructorPageProps {
 
 export default function InstructorPage({ instructorName, courses, instructorImage, teacherDetails, similarTeachers = [] }: InstructorPageProps) {
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'Unlocked Coding';
+  const hasRestrictedCourses = courses.some(course => course.copyright);
 
   return (
     <>
@@ -63,6 +64,14 @@ export default function InstructorPage({ instructorName, courses, instructorImag
       
       <Layout>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+          {hasRestrictedCourses && (
+            <div className="mb-8 rounded-2xl border border-amber-400 bg-amber-50 p-5 text-amber-900 shadow-sm">
+              <p className="text-lg font-semibold">This teacher content is not available anymore.</p>
+              <p className="text-sm opacity-80">
+                Due to copyright restrictions, course playback and downloads have been disabled.
+              </p>
+            </div>
+          )}
           {/* Part 1: Instructor Header - Name, Image, Specialization, Stats */}
           <div className="flex flex-col lg:flex-row items-start gap-8 mb-12">
             {/* Left Side - Teacher Image */}
@@ -144,12 +153,10 @@ export default function InstructorPage({ instructorName, courses, instructorImag
             
             {courses.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {courses.map((course) => (
-                  <div key={`${course.coursecategory}-${course.courseName}`} className="group">
-                    <Link
-                      href={`/teacher/${encodeURIComponent(course.instructorSlug || course.teacherId || instructorName)}/${encodeURIComponent(course.courseName)}`}
-                      className="block bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-border hover:scale-102"
-                    >
+                {courses.map((course) => {
+                  const isRestrictedCourse = Boolean(course.copyright);
+                  const cardContent = (
+                    <>
                       <div className="relative">
                         <Image 
                           src={course.imageofcourse} 
@@ -159,6 +166,11 @@ export default function InstructorPage({ instructorName, courses, instructorImag
                           className="w-full h-48 object-cover"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        {isRestrictedCourse && (
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/60 p-4 text-center text-sm font-semibold uppercase tracking-wide text-amber-300">
+                            Course unavailable
+                          </div>
+                        )}
                         <div className="absolute bottom-4 left-4 right-4">
                           <div className="flex items-center space-x-2">
                             <Image 
@@ -209,14 +221,34 @@ export default function InstructorPage({ instructorName, courses, instructorImag
                               </>
                             )}
                           </div>
-                          <span className="bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary/90 transition-all">
-                            {course.videoType === 'redirect' && course.redirecturl ? 'Access Course' : 'View Details'}
+                          <span className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${isRestrictedCourse ? 'bg-gray-300 text-gray-600' : 'bg-primary text-primary-foreground hover:bg-primary/90'}`}>
+                            {isRestrictedCourse ? 'Unavailable' : course.videoType === 'redirect' && course.redirecturl ? 'Access Course' : 'View Details'}
                           </span>
                         </div>
                       </div>
-                    </Link>
-                  </div>
-                ))}
+                    </>
+                  );
+
+                  return (
+                    <div key={`${course.coursecategory}-${course.courseName}`} className={`group ${isRestrictedCourse ? 'cursor-not-allowed' : ''}`}>
+                      {isRestrictedCourse ? (
+                        <div
+                          className="block bg-card rounded-xl shadow-lg transition-all duration-300 overflow-hidden border border-border opacity-70 pointer-events-none"
+                          aria-disabled="true"
+                        >
+                          {cardContent}
+                        </div>
+                      ) : (
+                        <Link
+                          href={`/teacher/${encodeURIComponent(course.instructorSlug || course.teacherId || instructorName)}/${encodeURIComponent(course.courseName)}`}
+                          className="block bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-border hover:scale-102"
+                        >
+                          {cardContent}
+                        </Link>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             ) : (
               <div className="text-center py-12">

@@ -83,6 +83,43 @@ export default function TeacherCoursePage({
     ? teacherDetails.teachingStyle.toLowerCase()
     : 'a blend of theory and practice';
   const expertiseChips = teacherDetails?.expertise?.slice(0, 3) || null;
+  const isRestrictedCourse = Boolean(course.copyright);
+
+  if (isRestrictedCourse) {
+    return (
+      <>
+        <Head>
+          <title>{`${course.courseName} | Unavailable`}</title>
+          <meta name="robots" content="noindex, nofollow" />
+        </Head>
+        <Layout>
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div className="rounded-2xl border border-amber-400 bg-amber-50 p-8 text-center text-amber-900 shadow">
+              <h1 className="mb-4 text-3xl font-bold">This course is no longer available.</h1>
+              <p className="mx-auto mb-6 max-w-2xl text-sm sm:text-base opacity-90">
+                Due to copyright restrictions this course cannot be viewed anymore. Please explore other courses by{' '}
+                {instructorDisplayName}.
+              </p>
+              <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <Link
+                  href={`/teacher/${encodedTeacherSlug}`}
+                  className="inline-flex items-center justify-center rounded-lg bg-amber-500 px-6 py-3 text-base font-semibold text-white shadow hover:bg-amber-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-600"
+                >
+                  Back to {instructorDisplayName}
+                </Link>
+                <Link
+                  href={`/r/${categoryName.toLowerCase()}`}
+                  className="inline-flex items-center justify-center rounded-lg border border-amber-400 px-6 py-3 text-base font-semibold text-amber-900 hover:bg-amber-100"
+                >
+                  Browse more {categoryName} courses
+                </Link>
+              </div>
+            </div>
+          </div>
+        </Layout>
+      </>
+    );
+  }
 
   return (
     <>
